@@ -1,0 +1,437 @@
+'use client';
+
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Heart, 
+  Plus, 
+  Check, 
+  MessageCircle, 
+  X, 
+  ArrowRight,
+  Sparkles,
+  ShoppingBag
+} from 'lucide-react';
+
+export interface Product {
+  id: number;
+  title: string;
+  category: string;
+  price: string | number;
+  rating_count: number;
+  tag: string | null;
+  svg_type: string;
+  image?: string;
+  description?: string;
+  ingredients?: string;
+  usage_instructions?: string;
+  nutrition?: string;
+  benefits?: string;
+}
+
+const PRODUCT_IMAGES: Record<string, string> = {
+  moringa: '/hero_moringa.png',
+  abc: '/hero_abc.png',
+  choco: '/hero_choco.png',
+};
+
+const DEFAULT_DETAILS: Record<string, {
+  description: string;
+  ingredients: string;
+  usage: string;
+  nutrition: string[];
+  benefits: string[];
+}> = {
+  moringa: {
+    description: "Moringa Premix Soup is a nutrient-dense, warm, comforting herbal soup mix crafted from 100% wild-crafted Moringa leaves. Milled fresh to preserve raw enzymes, it delivers a clean, green energy boost while aiding digestion and natural metabolic detox.",
+    ingredients: "Organic Moringa Oleifera leaves, Roasted cumin, Black salt, Lemon peel powder, Ginger, Black pepper, Rock salt.",
+    usage: "Add 1 tablespoon (10g) of premix to a cup. Pour 150ml of boiling water. Stir well and let it sit for 10 seconds. Enjoy warm!",
+    nutrition: ["Energy: 320 kcal (per 100g)", "Protein: 22g", "Carbohydrates: 48g", "Dietary Fiber: 12g", "Iron: 25mg"],
+    benefits: ["Rich in Antioxidants", "Enhances Immune Function", "Supports Natural Detoxification", "Improves Energy Levels"]
+  },
+  abc: {
+    description: "Our signature ABC Latte Mix fuses raw apples, sweet red beetroots, and clean carrots into a powerhouse malt. Fortified with roasted almonds and cashews, it offers sustained daily vigor, natural skin glow, and supports blood purification.",
+    ingredients: "Dehydrated apple powder, Beetroot extract, Carrot crystals, Sprouted Ragi malt, Roasted almonds, Cashew kernels, Cardamom, Raw palm sugar.",
+    usage: "Add 2 spoonfuls (20g) to 200ml of hot milk or warm water. Stir briskly until smooth. Drink every morning for best results.",
+    nutrition: ["Energy: 385 kcal (per 100g)", "Protein: 12g", "Iron: 32mg", "Vitamin A: 1200 mcg", "Calcium: 180mg"],
+    benefits: ["Enriched with Iron", "Boosts Hemoglobin levels", "Natural Skin Radiance", "Sustained Energy"]
+  },
+  choco: {
+    description: "A luxurious, rich dark cocoa blend paired with sprouted ancient grains (Finger Millet, Pearl Millet, Foxtail Millet). Sweetened naturally without refined sugars, it is the ultimate health malt for growing children and active adults.",
+    ingredients: "Premium Dark Cocoa powder, Sprouted Finger Millet (Ragi), Sprouted Pearl Millet (Bajra), Sprouted Foxtail Millet, Almond flour, Coconut sugar, Cardamom, Pinch of sea salt.",
+    usage: "Add 2 tablespoons (25g) to a glass of hot milk (or vegan milk). Stir well. No boiling needed!",
+    nutrition: ["Energy: 360 kcal (per 100g)", "Protein: 14g", "Calcium: 410mg", "Dietary Fiber: 9g", "Zinc: 4.5mg"],
+    benefits: ["Rich in Calcium", "Zero Refined Sugar", "High Dietary Fiber", "Great for Bone Health"]
+  }
+};
+
+interface ShopSectionProps {
+  products: Product[];
+  filteredProducts: Product[];
+  wishlist: number[];
+  addedItems: number[];
+  dbSource: string;
+  onAddToCart: (product: Product) => void;
+  onBuyNow: (product: Product) => void;
+  onToggleWishlist: (id: number) => void;
+}
+
+export default function ShopSection({
+  products,
+  filteredProducts,
+  wishlist,
+  addedItems,
+  dbSource,
+  onAddToCart,
+  onBuyNow,
+  onToggleWishlist
+}: ShopSectionProps) {
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [activeTab, setActiveTab] = useState<'desc' | 'ing' | 'use' | 'nut'>('desc');
+
+  const categories = ['All', 'Superfood Malts', 'Premix Soups'];
+
+  const displayedProducts = filteredProducts.filter(p => {
+    if (activeCategory === 'All') return true;
+    return p.category.toLowerCase().includes(activeCategory.toLowerCase());
+  });
+
+  // Extract selected product specs
+  const pType = selectedProduct?.svg_type || 'moringa';
+  const pDesc = selectedProduct?.description || DEFAULT_DETAILS[pType]?.description || "No description provided.";
+  const pIngredients = selectedProduct?.ingredients || DEFAULT_DETAILS[pType]?.ingredients || "No ingredients listed.";
+  const pUsage = selectedProduct?.usage_instructions || DEFAULT_DETAILS[pType]?.usage || "No directions provided.";
+  
+  const pNutrition = selectedProduct?.nutrition 
+    ? selectedProduct.nutrition.split('\n').map(n => n.trim()).filter(Boolean)
+    : (DEFAULT_DETAILS[pType]?.nutrition || []);
+
+  const pBenefits = selectedProduct?.benefits
+    ? selectedProduct.benefits.split('\n').map(b => b.trim()).filter(Boolean)
+    : (DEFAULT_DETAILS[pType]?.benefits || []);
+
+  return (
+    <section className="py-24 px-6 bg-white" id="products">
+      <div className="max-width-1200 mx-auto">
+        
+        {/* Header & Category Filters */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-widest text-sage bg-sage/10 px-3 py-1 rounded-full border border-sage/20 inline-flex items-center gap-1.5 mb-2">
+              <Sparkles className="w-3.5 h-3.5" /> Milled Fresh Weekly
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-forest">
+              Our Best Seller Botanical Blends
+            </h2>
+            <p className="text-sage-grey text-sm font-light mt-1">
+              Select a blend to explore ingredients, benefits, and instant preparation guides.
+            </p>
+          </div>
+
+          {/* Category Filter Chips */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 text-xs font-bold rounded-full transition-all duration-300 flex-shrink-0 ${
+                  activeCategory === cat
+                    ? 'bg-[#0F3D2E] text-white shadow-md'
+                    : 'bg-cream/60 text-[#0F3D2E] hover:bg-cream border border-forest/10'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Product Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {displayedProducts.map((product) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white border border-forest/10 rounded-3xl shadow-premium-sm hover:shadow-premium-lg transition-all duration-300 overflow-hidden flex flex-col relative group"
+            >
+              {/* Wishlist Toggle Button */}
+              <button 
+                className={`absolute top-4 right-4 z-10 w-10 h-10 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur transition-all ${
+                  wishlist.includes(product.id) ? 'text-red-500 scale-105' : 'text-sage-grey hover:text-red-500'
+                }`}
+                onClick={() => onToggleWishlist(product.id)}
+                aria-label="Add to Wishlist"
+              >
+                <Heart className="w-5 h-5" fill={wishlist.includes(product.id) ? 'currentColor' : 'none'} />
+              </button>
+
+              {/* Tag Badge */}
+              {product.tag && (
+                <span className="absolute top-4 left-4 z-10 bg-[#0F3D2E] text-amber-300 text-[10px] uppercase font-bold px-3 py-1 rounded-full tracking-wider shadow">
+                  {product.tag}
+                </span>
+              )}
+
+              {/* Product Packaging Container */}
+              <div 
+                className="bg-cream/40 py-6 flex items-center justify-center border-b border-forest/5 relative overflow-hidden h-72 sm:h-80 cursor-pointer"
+                onClick={() => setSelectedProduct(product)}
+              >
+                <div className="w-60 h-64 flex items-center justify-center relative p-2">
+                  <img
+                    src={product.image || PRODUCT_IMAGES[product.svg_type] || '/hero_moringa.png'}
+                    alt={product.title}
+                    className="max-w-full max-h-full object-contain filter drop-shadow-md select-none group-hover:scale-110 transition-transform duration-500 mix-blend-multiply"
+                  />
+                </div>
+              </div>
+
+              {/* Product Info */}
+              <div className="p-6 flex flex-col flex-grow">
+                <span className="text-sage text-xs font-bold uppercase tracking-wider mb-1">{product.category}</span>
+                <h3 
+                  className="font-serif text-xl font-bold text-forest mb-2 cursor-pointer hover:text-sage transition-colors leading-snug"
+                  onClick={() => setSelectedProduct(product)}
+                >
+                  {product.title}
+                </h3>
+                
+                {/* Review Stars */}
+                <div className="flex items-center gap-1 text-amber-500 text-sm mb-4">
+                  {"★★★★★".split("").map((star, idx) => (
+                    <span key={idx}>{star}</span>
+                  ))}
+                  <span className="text-sage-grey text-xs ml-2 font-medium">({product.rating_count} reviews)</span>
+                </div>
+
+                {/* Footer Pricing & CTA */}
+                <div className="flex flex-col gap-3 mt-auto pt-4 border-t border-forest/5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif text-2xl font-bold text-forest">Rs. {Number(product.price).toFixed(0)}</span>
+                    <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full font-bold border border-emerald-200">
+                      FREE Shipping & COD
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={() => onAddToCart(product)}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-all duration-300 ${
+                        addedItems.includes(product.id) 
+                          ? 'bg-terracotta text-forest scale-95' 
+                          : 'bg-cream text-forest hover:bg-forest hover:text-white border border-forest/10'
+                      }`}
+                      aria-label={`Add ${product.title} to Cart`}
+                      title="Add to Cart"
+                    >
+                      {addedItems.includes(product.id) ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                    </button>
+
+                    <button 
+                      onClick={() => onBuyNow(product)}
+                      className="flex-1 py-2.5 bg-[#0F3D2E] text-white font-semibold text-xs tracking-wider uppercase rounded-full hover:bg-terracotta hover:text-forest transition-all shadow-md active:scale-95 text-center"
+                    >
+                      Buy Now
+                    </button>
+
+                    <a 
+                      href={`https://wa.me/917483849998?text=${encodeURIComponent(`Hi Ayurmor! I would like to order: ${product.title} (Rs. ${product.price})`)}`}
+                      target="_blank"
+                      rel="noopener"
+                      className="px-3.5 py-2.5 bg-[#25D366] text-white text-xs font-bold rounded-full hover:bg-[#1eb956] shadow-md transition-all flex items-center gap-1"
+                      title="Order via WhatsApp"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {displayedProducts.length === 0 && (
+          <p className="text-center text-sage-grey py-16">No products matched your criteria. Try selecting another category.</p>
+        )}
+      </div>
+
+      {/* Product Detail Modal */}
+      <AnimatePresence>
+        {selectedProduct && (
+          <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 sm:p-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={() => setSelectedProduct(null)}
+            />
+
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-forest/10 overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setSelectedProduct(null)}
+                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-cream/80 hover:bg-cream text-forest flex items-center justify-center transition-colors shadow"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="overflow-y-auto p-6 sm:p-10 space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  
+                  {/* Image Stage */}
+                  <div className="bg-cream/40 rounded-3xl p-8 flex items-center justify-center border border-forest/5 h-80 relative overflow-hidden">
+                    <img 
+                      src={selectedProduct.image || PRODUCT_IMAGES[selectedProduct.svg_type] || '/hero_moringa.png'} 
+                      alt={selectedProduct.title} 
+                      className="max-w-full max-h-full object-contain filter drop-shadow-xl mix-blend-multiply"
+                    />
+                  </div>
+
+                  {/* Top Details */}
+                  <div className="space-y-4">
+                    <span className="text-xs text-sage font-bold uppercase tracking-widest bg-sage/10 px-3 py-1 rounded-full">
+                      {selectedProduct.category}
+                    </span>
+                    <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest leading-tight">
+                      {selectedProduct.title}
+                    </h2>
+
+                    <div className="flex items-center gap-2 text-amber-500 text-sm">
+                      {"★★★★★".split("").map((star, idx) => (
+                        <span key={idx}>{star}</span>
+                      ))}
+                      <span className="text-sage-grey text-xs font-semibold ml-2">({selectedProduct.rating_count} Verified Buyer Reviews)</span>
+                    </div>
+
+                    <div className="flex items-baseline gap-3 pt-2">
+                      <span className="font-serif text-3xl font-bold text-forest">Rs. {Number(selectedProduct.price).toFixed(0)}</span>
+                      <span className="text-xs text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full font-bold">
+                        FREE Shipping & COD Included
+                      </span>
+                    </div>
+
+                    {/* Action CTAs */}
+                    <div className="flex items-center gap-3 pt-4 border-t border-forest/10">
+                      <button 
+                        onClick={() => {
+                          onAddToCart(selectedProduct);
+                          alert(`${selectedProduct.title} added to cart!`);
+                        }}
+                        className="flex-1 py-3.5 border border-[#0F3D2E] text-[#0F3D2E] hover:bg-[#0F3D2E] hover:text-white font-bold text-xs tracking-wider uppercase rounded-full transition-all"
+                      >
+                        Add to Cart
+                      </button>
+                      <button 
+                        onClick={() => {
+                          onBuyNow(selectedProduct);
+                          setSelectedProduct(null);
+                        }}
+                        className="flex-1 py-3.5 bg-[#0F3D2E] text-white hover:bg-terracotta hover:text-[#0F3D2E] font-bold text-xs tracking-wider uppercase rounded-full shadow-lg transition-all"
+                      >
+                        Buy Now
+                      </button>
+                      <a 
+                        href={`https://wa.me/917483849998?text=${encodeURIComponent(`Hi Ayurmor! I would like to order: ${selectedProduct.title} (Rs. ${selectedProduct.price})`)}`}
+                        target="_blank"
+                        rel="noopener"
+                        className="px-4 py-3.5 bg-[#25D366] text-white text-xs font-bold rounded-full hover:bg-[#1eb956] shadow-md transition-all flex items-center gap-1.5"
+                        title="Order via WhatsApp"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        <span className="hidden sm:inline">WhatsApp</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Specification Tabs */}
+                <div className="border-t border-forest/10 pt-6">
+                  <div className="flex gap-6 border-b border-forest/10 font-serif text-base font-bold mb-6">
+                    <button 
+                      onClick={() => setActiveTab('desc')}
+                      className={`pb-2 transition-all relative ${
+                        activeTab === 'desc' ? 'text-forest after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-forest' : 'text-sage-grey hover:text-forest'
+                      }`}
+                    >
+                      Description & Benefits
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab('ing')}
+                      className={`pb-2 transition-all relative ${
+                        activeTab === 'ing' ? 'text-forest after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-forest' : 'text-sage-grey hover:text-forest'
+                      }`}
+                    >
+                      Ingredients
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab('use')}
+                      className={`pb-2 transition-all relative ${
+                        activeTab === 'use' ? 'text-forest after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-forest' : 'text-sage-grey hover:text-forest'
+                      }`}
+                    >
+                      Directions
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab('nut')}
+                      className={`pb-2 transition-all relative ${
+                        activeTab === 'nut' ? 'text-forest after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-forest' : 'text-sage-grey hover:text-forest'
+                      }`}
+                    >
+                      Nutrition Facts
+                    </button>
+                  </div>
+
+                  <div className="text-sm leading-relaxed text-charcoal font-light min-h-[140px]">
+                    {activeTab === 'desc' && (
+                      <div className="space-y-4">
+                        <p>{pDesc}</p>
+                        {pBenefits.length > 0 && (
+                          <div className="flex flex-wrap gap-2 pt-2">
+                            {pBenefits.map((b, i) => (
+                              <span key={i} className="text-xs bg-forest/5 text-forest border border-forest/10 px-3 py-1 rounded-full font-medium">
+                                ✓ {b}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {activeTab === 'ing' && (
+                      <p className="italic bg-cream/40 p-4 rounded-2xl border border-forest/5">{pIngredients}</p>
+                    )}
+                    {activeTab === 'use' && (
+                      <p className="bg-cream/40 p-4 rounded-2xl border border-forest/5">{pUsage}</p>
+                    )}
+                    {activeTab === 'nut' && (
+                      <div className="bg-cream/40 p-5 rounded-2xl border border-forest/5">
+                        <h4 className="font-serif text-sm font-bold text-forest mb-3">Nutritional Facts (Approx. values per 100g)</h4>
+                        {pNutrition.length > 0 ? (
+                          <ul className="space-y-2 list-disc pl-4 text-xs font-medium text-forest">
+                            {pNutrition.map((n, i) => (
+                              <li key={i}>{n}</li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-xs text-sage-grey italic">No nutritional values listed.</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}

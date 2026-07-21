@@ -10,7 +10,12 @@ const MOCK_PRODUCTS = [
     rating_count: 124,
     tag: 'Best Seller',
     svg_type: 'moringa',
-    image: '/product1.png'
+    image: '/hero_moringa.png',
+    description: 'Moringa Premix Soup is a nutrient-dense, warm, comforting herbal soup mix crafted from 100% wild-crafted Moringa leaves. Milled fresh to preserve raw enzymes, it delivers a clean, green energy boost while aiding digestion and natural metabolic detox.',
+    ingredients: 'Organic Moringa Oleifera leaves, Roasted cumin, Black salt, Lemon peel powder, Ginger, Black pepper, Rock salt.',
+    usage_instructions: 'Add 1 tablespoon (10g) of premix to a cup. Pour 150ml of boiling water. Stir well and let it sit for 10 seconds. Enjoy warm!',
+    nutrition: 'Energy: 320 kcal (per 100g)\nProtein: 22g\nCarbohydrates: 48g\nDietary Fiber: 12g\nIron: 25mg',
+    benefits: 'Rich in Antioxidants\nEnhances Immune Function\nSupports Natural Detoxification\nImproves Energy Levels'
   },
   {
     id: 2,
@@ -18,9 +23,14 @@ const MOCK_PRODUCTS = [
     category: 'Superfood Malts',
     price: 299.00,
     rating_count: 98,
-    tag: null,
+    tag: 'Iron Rich',
     svg_type: 'abc',
-    image: '/product3.png'
+    image: '/hero_abc.png',
+    description: 'Our signature ABC Latte Mix fuses raw apples, sweet red beetroots, and clean carrots into a powerhouse malt. Fortified with roasted almonds and cashews, it offers sustained daily vigor, natural skin glow, and supports blood purification.',
+    ingredients: 'Dehydrated apple powder, Beetroot extract, Carrot crystals, Sprouted Ragi malt, Roasted almonds, Cashew kernels, Cardamom, Raw palm sugar.',
+    usage_instructions: 'Add 2 spoonfuls (20g) to 200ml of hot milk or warm water. Stir briskly until smooth. Drink every morning for best results.',
+    nutrition: 'Energy: 385 kcal (per 100g)\nProtein: 12g\nIron: 32mg\nVitamin A: 1200 mcg\nCalcium: 180mg',
+    benefits: 'Enriched with Iron\nBoosts Hemoglobin levels\nNatural Skin Radiance\nSustained Energy'
   },
   {
     id: 3,
@@ -28,19 +38,31 @@ const MOCK_PRODUCTS = [
     category: 'Superfood Malts',
     price: 299.00,
     rating_count: 182,
-    tag: null,
+    tag: 'Kids Choice',
     svg_type: 'choco',
-    image: '/product2.png'
+    image: '/hero_choco.png',
+    description: 'A luxurious, rich dark cocoa blend paired with sprouted ancient grains (Finger Millet, Pearl Millet, Foxtail Millet). Sweetened naturally without refined sugars, it is the ultimate health malt for growing children and active adults.',
+    ingredients: 'Premium Dark Cocoa powder, Sprouted Finger Millet (Ragi), Sprouted Pearl Millet (Bajra), Sprouted Foxtail Millet, Almond flour, Coconut sugar, Cardamom, Pinch of sea salt.',
+    usage_instructions: 'Add 2 tablespoons (25g) to a glass of hot milk (or vegan milk). Stir well. No boiling needed!',
+    nutrition: 'Energy: 360 kcal (per 100g)\nProtein: 14g\nCalcium: 410mg\nDietary Fiber: 9g\nZinc: 4.5mg',
+    benefits: 'Rich in Calcium\nZero Refined Sugar\nHigh Dietary Fiber\nGreat for Bone Health'
   }
 ];
 
 export async function GET() {
   try {
-    const [rows] = await pool.query('SELECT * FROM products');
+    const [rows]: any = await pool.query('SELECT * FROM products');
+    if (rows && rows.length > 0) {
+      return NextResponse.json({ 
+        success: true, 
+        products: rows, 
+        source: 'database' 
+      });
+    }
     return NextResponse.json({ 
       success: true, 
-      products: rows, 
-      source: 'database' 
+      products: MOCK_PRODUCTS, 
+      source: 'fallback' 
     });
   } catch (error: any) {
     console.warn('MySQL connection failed. Falling back to mock data. Error:', error.message);
@@ -48,7 +70,7 @@ export async function GET() {
       success: true, 
       products: MOCK_PRODUCTS, 
       source: 'mock',
-      warning: 'MySQL connection failed. Using fallback mock products. Run /api/init-db to provision MySQL database.'
+      warning: 'MySQL connection failed. Using fallback mock products.'
     });
   }
 }
