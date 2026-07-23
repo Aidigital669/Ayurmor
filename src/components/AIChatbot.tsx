@@ -2,16 +2,17 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Bot, 
-  Sparkles, 
-  X, 
-  Send, 
-  RotateCcw, 
-  Leaf, 
+import {
+  Headphones,
+  Sparkles,
+  X,
+  Send,
+  RotateCcw,
+  Leaf,
   MessageSquare,
   ChevronDown,
-  CheckCircle2
+  CheckCircle2,
+  Bot
 } from 'lucide-react';
 
 interface Message {
@@ -34,7 +35,7 @@ export default function AIChatbot() {
     {
       id: 'welcome-1',
       sender: 'bot',
-      text: "👋 **Hello & Welcome to Ayurmor Wellness!**\n\nI am your **AI Assistant**. I know all about our 100% natural organic mixes, ingredients, health benefits, usage instructions, and order policies.\n\nHow can I help you today? Feel free to select a topic below or type your question!",
+      text: "👋 **Hello & Welcome to Ayurmor Wellness!**\n\nI am your **AI Assistant**. I know all about our 100% natural pure mixes, ingredients, health benefits, usage instructions, and order policies.\n\nHow can I help you today? Feel free to select a topic below or type your question!",
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -156,34 +157,58 @@ export default function AIChatbot() {
 
   return (
     <>
-      {/* Floating Chat Trigger Button */}
-      <div className="fixed bottom-6 left-6 sm:bottom-8 sm:left-8 z-50">
+      {/* Floating Chat Support Button - Premium Headphones Design */}
+      <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 flex flex-col items-center gap-1.5">
         <motion.button
-          whileHover={{ scale: 1.08 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.94 }}
           onClick={() => setIsOpen(!isOpen)}
-          className="relative group w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-[#0F3D2E] to-[#1b5e47] text-white rounded-full flex items-center justify-center shadow-2xl border-2 border-amber-200/30 hover:border-amber-300 transition-all duration-300"
-          aria-label="Toggle AI Wellness Assistant"
+          className="relative group w-14 h-14 sm:w-16 sm:h-16 bg-[#76BC21] text-white rounded-full flex items-center justify-center shadow-2xl border-2 border-white hover:bg-[#8ED638] transition-all duration-300 ring-4 ring-[#76BC21]/20 focus:outline-none"
+          aria-label="Toggle Customer Support & AI Assistant"
         >
-          {/* Animated Glow Pulse */}
-          <span className="absolute -inset-1 rounded-full bg-emerald-500/20 animate-ping pointer-events-none" />
+          {/* Subtle Outer Pulse */}
+          <span className="absolute -inset-1 rounded-full bg-[#76BC21]/30 animate-ping pointer-events-none" />
 
           {isOpen ? (
-            <X className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+            <X className="w-7 h-7 text-white" />
           ) : (
             <div className="relative flex items-center justify-center">
-              <Bot className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-              <Sparkles className="w-3.5 h-3.5 text-amber-300 absolute -top-1 -right-1 animate-pulse" />
+              {/* High Quality Headset Icon */}
+              <svg 
+                className="w-7 h-7 sm:w-8 sm:h-8 text-white filter drop-shadow-sm" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <path d="M3 14v-3a9 9 0 0 1 18 0v3" />
+                <path d="M2 13a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4z" fill="currentColor" fillOpacity="0.2" />
+                <path d="M17 13a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-4z" fill="currentColor" fillOpacity="0.2" />
+                <path d="M21 15v2a3 3 0 0 1-3 3h-3" />
+              </svg>
+              {/* Top-Right Yellow/Amber Status Indicator */}
+              <span className="w-3.5 h-3.5 bg-amber-400 border-2 border-white rounded-full absolute -top-1 -right-1 shadow-md animate-pulse" />
             </div>
           )}
 
           {/* Unread indicator badge */}
           {hasUnread && !isOpen && (
-            <span className="absolute -top-1 -right-1 bg-[#E7977D] text-[#0F3D2E] text-[10px] font-extrabold px-1.5 py-0.5 rounded-full shadow border border-white animate-bounce">
+            <span className="absolute -top-1 -right-1 bg-[#0080FF] text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full shadow border border-white animate-bounce">
               AI
             </span>
           )}
         </motion.button>
+
+        {/* "Ask Me" Text Label directly below the button */}
+        <span 
+          onClick={() => setIsOpen(!isOpen)}
+          className="bg-[#0A192F] text-white text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-[#76BC21]/50 cursor-pointer hover:bg-[#112440] hover:scale-105 transition-all flex items-center gap-1.5 select-none"
+        >
+          <span className="w-2 h-2 rounded-full bg-[#76BC21] animate-pulse" />
+          Ask Me
+        </span>
       </div>
 
       {/* Chat Window Modal */}
@@ -194,24 +219,24 @@ export default function AIChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.92 }}
             transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-            className="fixed bottom-22 left-4 sm:bottom-24 sm:left-8 z-50 w-[calc(100vw-2rem)] sm:w-[420px] max-h-[600px] h-[calc(100vh-140px)] bg-gradient-to-b from-[#FDFBF7] to-[#F5EFE6] rounded-3xl shadow-2xl border border-[#0F3D2E]/10 flex flex-col overflow-hidden backdrop-blur-xl"
+            className="fixed bottom-28 left-4 sm:bottom-32 sm:left-8 z-50 w-[calc(100vw-2rem)] sm:w-[420px] max-h-[600px] h-[calc(100vh-140px)] bg-gradient-to-b from-[#F4F8FC] to-[#E2EAF4] rounded-3xl shadow-2xl border border-[#0080FF]/20 flex flex-col overflow-hidden backdrop-blur-xl"
           >
             {/* Header */}
-            <div className="bg-[#0F3D2E] text-white px-5 py-4 flex items-center justify-between shadow-md relative overflow-hidden">
-              <div className="absolute -right-6 -top-6 w-24 h-24 bg-white/5 rounded-full blur-xl pointer-events-none" />
+            <div className="bg-[#0A192F] text-white px-5 py-4 flex items-center justify-between shadow-md relative overflow-hidden border-b border-[#0080FF]/20">
+              <div className="absolute -right-6 -top-6 w-24 h-24 bg-sky-500/10 rounded-full blur-xl pointer-events-none" />
 
               <div className="flex items-center gap-3 relative z-10">
-                <div className="w-10 h-10 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center relative shadow-inner">
-                  <Bot className="w-5 h-5 text-amber-300" />
-                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 border-2 border-[#0F3D2E] rounded-full" />
+                <div className="w-10 h-10 rounded-2xl bg-[#0080FF] border border-sky-300/30 flex items-center justify-center relative shadow-inner">
+                  <Bot className="w-5 h-5 text-white" />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#76BC21] border-2 border-[#0A192F] rounded-full" />
                 </div>
                 <div>
                   <h3 className="font-serif font-bold text-base tracking-wide text-white flex items-center gap-1.5">
                     Ayurmor AI Assistant
-                    <Sparkles className="w-3.5 h-3.5 text-amber-300 inline" />
+                    <Sparkles className="w-3.5 h-3.5 text-sky-300 inline" />
                   </h3>
-                  <p className="text-[11px] text-emerald-200/90 font-light flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
+                  <p className="text-[11px] text-sky-200/90 font-light flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 bg-[#76BC21] rounded-full animate-pulse" />
                     Powered by Gemini AI • Online
                   </p>
                 </div>
@@ -265,17 +290,15 @@ export default function AIChatbot() {
                   )}
 
                   <div
-                    className={`max-w-[82%] px-4 py-3 rounded-2xl shadow-sm leading-relaxed text-sm ${
-                      msg.sender === 'user'
+                    className={`max-w-[82%] px-4 py-3 rounded-2xl shadow-sm leading-relaxed text-sm ${msg.sender === 'user'
                         ? 'bg-gradient-to-r from-[#0F3D2E] to-[#175340] text-white rounded-tr-none'
                         : 'bg-white border border-[#0F3D2E]/10 text-charcoal rounded-tl-none font-sans'
-                    }`}
+                      }`}
                   >
                     {renderFormattedText(msg.text)}
                     <span
-                      className={`block text-[9px] mt-1.5 text-right font-light ${
-                        msg.sender === 'user' ? 'text-white/60' : 'text-sage-grey'
-                      }`}
+                      className={`block text-[9px] mt-1.5 text-right font-light ${msg.sender === 'user' ? 'text-white/60' : 'text-sage-grey'
+                        }`}
                     >
                       {msg.timestamp}
                     </span>

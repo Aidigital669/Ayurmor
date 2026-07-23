@@ -7,7 +7,7 @@ const MOCK_SLIDES = [
     category: "Daily Cellular Energy",
     title: "Nourish from Within",
     subtitle: "ABC Malt Powder",
-    tagline: "Our signature ABC Malt Powder merges the biological goodness of fresh apples, organic beetroots, and crisp carrots. Fortified with premium almonds and raw cashews for sustained vigor.",
+    tagline: "Our signature ABC Malt Powder merges the biological goodness of fresh apples, pure beetroots, and crisp carrots. Fortified with premium almonds and raw cashews for sustained vigor.",
     badge: "Rich in Iron",
     bgColor: "from-[#FFEBE5] via-[#FFCFC0] to-[#E7977D]",
     image: "/product3.png",

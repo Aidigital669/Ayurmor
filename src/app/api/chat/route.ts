@@ -7,21 +7,23 @@ Your goal is to warmly assist customers, answer questions about Ayurmor's produc
 
 === ABOUT AYURMOR & FOUNDER STORY ===
 - Brand: Ayurmor — Natural Goodness, Instant Wellness
-- Manufacturer & FBO: Saish Technofarms, 137/5 Kagal Maneer, Manaki, Kumta, Uttara Kannada, Karnataka - 581362, India.
+- Manufactured by: Saish Technofarms, 137/5 Kagal Maneer, Manaki, Kumta, Uttara Kannada, Karnataka - 581362, India. (FSSAI Reg No: 21224169000054)
+- Marketed by: Zeyora Global Trading Co., Kombai Nagar, Tiruchengode – 637211 (GSTIN: 33AEQPT6920G1Z6, FSSAI License No: 124250140000673)
 - Founder's Story ("Rooted in Tradition. Crafted for the World."):
   Ayurmor was founded with a clear purpose—to bring the timeless wisdom of nature to modern lifestyles through thoughtfully crafted, premium nutrition. India has long been home to nourishing ingredients such as millets, mushrooms, herbs, and botanicals that supported generations. As fast-paced food habits evolved, many of these traditional super-ingredients became less common in everyday diets. Ayurmor reimagines them in a way that is convenient, highly enjoyable, and relevant for today's consumers.
 
 === CERTIFICATIONS & LICENSES ===
-- FSSAI Registration: FSSAI License Reg No. 21224169000054 (Under FSS Act, 2006, Govt. of Karnataka / FSSAI).
+- Manufacturer FSSAI Registration: License Reg No. 21224169000054 (Saish Technofarms).
+- Marketer FSSAI License: No. 124250140000673 (Zeyora Global Trading Co. - GSTIN: 33AEQPT6920G1Z6).
 - ISO 9001:2015 Certification: Certificate Number QCCI/25Q/SES/5850 (Quality Management System, QCCI LLP & UGAC Accredited).
-- Standards: 100% Organic, Chemical-Free, Zero Refined Sugars, GMP Compliant.
+- Standards: 100% Pure, Chemical-Free, Zero Refined Sugars, GMP Compliant.
 
 === AYURMOR PRODUCTS CATALOG ===
 1. MORINGA PREMIX SOUP:
    - Category: Instant Herbal Soup / Detox & Immunity
    - Price: Rs. 299 per pack
    - Description: Nutrient-dense, warm, comforting herbal soup mix crafted from 100% wild-crafted Moringa leaves. Milled fresh to preserve raw enzymes, delivering a clean green energy boost while aiding digestion and metabolic detox.
-   - Ingredients: Organic Moringa Oleifera leaves, Roasted cumin, Black salt, Lemon peel powder, Ginger, Black pepper, Rock salt.
+   - Ingredients: Pure Moringa Oleifera leaves, Roasted cumin, Black salt, Lemon peel powder, Ginger, Black pepper, Rock salt.
    - Usage Instructions: Add 1 tablespoon (10g) of premix to a cup. Pour 150ml of boiling water. Stir well and let it sit for 10 seconds. Enjoy warm!
    - Nutrition (per 100g): Energy 320 kcal, Protein 22g, Carbohydrates 48g, Dietary Fiber 12g, Iron 25mg.
    - Key Benefits: Rich in Antioxidants, Enhances Immune Function, Supports Natural Detoxification, Improves Energy Levels.
@@ -157,7 +159,7 @@ function getLocalKnowledgeFallback(msg: string): string {
   if (query.includes('moringa') || query.includes('soup') || query.includes('green')) {
     return `🌿 **Moringa Premix Soup** (Rs. 299)
 • **Description**: 100% wild-crafted Moringa leaves instant soup to restore metabolic equilibrium and flush out toxins.
-• **Ingredients**: Organic Moringa leaves, Roasted cumin, Black salt, Lemon peel, Ginger, Black pepper, Rock salt.
+• **Ingredients**: Pure Moringa leaves, Roasted cumin, Black salt, Lemon peel, Ginger, Black pepper, Rock salt.
 • **Preparation**: Add 1 tbsp (10g) to a cup, pour 150ml boiling water, stir well, and enjoy warm!
 • **Benefits**: Antioxidant-rich, immunity boost, natural detox & clean cellular energy.`;
   }
@@ -188,7 +190,7 @@ function getLocalKnowledgeFallback(msg: string): string {
 
   return `✨ **Ayurmor Natural Botanical Health Blends**
 
-We offer 3 signature 100% organic wellness mixes:
+We offer 3 signature 100% pure botanical wellness mixes:
 1. 🌿 **Moringa Premix Soup** — Instant detox & immunity boost (Rs. 299)
 2. 🥤 **ABC Malt Powder** — Apple, Beetroot & Carrot hemoglobin booster (Rs. 299)
 3. 🍫 **Choco Multigrain Millet Malt** — Sprouted millets & cocoa for bone health (Rs. 299)

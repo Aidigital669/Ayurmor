@@ -8,28 +8,45 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        ayurblue: {
+          DEFAULT: '#0080FF',
+          light: '#38BDF8',
+          dark: '#0066CC',
+          glow: 'rgba(0, 128, 255, 0.15)',
+        },
+        ayurgreen: {
+          DEFAULT: '#76BC21',
+          light: '#8ED638',
+          dark: '#589314',
+          glow: 'rgba(118, 188, 33, 0.15)',
+        },
+        navy: {
+          DEFAULT: '#0A192F',
+          dark: '#060E1A',
+          light: '#112240',
+        },
         forest: {
-          DEFAULT: '#0F3D2E',
-          dark: '#0A291E',
-          light: '#1B5643',
+          DEFAULT: '#0A192F',
+          dark: '#060E1A',
+          light: '#112240',
         },
         sage: {
-          DEFAULT: '#5A8B73',
-          light: '#A3C4B4',
-          dark: '#3E6652',
-          grey: '#5F6B63',
+          DEFAULT: '#76BC21',
+          light: '#8ED638',
+          dark: '#589314',
+          grey: '#64748B',
         },
         terracotta: {
-          DEFAULT: '#D99B78',
-          light: '#EBC3AC',
-          dark: '#B06E47',
+          DEFAULT: '#0080FF',
+          light: '#38BDF8',
+          dark: '#0066CC',
         },
         cream: {
-          DEFAULT: '#FBF9F5',
-          dark: '#F3EFE9',
+          DEFAULT: '#F4F8FC',
+          dark: '#E2EAF4',
           light: '#FFFFFF',
         },
-        charcoal: '#1E2421',
+        charcoal: '#0F172A',
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'serif'],

@@ -4,14 +4,15 @@ import { useState, useEffect } from 'react';
 import { 
   Plus, Edit2, Trash2, Check, X, RefreshCw, 
   Layers, DollarSign, ShoppingCart, ArrowLeft, 
-  Settings, Loader2, Database, ExternalLink 
+  Settings, Loader2, Database, ExternalLink, Mail, Phone, Clock
 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'products' | 'orders'>('products');
+  const [activeTab, setActiveTab] = useState<'products' | 'orders' | 'contacts'>('products');
   const [products, setProducts] = useState<any[]>([]);
   const [orders, setOrders] = useState<any[]>([]);
+  const [contacts, setContacts] = useState<any[]>([]);
   const [dbSource, setDbSource] = useState<string>('database');
   const [loading, setLoading] = useState<boolean>(true);
   const [actionLoading, setActionLoading] = useState<boolean>(false);
@@ -212,9 +213,56 @@ export default function AdminDashboard() {
     }
   };
 
+  const fetchContacts = async () => {
+    try {
+      const res = await fetch('/api/contact');
+      const data = await res.json();
+      if (data.success) {
+        setContacts(data.contacts || []);
+      }
+    } catch (err) {
+      console.error('Error fetching contacts:', err);
+    }
+  };
+
+  const handleUpdateContactStatus = async (id: number, status: string) => {
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status })
+      });
+      const data = await res.json();
+      if (data.success) {
+        await fetchContacts();
+      } else {
+        alert(data.error || 'Failed to update contact status');
+      }
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
+  const handleDeleteContact = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this callback enquiry?')) return;
+    try {
+      const res = await fetch(`/api/contact?id=${id}`, {
+        method: 'DELETE'
+      });
+      const data = await res.json();
+      if (data.success) {
+        await fetchContacts();
+      } else {
+        alert(data.error || 'Failed to delete callback enquiry');
+      }
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
   const loadData = async () => {
     setLoading(true);
-    await Promise.all([fetchProducts(), fetchOrders()]);
+    await Promise.all([fetchProducts(), fetchOrders(), fetchContacts()]);
     setLoading(false);
   };
 
@@ -411,9 +459,9 @@ export default function AdminDashboard() {
     .reduce((acc, curr) => acc + parseFloat(curr.total_amount), 0);
 
   return (
-    <div className="min-h-screen bg-[#0b1a15] text-[#F3EFE9] font-sans antialiased pb-24">
-      {/* Header */}
-      <header className="sticky top-0 bg-[#0F3D2E]/90 backdrop-blur-md border-b border-[#5A8B73]/10 z-40 px-6 py-4">
+    <div className="min-h-screen bg-[#0A192F] text-[#F3EFE9] font-sans antialiased pb-24">
+      {/* Header - Navy & Sky Blue Logo Palette */}
+      <header className="sticky top-0 bg-[#0A192F]/90 backdrop-blur-md border-b border-[#0080FF]/20 z-40 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/" className="p-2 hover:bg-white/10 rounded-full transition-colors">
@@ -421,7 +469,7 @@ export default function AdminDashboard() {
             </Link>
             <div>
               <h1 className="font-serif text-2xl font-bold text-white tracking-wide">Ayurmor Admin Panel</h1>
-              <p className="text-xs text-[#5A8B73] font-medium uppercase tracking-wider">Workspace Management Dashboard</p>
+              <p className="text-xs text-sky-300 font-medium uppercase tracking-wider">Workspace Management Dashboard</p>
             </div>
           </div>
 
@@ -429,7 +477,7 @@ export default function AdminDashboard() {
             <button 
               onClick={handleInitDb}
               disabled={actionLoading}
-              className="px-4 py-2 border border-[#E7977D]/30 text-[#E7977D] rounded-full text-xs font-bold tracking-wider uppercase hover:bg-[#E7977D]/10 hover:border-[#E7977D] transition-all flex items-center gap-1.5 active:scale-95 disabled:opacity-50"
+              className="px-4 py-2 border border-[#0080FF]/40 text-sky-300 rounded-full text-xs font-bold tracking-wider uppercase hover:bg-[#0080FF]/10 hover:border-[#0080FF] transition-all flex items-center gap-1.5 active:scale-95 disabled:opacity-50"
             >
               <Database className="w-3.5 h-3.5" />
               <span>Provision Database</span>
@@ -538,6 +586,14 @@ export default function AdminDashboard() {
           >
             Manage Orders ({orders.length})
           </button>
+          <button 
+            onClick={() => setActiveTab('contacts')}
+            className={`pb-3 transition-all relative ${
+              activeTab === 'contacts' ? 'text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-[#E7977D]' : 'text-white/40 hover:text-white'
+            }`}
+          >
+            Callback Enquiries ({contacts.length})
+          </button>
         </div>
 
         {/* Tab Content Panel */}
@@ -639,6 +695,176 @@ export default function AdminDashboard() {
                         <tr>
                           <td colSpan={7} className="text-center py-12 text-white/40 italic">
                             No products found. Start by provisioning the database or adding one manually.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : (
+              /* Orders Management Panel */
+              <div className="p-6">
+                <div className="mb-6">
+                  <h3 className="font-serif text-xl font-bold text-white">Orders Pipeline</h3>
+                  <p className="text-xs text-[#5A8B73]">Track client payments and configure courier tracking info for dispatched bundles.</p>
+                </div>
+
+                <div className="overflow-x-auto rounded-xl border border-white/5">
+                  <table className="w-full text-left border-collapse text-sm">
+                    <thead>
+                      <tr className="bg-white/5 text-[#5A8B73] font-bold uppercase tracking-wider text-xs border-b border-white/5">
+                        <th className="p-4">Order Number</th>
+                        <th className="p-4">Date</th>
+                        <th className="p-4">Customer Details</th>
+                        <th className="p-4">Billing</th>
+                        <th className="p-4">Payment</th>
+                        <th className="p-4">Shipment</th>
+                        <th className="p-4 text-center">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {orders.map((o) => (
+                        <tr key={o.id} className="hover:bg-white/5 transition-colors">
+                          <td className="p-4 font-mono font-bold text-[#E7977D]">
+                            {o.order_number}
+                          </td>
+                          <td className="p-4 text-white/70 text-xs">
+                            {o.order_date || '-'}
+                          </td>
+                          <td className="p-4">
+                            <div className="space-y-0.5">
+                              <h5 className="font-semibold text-white">{o.customer_name}</h5>
+                              <p className="text-xs text-white/40">{o.customer_email} | {o.customer_phone}</p>
+                            </div>
+                          </td>
+                          <td className="p-4 font-serif font-bold text-white text-base">
+                            Rs. {Number(o.total_amount).toFixed(2)}
+                          </td>
+                          <td className="p-4">
+                            <span className={`text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full border ${
+                              o.payment_status === 'success' 
+                                ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
+                                : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
+                            }`}>
+                              {o.payment_status}
+                            </span>
+                          </td>
+                          <td className="p-4">
+                            <div className="flex flex-col gap-1">
+                              <span className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full border text-center ${
+                                o.shipping_status === 'delivered' 
+                                  ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
+                                  : o.shipping_status === 'shipped'
+                                  ? 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                                  : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
+                              }`}>
+                                {o.shipping_status}
+                              </span>
+                              {o.courier_partner && (
+                                <span className="text-[10px] text-white/40 block italic text-center">
+                                  {o.courier_partner} ({o.tracking_number})
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="p-4 text-center">
+                            <button 
+                              onClick={() => handleOpenOrderDetails(o)}
+                              className="px-3.5 py-1.5 bg-white/5 border border-white/10 hover:bg-[#E7977D] hover:text-[#0b1a15] hover:border-transparent rounded-full text-xs font-bold uppercase tracking-wider transition-all"
+                            >
+                              Fulfill
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                      {orders.length === 0 && (
+                        <tr>
+                          <td colSpan={7} className="text-center py-12 text-white/40 italic">
+                            No orders received yet. Place test orders from the homepage cart.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : activeTab === 'contacts' ? (
+              /* Callback Enquiries Management Panel */
+              <div className="p-6">
+                <div className="mb-6">
+                  <h3 className="font-serif text-xl font-bold text-white">Callback & Contact Enquiries</h3>
+                  <p className="text-xs text-[#5A8B73]">Manage user queries and callback requests submitted from the Contact Us page.</p>
+                </div>
+
+                <div className="overflow-x-auto rounded-xl border border-white/5">
+                  <table className="w-full text-left border-collapse text-sm">
+                    <thead>
+                      <tr className="bg-white/5 text-[#5A8B73] font-bold uppercase tracking-wider text-xs border-b border-white/5">
+                        <th className="p-4">Submission Date</th>
+                        <th className="p-4">Contact Info</th>
+                        <th className="p-4">Message</th>
+                        <th className="p-4">Status</th>
+                        <th className="p-4 text-center">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {contacts.map((c) => (
+                        <tr key={c.id} className="hover:bg-white/5 transition-colors">
+                          <td className="p-4 text-white/70 text-xs font-medium">
+                            <div className="flex items-center gap-1.5">
+                              <Clock className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                              <span>{c.created_at || '-'}</span>
+                            </div>
+                          </td>
+                          <td className="p-4">
+                            <div className="space-y-1">
+                              <h5 className="font-semibold text-white">{c.name}</h5>
+                              <p className="text-xs text-white/40 flex items-center gap-1">
+                                <Mail className="w-3 h-3 text-sky-400" />
+                                <span>{c.email}</span>
+                              </p>
+                              <p className="text-xs text-sky-300 font-bold flex items-center gap-1">
+                                <Phone className="w-3 h-3 text-[#76BC21]" />
+                                <span>{c.mobile}</span>
+                              </p>
+                            </div>
+                          </td>
+                          <td className="p-4 text-xs text-slate-300 max-w-sm whitespace-pre-wrap leading-relaxed">
+                            {c.message || <span className="text-white/20 italic">No message provided. Request callback only.</span>}
+                          </td>
+                          <td className="p-4">
+                            <select
+                              value={c.status}
+                              onChange={(e) => handleUpdateContactStatus(c.id, e.target.value)}
+                              className={`text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl border focus:outline-none bg-[#0b1a15] ${
+                                c.status === 'resolved'
+                                  ? 'text-emerald-400 border-emerald-500/35'
+                                  : c.status === 'contacted'
+                                  ? 'text-blue-400 border-blue-500/35'
+                                  : 'text-amber-400 border-amber-500/35'
+                              }`}
+                            >
+                              <option value="new">New Enquiry</option>
+                              <option value="contacted">Contacted</option>
+                              <option value="resolved">Resolved</option>
+                            </select>
+                          </td>
+                          <td className="p-4 text-center">
+                            <button
+                              onClick={() => handleDeleteContact(c.id)}
+                              className="p-2 border border-rose-500/10 hover:border-rose-500/20 hover:bg-rose-500/10 rounded-full text-rose-400 hover:text-rose-300 transition-all active:scale-95"
+                              title="Delete Enquiry"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                      {contacts.length === 0 && (
+                        <tr>
+                          <td colSpan={5} className="text-center py-12 text-white/40 italic">
+                            No callback requests received yet.
                           </td>
                         </tr>
                       )}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Heart, 
@@ -44,7 +45,7 @@ const DEFAULT_DETAILS: Record<string, {
 }> = {
   moringa: {
     description: "Moringa Premix Soup is a nutrient-dense, warm, comforting herbal soup mix crafted from 100% wild-crafted Moringa leaves. Milled fresh to preserve raw enzymes, it delivers a clean, green energy boost while aiding digestion and natural metabolic detox.",
-    ingredients: "Organic Moringa Oleifera leaves, Roasted cumin, Black salt, Lemon peel powder, Ginger, Black pepper, Rock salt.",
+    ingredients: "Pure Moringa Oleifera leaves, Roasted cumin, Black salt, Lemon peel powder, Ginger, Black pepper, Rock salt.",
     usage: "Add 1 tablespoon (10g) of premix to a cup. Pour 150ml of boiling water. Stir well and let it sit for 10 seconds. Enjoy warm!",
     nutrition: ["Energy: 320 kcal (per 100g)", "Protein: 22g", "Carbohydrates: 48g", "Dietary Fiber: 12g", "Iron: 25mg"],
     benefits: ["Rich in Antioxidants", "Enhances Immune Function", "Supports Natural Detoxification", "Improves Energy Levels"]
@@ -116,15 +117,15 @@ export default function ShopSection({
       <div className="max-width-1200 mx-auto">
         
         {/* Header & Category Filters */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
           <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-sage bg-sage/10 px-3 py-1 rounded-full border border-sage/20 inline-flex items-center gap-1.5 mb-2">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-[#76BC21] bg-[#76BC21]/10 px-3.5 py-1 rounded-full border border-[#76BC21]/20 inline-flex items-center gap-1.5 mb-2">
               <Sparkles className="w-3.5 h-3.5" /> Milled Fresh Weekly
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-forest">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0A192F]">
               Our Best Seller Botanical Blends
             </h2>
-            <p className="text-sage-grey text-sm font-light mt-1">
+            <p className="text-slate-600 text-sm font-light mt-1">
               Select a blend to explore ingredients, benefits, and instant preparation guides.
             </p>
           </div>
@@ -137,8 +138,8 @@ export default function ShopSection({
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 text-xs font-bold rounded-full transition-all duration-300 flex-shrink-0 ${
                   activeCategory === cat
-                    ? 'bg-[#0F3D2E] text-white shadow-md'
-                    : 'bg-cream/60 text-[#0F3D2E] hover:bg-cream border border-forest/10'
+                    ? 'bg-[#0080FF] text-white shadow-md'
+                    : 'bg-white text-[#0A192F] hover:bg-[#E2EAF4] border border-slate-200'
                 }`}
               >
                 {cat}
@@ -154,12 +155,15 @@ export default function ShopSection({
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white border border-forest/10 rounded-3xl shadow-premium-sm hover:shadow-premium-lg transition-all duration-300 overflow-hidden flex flex-col relative group"
+              className="bg-white border border-slate-200 rounded-3xl shadow-premium-sm hover:shadow-premium-lg transition-all duration-300 overflow-hidden flex flex-col relative group"
             >
+              {/* Subtle top gradient shadow for button contrast */}
+              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/35 via-black/10 to-transparent pointer-events-none z-10" />
+
               {/* Wishlist Toggle Button */}
               <button 
-                className={`absolute top-4 right-4 z-10 w-10 h-10 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur transition-all ${
-                  wishlist.includes(product.id) ? 'text-red-500 scale-105' : 'text-sage-grey hover:text-red-500'
+                className={`absolute top-4 right-4 z-20 w-10 h-10 rounded-full flex items-center justify-center shadow-lg bg-white/95 backdrop-blur-md transition-all hover:scale-110 active:scale-95 ${
+                  wishlist.includes(product.id) ? 'text-red-500' : 'text-slate-600 hover:text-red-500'
                 }`}
                 onClick={() => onToggleWishlist(product.id)}
                 aria-label="Add to Wishlist"
@@ -169,48 +173,46 @@ export default function ShopSection({
 
               {/* Tag Badge */}
               {product.tag && (
-                <span className="absolute top-4 left-4 z-10 bg-[#0F3D2E] text-amber-300 text-[10px] uppercase font-bold px-3 py-1 rounded-full tracking-wider shadow">
+                <span className="absolute top-4 left-4 z-20 bg-[#0A192F]/90 backdrop-blur-md text-sky-300 text-[10px] uppercase font-extrabold px-3 py-1 rounded-full tracking-wider shadow-lg border border-[#0080FF]/40">
                   {product.tag}
                 </span>
               )}
 
-              {/* Product Packaging Container */}
-              <div 
-                className="bg-cream/40 py-6 flex items-center justify-center border-b border-forest/5 relative overflow-hidden h-72 sm:h-80 cursor-pointer"
-                onClick={() => setSelectedProduct(product)}
+              {/* Product Packaging Container - 100% Full-Width Image Stage */}
+              <Link 
+                href={`/product/${product.id}`}
+                className="bg-[#F4F8FC] border-b border-slate-100 relative overflow-hidden h-72 sm:h-80 cursor-pointer block"
               >
-                <div className="w-60 h-64 flex items-center justify-center relative p-2">
-                  <img
-                    src={product.image || PRODUCT_IMAGES[product.svg_type] || '/hero_moringa.png'}
-                    alt={product.title}
-                    className="max-w-full max-h-full object-contain filter drop-shadow-md select-none group-hover:scale-110 transition-transform duration-500 mix-blend-multiply"
-                  />
-                </div>
-              </div>
+                <img
+                  src={product.image || PRODUCT_IMAGES[product.svg_type] || '/hero_moringa.png'}
+                  alt={product.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              </Link>
 
               {/* Product Info */}
               <div className="p-6 flex flex-col flex-grow">
-                <span className="text-sage text-xs font-bold uppercase tracking-wider mb-1">{product.category}</span>
-                <h3 
-                  className="font-serif text-xl font-bold text-forest mb-2 cursor-pointer hover:text-sage transition-colors leading-snug"
-                  onClick={() => setSelectedProduct(product)}
-                >
-                  {product.title}
-                </h3>
+                <span className="text-[#76BC21] text-xs font-bold uppercase tracking-wider mb-1">{product.category}</span>
+                <Link href={`/product/${product.id}`}>
+                  <h3 className="font-serif text-xl font-bold text-[#0A192F] mb-2 cursor-pointer hover:text-[#0080FF] transition-colors leading-snug">
+                    {product.title}
+                  </h3>
+                </Link>
                 
                 {/* Review Stars */}
                 <div className="flex items-center gap-1 text-amber-500 text-sm mb-4">
                   {"★★★★★".split("").map((star, idx) => (
                     <span key={idx}>{star}</span>
                   ))}
-                  <span className="text-sage-grey text-xs ml-2 font-medium">({product.rating_count} reviews)</span>
+                  <span className="text-slate-500 text-xs ml-2 font-medium">({product.rating_count} reviews)</span>
                 </div>
 
                 {/* Footer Pricing & CTA */}
-                <div className="flex flex-col gap-3 mt-auto pt-4 border-t border-forest/5">
+                <div className="flex flex-col gap-3.5 mt-auto pt-4 border-t border-slate-100">
                   <div className="flex items-center justify-between">
-                    <span className="font-serif text-2xl font-bold text-forest">Rs. {Number(product.price).toFixed(0)}</span>
-                    <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full font-bold border border-emerald-200">
+                    <span className="font-serif text-2xl font-bold text-[#0A192F]">Rs. {Number(product.price).toFixed(0)}</span>
+                    <span className="text-[10px] text-[#76BC21] bg-[#76BC21]/10 px-2.5 py-0.5 rounded-full font-bold border border-[#76BC21]/20">
                       FREE Shipping & COD
                     </span>
                   </div>
@@ -218,20 +220,20 @@ export default function ShopSection({
                   <div className="flex items-center gap-2">
                     <button 
                       onClick={() => onAddToCart(product)}
-                      className={`w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-all duration-300 ${
+                      className={`w-11 h-11 rounded-full flex items-center justify-center shadow-sm transition-all duration-300 ${
                         addedItems.includes(product.id) 
-                          ? 'bg-terracotta text-forest scale-95' 
-                          : 'bg-cream text-forest hover:bg-forest hover:text-white border border-forest/10'
+                          ? 'bg-[#76BC21] text-white scale-95' 
+                          : 'bg-[#F4F8FC] text-[#0A192F] hover:bg-[#0080FF] hover:text-white border border-slate-200'
                       }`}
                       aria-label={`Add ${product.title} to Cart`}
                       title="Add to Cart"
                     >
-                      {addedItems.includes(product.id) ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                      {addedItems.includes(product.id) ? <Check className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                     </button>
 
                     <button 
                       onClick={() => onBuyNow(product)}
-                      className="flex-1 py-2.5 bg-[#0F3D2E] text-white font-semibold text-xs tracking-wider uppercase rounded-full hover:bg-terracotta hover:text-forest transition-all shadow-md active:scale-95 text-center"
+                      className="flex-1 py-3 bg-[#0080FF] text-white font-bold text-xs tracking-wider uppercase rounded-full hover:bg-[#0066CC] transition-all shadow-md active:scale-95 text-center"
                     >
                       Buy Now
                     </button>
@@ -240,10 +242,10 @@ export default function ShopSection({
                       href={`https://wa.me/917483849998?text=${encodeURIComponent(`Hi Ayurmor! I would like to order: ${product.title} (Rs. ${product.price})`)}`}
                       target="_blank"
                       rel="noopener"
-                      className="px-3.5 py-2.5 bg-[#25D366] text-white text-xs font-bold rounded-full hover:bg-[#1eb956] shadow-md transition-all flex items-center gap-1"
+                      className="w-11 h-11 bg-[#25D366] text-white rounded-full hover:bg-[#1eb956] shadow-md transition-all flex items-center justify-center flex-shrink-0"
                       title="Order via WhatsApp"
                     >
-                      <MessageCircle className="w-4 h-4" />
+                      <MessageCircle className="w-5 h-5" />
                     </a>
                   </div>
                 </div>
@@ -286,12 +288,12 @@ export default function ShopSection({
               <div className="overflow-y-auto p-6 sm:p-10 space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   
-                  {/* Image Stage */}
-                  <div className="bg-cream/40 rounded-3xl p-8 flex items-center justify-center border border-forest/5 h-80 relative overflow-hidden">
+                  {/* Image Stage - Large & Prominent */}
+                  <div className="bg-[#F4F8FC] rounded-3xl p-6 flex items-center justify-center border border-slate-100 h-96 relative overflow-hidden">
                     <img 
                       src={selectedProduct.image || PRODUCT_IMAGES[selectedProduct.svg_type] || '/hero_moringa.png'} 
                       alt={selectedProduct.title} 
-                      className="max-w-full max-h-full object-contain filter drop-shadow-xl mix-blend-multiply"
+                      className="w-full h-full object-contain filter drop-shadow-xl mix-blend-multiply p-2"
                     />
                   </div>
 

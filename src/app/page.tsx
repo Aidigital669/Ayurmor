@@ -12,6 +12,7 @@ import Testimonials from '@/components/Testimonials';
 import BlogsSection from '@/components/BlogsSection';
 import FAQSection from '@/components/FAQSection';
 import NewsletterSection from '@/components/NewsletterSection';
+import Footer from '@/components/Footer';
 import AIChatbot from '@/components/AIChatbot';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { 
@@ -273,7 +274,7 @@ export default function Home() {
           </div>
           <div>
             <h3 className="font-serif text-3xl sm:text-4xl font-bold text-forest">100%</h3>
-            <p className="text-xs text-sage-grey font-medium mt-1">Organic & Chemical-Free</p>
+            <p className="text-xs text-sage-grey font-medium mt-1">Pure & Chemical-Free</p>
           </div>
           <div>
             <h3 className="font-serif text-3xl sm:text-4xl font-bold text-forest">98%</h3>
@@ -313,79 +314,7 @@ export default function Home() {
       <NewsletterSection />
 
       {/* 12. Corporate Certified Footer */}
-      <footer className="bg-[#0b1a15] text-white/70 py-16 px-6 border-t border-white/5">
-        <div className="max-width-1200 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          <div>
-            <a href="#home" className="flex items-center gap-2 font-serif text-xl font-bold text-white mb-4">
-              <div className="w-8 h-8 rounded-lg bg-amber-400 text-[#0F3D2E] flex items-center justify-center font-bold">
-                🍃
-              </div>
-              <span>Ayurmor</span>
-            </a>
-            <p className="text-xs leading-relaxed mb-4 font-light text-white/80">
-              Manufactured & Marketed by <strong>Saish Technofarms</strong>. Bringing traditional Indian botanicals, sprouted millets, and herbal soups to modern life.
-            </p>
-            <div className="text-[11px] text-amber-300 font-mono space-y-1 bg-white/5 p-3 rounded-xl border border-white/10 mb-4">
-              <p>📜 FSSAI Reg: 21224169000054</p>
-              <p>🏆 ISO 9001:2015: QCCI/25Q/SES/5850</p>
-            </div>
-            
-            <div className="flex gap-3">
-              <a 
-                href="https://wa.me/917483849998" 
-                target="_blank" 
-                rel="noopener" 
-                aria-label="WhatsApp" 
-                className="w-10 h-10 bg-[#25D366] text-white rounded-full flex items-center justify-center hover:scale-110 transition-all shadow"
-              >
-                <MessageCircle className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-white text-xs font-bold uppercase tracking-wider mb-6">Navigation</h3>
-            <ul className="flex flex-col gap-2.5 text-xs">
-              <li><a href="#home" className="hover:text-terracotta transition-colors">Home</a></li>
-              <li><a href="#values" className="hover:text-terracotta transition-colors">Why Ayurmor Science</a></li>
-              <li><a href="#products" className="hover:text-terracotta transition-colors">Shop All Products</a></li>
-              <li><a href="#about" className="hover:text-terracotta transition-colors">Founder's Story</a></li>
-              <li><a href="#blogs" className="hover:text-terracotta transition-colors">Health Guides & Blogs</a></li>
-              <li><a href="#faq" className="hover:text-terracotta transition-colors">FAQs</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white text-xs font-bold uppercase tracking-wider mb-6">Certified Manufacturing</h3>
-            <div className="text-xs text-white/80 space-y-2 leading-relaxed font-light">
-              <p><strong>Saish Technofarms</strong></p>
-              <p>Building No 330, Sy No 137/1, 137/5 Kagal Maneer, Behind Maneer Bus Stop, Manaki, Kumta, Uttara Kannada, Karnataka - 581362, India.</p>
-              <p className="pt-2 text-emerald-300 font-semibold">📞 Customer Care: +91 7483 849 998</p>
-              <p className="text-emerald-300 font-semibold">✉️ Email: support@ayurmor.com</p>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-white text-xs font-bold uppercase tracking-wider mb-6">Policies & Assurance</h3>
-            <ul className="flex flex-col gap-2.5 text-xs mb-4">
-              <li><a href="#" className="hover:text-terracotta transition-colors">100% Money Back Refund Policy</a></li>
-              <li><a href="#" className="hover:text-terracotta transition-colors">Free Shipping & COD Policy</a></li>
-              <li><a href="#" className="hover:text-terracotta transition-colors">Privacy & Data Security</a></li>
-              <li><a href="#" className="hover:text-terracotta transition-colors">Terms of Service</a></li>
-            </ul>
-            <span className="text-[10px] text-white/40 block">
-              Disclaimer: Products are nutritional food supplements and not intended to diagnose or cure diseases.
-            </span>
-          </div>
-        </div>
-
-        <div className="max-width-1200 mx-auto pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center text-xs text-white/40 gap-4">
-          <p>&copy; 2026 Saish Technofarms (Ayurmor). All Rights Reserved.</p>
-          <p>
-            Developed by <a href="https://sitebride.in" target="_blank" rel="noopener" className="text-terracotta hover:underline font-bold">sitebride.in</a>
-          </p>
-        </div>
-      </footer>
+      <Footer />
 
       {/* 13. Gemini AI Assistant Chatbot */}
       <AIChatbot />
@@ -436,7 +365,7 @@ export default function Home() {
                       </div>
                       <h3 className="font-serif text-xl font-bold text-forest">Your Cart is Empty</h3>
                       <p className="text-sage-grey text-sm max-w-xs font-light">
-                        Add some of our premium organic botanical health blends to begin your wellness journey.
+                        Add some of our premium pure botanical health blends to begin your wellness journey.
                       </p>
                       <button 
                         onClick={() => setCartOpen(false)}

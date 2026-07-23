@@ -10,7 +10,7 @@ const HERO_SLIDES = [
     category: "Daily Cellular Energy",
     title: "Nourish from Within",
     subtitle: "ABC Malt Powder",
-    tagline: "Our signature ABC Malt Powder merges the biological goodness of fresh apples, organic beetroots, and crisp carrots. Fortified with premium almonds and raw cashews for sustained vigor.",
+    tagline: "Our signature ABC Malt Powder merges the biological goodness of fresh apples, pure beetroots, and crisp carrots. Fortified with premium almonds and raw cashews for sustained vigor.",
     badge: "Enriched with Iron",
     bgColor: "from-[#FFEBE5] via-[#FFCFC0] to-[#E7977D]",
     image: "/hero_abc.png"
@@ -80,8 +80,8 @@ export default function HeroCarousel() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <span className="text-xs font-bold uppercase tracking-widest text-[#0F3D2E] bg-white/80 backdrop-blur px-3.5 py-1.5 rounded-full shadow-sm border border-[#0F3D2E]/10 inline-flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              <span className="text-xs font-bold uppercase tracking-widest text-[#0080FF] bg-white/90 backdrop-blur px-3.5 py-1.5 rounded-full shadow-sm border border-[#0080FF]/20 inline-flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#76BC21]" />
                 {activeSlide.badge} • {activeSlide.category}
               </span>
             </motion.div>
@@ -91,10 +91,10 @@ export default function HeroCarousel() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0F3D2E] leading-tight"
+              className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0A192F] leading-tight"
             >
               {activeSlide.title}
-              <span className="block text-2xl sm:text-3xl font-sans text-[#0F3D2E]/80 font-normal mt-2">
+              <span className="block text-2xl sm:text-3xl font-sans text-[#0A192F]/80 font-normal mt-2">
                 {activeSlide.subtitle}
               </span>
             </motion.h1>
@@ -104,7 +104,7 @@ export default function HeroCarousel() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-charcoal/80 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0 font-light"
+              className="text-slate-700 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0 font-light"
             >
               {activeSlide.tagline}
             </motion.p>
@@ -118,7 +118,7 @@ export default function HeroCarousel() {
             >
               <a
                 href="#products"
-                className="px-7 py-3.5 bg-[#0F3D2E] text-white font-bold text-xs uppercase tracking-wider rounded-full hover:bg-terracotta hover:text-[#0F3D2E] shadow-premium-lg transition-all duration-300 flex items-center gap-2"
+                className="px-7 py-3.5 bg-[#0080FF] text-white font-bold text-xs uppercase tracking-wider rounded-full hover:bg-[#0066CC] shadow-premium-lg transition-all duration-300 flex items-center gap-2"
               >
                 <span>Shop Best Sellers</span>
                 <ArrowRight className="w-4 h-4" />
@@ -126,7 +126,7 @@ export default function HeroCarousel() {
 
               <a
                 href="#values"
-                className="px-7 py-3.5 bg-white/80 hover:bg-white text-[#0F3D2E] font-bold text-xs uppercase tracking-wider rounded-full border border-[#0F3D2E]/20 shadow-sm transition-all duration-300"
+                className="px-7 py-3.5 bg-white/90 hover:bg-white text-[#0A192F] font-bold text-xs uppercase tracking-wider rounded-full border border-[#0080FF]/20 shadow-sm transition-all duration-300 hover:text-[#0080FF]"
               >
                 Our Science & Purity
               </a>

@@ -14,7 +14,7 @@ const FAQS: FAQItem[] = [
   {
     category: 'Products & Ingredients',
     question: 'Are Ayurmor products 100% natural and sugar-free?',
-    answer: 'Yes! All Ayurmor mixes are crafted with 100% natural, organic ingredients. We do not use any refined white sugars, artificial preservatives, synthetic colors, or chemical additives. Sweetness comes from raw palm sugar, real fruit crystals, or wholesome cocoa.'
+    answer: 'Yes! All Ayurmor mixes are crafted with 100% natural, pure botanical ingredients. We do not use any refined white sugars, artificial preservatives, synthetic colors, or chemical additives. Sweetness comes from raw palm sugar, real fruit crystals, or wholesome cocoa.'
   },
   {
     category: 'Usage & Safety',
@@ -24,7 +24,7 @@ const FAQS: FAQItem[] = [
   {
     category: 'Certifications & Safety',
     question: 'Is Ayurmor certified by FSSAI and ISO?',
-    answer: 'Yes. Ayurmor is manufactured and packed by Saish Technofarms under FSSAI License Registration No. 21224169000054 (Govt. of Karnataka / FSSAI under FSS Act, 2006) and certified ISO 9001:2015 Quality Management System (Certificate No: QCCI/25Q/SES/5850).'
+    answer: 'Yes. Ayurmor is manufactured by Saish Technofarms under FSSAI Reg. No. 21224169000054 & ISO 9001:2015 Certification, and marketed by Zeyora Global Trading Co. (Kombai Nagar, Tiruchengode – 637211, FSSAI No. 124250140000673, GSTIN: 33AEQPT6920G1Z6).'
   },
   {
     category: 'Preparation',
@@ -61,7 +61,7 @@ export default function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-sage-grey text-sm mt-3 leading-relaxed font-light">
-            Everything you need to know about our organic blends, certifications, preparation, and delivery.
+            Everything you need to know about our pure botanical blends, certifications, preparation, and delivery.
           </p>
         </div>
 

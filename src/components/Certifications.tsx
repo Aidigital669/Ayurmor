@@ -39,7 +39,7 @@ export default function Certifications() {
               <CheckCircle className="w-6 h-6" />
             </div>
             <h4 className="font-serif font-bold text-sm text-white mb-1">GMP Compliant</h4>
-            <p className="text-[10px] text-emerald-200/80">Hygienic Repackaging</p>
+            <p className="text-[10px] text-emerald-200/80">Hygienic Packaging</p>
             <span className="text-[9px] text-white/50 mt-1">Stringent Safety Checks</span>
           </div>
 

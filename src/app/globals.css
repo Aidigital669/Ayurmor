@@ -42,26 +42,31 @@
   }
 
   body {
-    background-color: #FBF9F5; /* cream */
-    color: #1E2421; /* charcoal */
+    background-color: #F4F8FC; /* clean crisp ice off-white */
+    color: #0F172A; /* slate navy */
     -webkit-font-smoothing: antialiased;
   }
 }
 
-/* Custom scrollbar to match the forest styling */
+/* Custom scrollbar matching Ayurmor logo colors */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F3EFE9;
+  background: #E2EAF4;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5A8B73;
+  background: #76BC21;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0F3D2E;
+  background: #0080FF;
+}
+
+.max-width-1200 {
+  max-width: 1200px !important;
+  width: 100%;
 }

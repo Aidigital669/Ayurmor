@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, ArrowRight, X, Clock, User, CheckCircle2, Sparkles } from 'lucide-react';
+import { BookOpen, ArrowRight, X, Clock, User, CheckCircle2 } from 'lucide-react';
 
 interface BlogPost {
   id: string;
@@ -67,7 +68,7 @@ const BLOGS: BlogPost[] = [
         },
         {
           title: 'Nutrient Density Over Empty Calories',
-          text: 'Our ABC Malt (Apple, Beetroot, Carrot) and Choco Millet Malt deliver organic iron, natural cocoa polyphenols, and essential minerals without a single gram of refined sugar.'
+          text: 'Our ABC Malt (Apple, Beetroot, Carrot) and Choco Millet Malt deliver natural iron, natural cocoa polyphenols, and essential minerals without a single gram of refined sugar.'
         },
         {
           title: 'On-the-Go Convenience',
@@ -123,7 +124,7 @@ const BLOGS: BlogPost[] = [
         },
         {
           title: 'ISO 9001:2015 & FSSAI Standards',
-          text: 'Operating under FSSAI Reg. No. 21224169000054 and ISO 9001:2015 certification (QCCI/25Q/SES/5850), our facility follows strict hygienic repacking & quality protocols.'
+          text: 'Operating under FSSAI Reg. No. 21224169000054 and ISO 9001:2015 certification (QCCI/25Q/SES/5850), our facility follows strict hygienic packaging & quality protocols.'
         },
         {
           title: 'Preserving Bio-Activity & Freshness',
@@ -139,62 +140,64 @@ export default function BlogsSection() {
   const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
 
   return (
-    <section className="py-20 px-6 bg-white" id="blogs">
+    <section className="py-20 px-6 bg-[#F4F8FC]" id="blogs">
       <div className="max-width-1200 mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs font-bold uppercase tracking-widest text-sage bg-sage/10 px-3.5 py-1 rounded-full border border-sage/20 inline-flex items-center gap-1.5 mb-3">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#0080FF] bg-[#0080FF]/10 px-3.5 py-1 rounded-full border border-[#0080FF]/20 inline-flex items-center gap-1.5 mb-3">
             <BookOpen className="w-3.5 h-3.5" /> Ayurmor Wellness Knowledge Base
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-forest">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0A192F]">
             Insights & Guides for Healthy Living
           </h2>
-          <p className="text-sage-grey text-sm mt-3 leading-relaxed font-light">
+          <p className="text-slate-600 text-sm mt-3 leading-relaxed font-light">
             Explore expert articles on Ayurvedic ingredients, healthy snacking tips, habit building, and our certified quality standards.
           </p>
         </div>
 
-        {/* Blog Cards Grid */}
+        {/* Blog Cards Grid - Full 100% Width Image Display Links */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {BLOGS.map((blog) => (
-            <div
+            <Link
               key={blog.id}
-              onClick={() => setSelectedBlog(blog)}
-              className="bg-[#FDFBF7] border border-forest/10 rounded-2xl overflow-hidden shadow-premium-sm hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 flex flex-col cursor-pointer group"
+              href={`/blog/${blog.id}`}
+              className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-premium-sm hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 flex flex-col cursor-pointer group"
             >
-              <div className="h-44 bg-cream/60 p-4 flex items-center justify-center relative overflow-hidden">
-                <span className="absolute top-3 left-3 bg-[#0F3D2E] text-amber-300 text-[10px] font-bold px-2.5 py-1 rounded-full shadow">
-                  {blog.category}
-                </span>
+              {/* 100% Full Width Card Image Stage */}
+              <div className="h-52 w-full relative overflow-hidden bg-[#F4F8FC]">
                 <img
                   src={blog.image}
                   alt={blog.title}
-                  className="w-28 h-32 object-contain group-hover:scale-110 transition-transform duration-500 filter drop-shadow"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
+                <span className="absolute top-3 left-3 bg-[#0A192F] text-sky-300 text-[10px] font-extrabold px-3 py-1 rounded-full shadow border border-[#0080FF]/30 tracking-wider">
+                  {blog.category}
+                </span>
               </div>
 
               <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                 <div>
-                  <div className="flex items-center gap-2 text-[11px] text-sage-grey mb-2 font-medium">
-                    <Clock className="w-3 h-3 text-sage" />
+                  <div className="flex items-center gap-2 text-[11px] text-slate-500 mb-2 font-medium">
+                    <Clock className="w-3.5 h-3.5 text-[#0080FF]" />
                     <span>{blog.readTime}</span>
                     <span>•</span>
                     <span>{blog.date}</span>
                   </div>
 
-                  <h3 className="font-serif text-base font-bold text-forest group-hover:text-sage transition-colors leading-snug">
+                  <h3 className="font-serif text-base font-bold text-[#0A192F] group-hover:text-[#0080FF] transition-colors leading-snug">
                     {blog.title}
                   </h3>
-                  <p className="text-xs text-charcoal/70 line-clamp-2 mt-2 leading-relaxed font-light">
+                  <p className="text-xs text-slate-600 line-clamp-2 mt-2 leading-relaxed font-light">
                     {blog.summary}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-forest/5 flex items-center justify-between text-xs font-bold text-forest group-hover:text-sage">
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0080FF] group-hover:text-[#0066CC]">
                   <span>Read Full Article</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -215,23 +218,23 @@ export default function BlogsSection() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-forest/10 overflow-hidden z-10 my-8 max-h-[85vh] flex flex-col"
+              className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden z-10 my-8 max-h-[85vh] flex flex-col"
             >
               {/* Header */}
-              <div className="bg-[#0F3D2E] text-white p-6 relative">
+              <div className="bg-[#0A192F] text-white p-6 relative border-b border-[#0080FF]/20">
                 <button
                   onClick={() => setSelectedBlog(null)}
                   className="absolute top-4 right-4 p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
-                <span className="text-[10px] uppercase font-bold tracking-widest text-amber-300 bg-white/10 px-3 py-1 rounded-full border border-amber-300/20">
+                <span className="text-[10px] uppercase font-extrabold tracking-widest text-sky-300 bg-white/10 px-3 py-1 rounded-full border border-sky-400/20">
                   {selectedBlog.category}
                 </span>
                 <h2 className="font-serif text-2xl font-bold mt-3 leading-snug text-white">
                   {selectedBlog.title}
                 </h2>
-                <div className="flex items-center gap-4 text-xs text-emerald-200/90 mt-3 font-light">
+                <div className="flex items-center gap-4 text-xs text-sky-200/90 mt-3 font-light">
                   <span className="flex items-center gap-1"><User className="w-3.5 h-3.5" /> {selectedBlog.author}</span>
                   <span>•</span>
                   <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {selectedBlog.readTime}</span>
@@ -239,38 +242,38 @@ export default function BlogsSection() {
               </div>
 
               {/* Modal Body */}
-              <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-sm text-charcoal leading-relaxed">
-                <p className="text-base font-serif italic text-[#0F3D2E] bg-cream/60 p-4 rounded-xl border-l-4 border-[#0F3D2E]">
+              <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-sm text-slate-800 leading-relaxed">
+                <p className="text-base font-serif italic text-[#0A192F] bg-[#F4F8FC] p-4 rounded-xl border-l-4 border-[#0080FF]">
                   "{selectedBlog.content.intro}"
                 </p>
 
                 <div className="space-y-4 pt-2">
                   {selectedBlog.content.keyPoints.map((point, idx) => (
-                    <div key={idx} className="bg-cream/30 p-4 rounded-2xl border border-forest/5 space-y-1">
-                      <h4 className="font-serif font-bold text-base text-forest flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-sage flex-shrink-0" />
+                    <div key={idx} className="bg-[#F4F8FC] p-4 rounded-2xl border border-slate-200 space-y-1">
+                      <h4 className="font-serif font-bold text-base text-[#0A192F] flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#76BC21] flex-shrink-0" />
                         {point.title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-charcoal/80 pl-6 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slate-700 pl-6 leading-relaxed">
                         {point.text}
                       </p>
                     </div>
                   ))}
                 </div>
 
-                <div className="p-4 bg-[#0F3D2E]/5 rounded-2xl border border-[#0F3D2E]/10">
-                  <h4 className="font-bold text-xs text-[#0F3D2E] uppercase tracking-wider mb-1">In Summary</h4>
-                  <p className="text-xs sm:text-sm text-[#0F3D2E]/90 font-medium">
+                <div className="p-4 bg-sky-50 rounded-2xl border border-sky-100">
+                  <h4 className="font-bold text-xs text-[#0080FF] uppercase tracking-wider mb-1">In Summary</h4>
+                  <p className="text-xs sm:text-sm text-slate-800 font-medium">
                     {selectedBlog.content.conclusion}
                   </p>
                 </div>
               </div>
 
               {/* Footer */}
-              <div className="p-4 bg-cream/40 border-t border-forest/10 flex justify-end">
+              <div className="p-4 bg-[#F4F8FC] border-t border-slate-200 flex justify-end">
                 <button
                   onClick={() => setSelectedBlog(null)}
-                  className="px-6 py-2 bg-[#0F3D2E] text-white text-xs font-bold uppercase rounded-full hover:bg-terracotta hover:text-forest transition-colors shadow"
+                  className="px-6 py-2 bg-[#0080FF] text-white text-xs font-bold uppercase rounded-full hover:bg-[#0066CC] transition-colors shadow"
                 >
                   Close Article
                 </button>
