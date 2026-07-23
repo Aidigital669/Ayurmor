@@ -11,7 +11,7 @@ git add .
 echo.
 :: 2. Commit changes
 echo [2/3] Committing changes...
-git commit -m "revert: restore original Ayurmor logo in Navbar and Footer"
+git commit -m "style: update social media links to clean round icon-only logos for WhatsApp, Instagram, and Facebook"
 
 echo.
 :: 3. Push to GitHub main branch
