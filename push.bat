@@ -11,7 +11,7 @@ git add .
 echo.
 :: 2. Commit changes
 echo [2/3] Committing changes...
-git commit -m "feat: logo home redirect, Ask Me support badge, Zeyora & Saish details, 100% pure branding, hygienic packaging, and unique product detail page routing"
+git commit -m "fix: resolve Vercel SWC build error in admin page and push updated product routing"
 
 echo.
 :: 3. Push to GitHub main branch
