@@ -56,12 +56,14 @@ export default function Footer() {
           
           {/* Col 1: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-block hover:scale-105 transition-transform">
-              <img 
-                src="/Ayurmor_dark.svg" 
-                alt="Ayurmor Logo" 
-                className="h-10 md:h-12 w-auto object-contain"
-              />
+            <Link href="/" className="inline-block">
+              <div className="bg-white p-2.5 rounded-xl inline-block shadow-md hover:scale-105 transition-transform">
+                <img 
+                  src="/Ayurmor.png" 
+                  alt="Ayurmor Logo" 
+                  className="h-10 w-auto object-contain"
+                />
+              </div>
             </Link>
             <p className="text-xs text-slate-300 leading-relaxed max-w-sm">
               Ayurmor by Saish Technofarms crafts 100% natural, pure botanical health mixes, instant nutrient-rich Moringa soup, and sprouted multigrain millet malts.

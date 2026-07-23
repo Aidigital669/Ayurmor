@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Search, 
-  ShoppingCart, 
-  Heart, 
-  Menu, 
-  X, 
+import {
+  Search,
+  ShoppingCart,
+  Heart,
+  Menu,
+  X,
   MessageCircle,
   Leaf
 } from 'lucide-react';
@@ -25,8 +25,8 @@ export default function Navbar({
   cartCount = 0,
   wishlistCount = 0,
   searchQuery = '',
-  setSearchQuery = () => {},
-  onOpenCart = () => {}
+  setSearchQuery = () => { },
+  onOpenCart = () => { }
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -41,144 +41,143 @@ export default function Navbar({
 
   return (
     <>
-      <header 
-      className={`sticky top-0 left-0 w-full z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-[#F4F8FC]/95 backdrop-blur-md shadow-premium-sm border-b border-[#0080FF]/15' 
-          : 'bg-[#F4F8FC] border-b border-[#0080FF]/10'
-      }`}
-    >
-      {/* Top Announcement Bar - Logo Sky Blue & Navy */}
-      <div className="bg-[#0A192F] text-sky-300 text-[11px] font-bold py-2 px-4 text-center border-b border-[#0080FF]/20 flex items-center justify-center gap-2 flex-wrap">
-        <span>🔥 Launch Offer: FREE Express Shipping & Cash on Delivery Across India!</span>
-        <span className="hidden sm:inline">•</span>
-        <span className="text-white font-mono bg-white/10 px-2 py-0.5 rounded border border-sky-400/20">FSSAI Reg: 21224169000054</span>
-        <span className="hidden sm:inline">•</span>
-        <span className="text-[#76BC21]">ISO 9001:2015 Certified</span>
-      </div>
+      <header
+        className={`sticky top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled
+            ? 'bg-[#F4F8FC]/95 backdrop-blur-md shadow-premium-sm border-b border-[#0080FF]/15'
+            : 'bg-[#F4F8FC] border-b border-[#0080FF]/10'
+          }`}
+      >
+        {/* Top Announcement Bar - Logo Sky Blue & Navy */}
+        <div className="bg-[#0A192F] text-sky-300 text-[11px] font-bold py-2 px-4 text-center border-b border-[#0080FF]/20 flex items-center justify-center gap-2 flex-wrap">
+          <span>🔥 Launch Offer: FREE Express Shipping & Cash on Delivery Across India!</span>
+          <span className="hidden sm:inline">•</span>
+          <span className="text-white font-mono bg-white/10 px-2 py-0.5 rounded border border-sky-400/20">FSSAI Reg: 21224169000054</span>
+          <span className="hidden sm:inline">•</span>
+          <span className="text-[#76BC21]">ISO 9001:2015 Certified</span>
+        </div>
 
-      {/* Main Navigation Bar */}
-      <div className="py-3.5">
-        <div className="max-width-1200 mx-auto px-6 flex items-center justify-between">
-          
-          {/* Real Ayurmor Logo */}
-          <Link href="/" className="flex items-center gap-2 group py-0.5">
-            <img 
-              src="/Ayurmor.svg" 
-              alt="Ayurmor - Natural Goodness, Instant Wellness" 
-              className="h-10 md:h-12 w-auto object-contain group-hover:scale-105 transition-transform"
-            />
-          </Link>
+        {/* Main Navigation Bar */}
+        <div className="py-3.5">
+          <div className="max-width-1200 mx-auto px-6 flex items-center justify-between">
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:block">
-            <ul className="flex items-center gap-6 text-sm font-semibold text-[#0F172A]">
-              <li>
-                <Link href="/" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/#values" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
-                  Our Science
-                </Link>
-              </li>
-              <li>
-                <Link href="/#products" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
-                  Shop
-                </Link>
-              </li>
-              <li>
-                <Link href="/#about" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/#testimonials" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
-                  Reviews
-                </Link>
-              </li>
-              <li>
-                <Link href="/#blogs" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
-                  Health Guides
-                </Link>
-              </li>
-              <li>
-                <Link href="/#faq" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
-                  FAQs
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Action Buttons */}
-          <div className="flex items-center gap-3">
-            
-            {/* Search Input */}
-            <div className="relative items-center hidden sm:flex">
-              <Search className="absolute left-3 w-4 h-4 text-slate-400 pointer-events-none" />
-              <input 
-                type="text" 
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9 pr-4 py-1.5 border border-[#0080FF]/20 rounded-full bg-white text-xs focus:outline-none focus:border-[#0080FF] focus:ring-1 focus:ring-[#0080FF] w-36 sm:w-48 transition-all duration-300 shadow-sm text-slate-900"
+            {/* Real Ayurmor Logo */}
+            <Link href="/" className="flex items-center gap-2 group py-0.5">
+              <img
+                src="/Ayurmor.png"
+                alt="Ayurmor - Natural Goodness, Instant Wellness"
+                className="h-10 md:h-12 w-auto object-contain mix-blend-multiply group-hover:scale-105 transition-transform"
               />
-            </div>
+            </Link>
 
-            {/* Wishlist Icon */}
-            <a 
-              href="#products" 
-              className="relative p-2 text-[#0A192F] hover:text-[#0080FF] hover:scale-105 transition-transform" 
-              aria-label="Wishlist"
-            >
-              <Heart className="w-5 h-5" />
-              {wishlistCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-[#76BC21] text-white font-extrabold text-[10px] w-4 h-4 rounded-full flex items-center justify-center shadow">
-                  {wishlistCount}
-                </span>
-              )}
-            </a>
+            {/* Desktop Navigation Links */}
+            <nav className="hidden lg:block">
+              <ul className="flex items-center gap-6 text-sm font-semibold text-[#0F172A]">
+                <li>
+                  <Link href="/" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#values" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
+                    Our Science
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#products" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
+                    Shop
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#about" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#testimonials" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
+                    Reviews
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#blogs" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
+                    Health Guides
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#faq" className="hover:text-[#0080FF] transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#0080FF] hover:after:w-full after:transition-all">
+                    FAQs
+                  </Link>
+                </li>
+              </ul>
+            </nav>
 
-            {/* Cart Icon Drawer Trigger */}
-            <button 
-              onClick={onOpenCart}
-              className="relative p-2.5 bg-[#0080FF] text-white rounded-full hover:bg-[#0066CC] transition-all duration-300 shadow-md group flex items-center justify-center"
-              aria-label="View Shopping Cart"
-            >
-              <ShoppingCart className="w-4 h-4 text-white" />
-              <AnimatePresence>
-                {cartCount > 0 && (
-                  <motion.span 
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    exit={{ scale: 0 }}
-                    className="absolute -top-1 -right-1 bg-[#76BC21] text-white font-extrabold text-[10px] w-4 h-4 rounded-full flex items-center justify-center shadow border-2 border-white"
-                  >
-                    {cartCount}
-                  </motion.span>
+            {/* Action Buttons */}
+            <div className="flex items-center gap-3">
+
+              {/* Search Input */}
+              <div className="relative items-center hidden sm:flex">
+                <Search className="absolute left-3 w-4 h-4 text-slate-400 pointer-events-none" />
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-9 pr-4 py-1.5 border border-[#0080FF]/20 rounded-full bg-white text-xs focus:outline-none focus:border-[#0080FF] focus:ring-1 focus:ring-[#0080FF] w-36 sm:w-48 transition-all duration-300 shadow-sm text-slate-900"
+                />
+              </div>
+
+              {/* Wishlist Icon */}
+              <a
+                href="#products"
+                className="relative p-2 text-[#0A192F] hover:text-[#0080FF] hover:scale-105 transition-transform"
+                aria-label="Wishlist"
+              >
+                <Heart className="w-5 h-5" />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 bg-[#76BC21] text-white font-extrabold text-[10px] w-4 h-4 rounded-full flex items-center justify-center shadow">
+                    {wishlistCount}
+                  </span>
                 )}
-              </AnimatePresence>
-            </button>
+              </a>
+
+              {/* Cart Icon Drawer Trigger */}
+              <button
+                onClick={onOpenCart}
+                className="relative p-2.5 bg-[#0080FF] text-white rounded-full hover:bg-[#0066CC] transition-all duration-300 shadow-md group flex items-center justify-center"
+                aria-label="View Shopping Cart"
+              >
+                <ShoppingCart className="w-4 h-4 text-white" />
+                <AnimatePresence>
+                  {cartCount > 0 && (
+                    <motion.span
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                      className="absolute -top-1 -right-1 bg-[#76BC21] text-white font-extrabold text-[10px] w-4 h-4 rounded-full flex items-center justify-center shadow border-2 border-white"
+                    >
+                      {cartCount}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </button>
 
 
-            {/* Mobile Hamburger Toggle */}
-            <button 
-              className="p-2 text-[#0F3D2E] lg:hidden" 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle Mobile Menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              {/* Mobile Hamburger Toggle */}
+              <button
+                className="p-2 text-[#0F3D2E] lg:hidden"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle Mobile Menu"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
       {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -186,8 +185,8 @@ export default function Navbar({
           >
             <div className="relative flex items-center w-full">
               <Search className="absolute left-3 w-4 h-4 text-sage-grey" />
-              <input 
-                type="text" 
+              <input
+                type="text"
                 placeholder="Search mixes..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -205,9 +204,9 @@ export default function Navbar({
             </ul>
 
             <div className="pt-2 border-t border-[#0F3D2E]/10">
-              <a 
-                href="https://wa.me/917483849998" 
-                target="_blank" 
+              <a
+                href="https://wa.me/917483849998"
+                target="_blank"
                 rel="noopener"
                 className="w-full py-2.5 bg-[#25D366] text-white font-bold text-xs uppercase tracking-wider rounded-full flex items-center justify-center gap-2 shadow"
               >
