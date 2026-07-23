@@ -1,30 +1,30 @@
 @echo off
 echo =======================================================
-echo         Ayurmor Git Large File Fix and Push            
+echo          Ayurmor - GitHub Code Commit & Push           
 echo =======================================================
 echo.
 
-:: 1. Remove tracked node_modules and .next from git index (keeps them on disk)
-echo [1/3] Removing node_modules and .next build files from Git tracking...
-git rm -r --cached node_modules 2>nul
-git rm -r --cached .next 2>nul
+:: 1. Stage changes
+echo [1/3] Adding updated files to Git stage...
+git add .
 
 echo.
-:: 2. Re-commit clean files
-echo [2/3] Re-committing changes without the large folder files...
-git commit --amend -m "feat: dynamic product specs tabs, custom image uploader, and admin panel CMS capabilities"
+:: 2. Commit changes
+echo [2/3] Committing changes...
+git commit -m "feat: logo home redirect, Ask Me support badge, Zeyora & Saish details, 100% pure branding, hygienic packaging, and unique product detail page routing"
 
 echo.
-:: 3. Force push the clean history to GitHub
-echo [3/3] Pushing clean repository to GitHub...
-git push -u origin main --force
+:: 3. Push to GitHub main branch
+echo [3/3] Pushing code to GitHub (https://github.com/Prem-sharma1/Ayurmor.git)...
+git push origin main
 
 echo.
 echo =======================================================
 if %errorlevel% equ 0 (
-    echo [SUCCESS] Code successfully pushed to GitHub!
+    echo [SUCCESS] All code updates successfully pushed to GitHub!
 ) else (
-    echo [FAILED] Push failed. 
+    echo [NOTICE] If push requires set-upstream, running: git push -u origin main
+    git push -u origin main
 )
 echo =======================================================
 echo.
