@@ -14,19 +14,19 @@ import {
 } from 'lucide-react';
 
 interface NavbarProps {
-  cartCount: number;
-  wishlistCount: number;
-  searchQuery: string;
-  setSearchQuery: (query: string) => void;
-  onOpenCart: () => void;
+  cartCount?: number;
+  wishlistCount?: number;
+  searchQuery?: string;
+  setSearchQuery?: (query: string) => void;
+  onOpenCart?: () => void;
 }
 
 export default function Navbar({
-  cartCount,
-  wishlistCount,
-  searchQuery,
-  setSearchQuery,
-  onOpenCart
+  cartCount = 0,
+  wishlistCount = 0,
+  searchQuery = '',
+  setSearchQuery = () => {},
+  onOpenCart = () => {}
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

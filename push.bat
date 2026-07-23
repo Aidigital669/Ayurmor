@@ -11,7 +11,7 @@ git add .
 echo.
 :: 2. Commit changes
 echo [2/3] Committing changes...
-git commit -m "fix: resolve activeTab ternary condition branch in admin page for Vercel SWC compilation"
+git commit -m "fix: make NavbarProps optional to resolve TypeScript prop build errors on subpages"
 
 echo.
 :: 3. Push to GitHub main branch
