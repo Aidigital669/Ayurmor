@@ -455,8 +455,10 @@ export default function AdminDashboard() {
 
   // Math Metrics
   const totalSales = orders
-    .filter(o => o.payment_status === 'success')
-    .reduce((acc, curr) => acc + parseFloat(curr.total_amount), 0);
+    ? orders
+        .filter((o: any) => o && o.payment_status === 'success')
+        .reduce((acc: number, curr: any) => acc + (parseFloat(curr.total_amount) || 0), 0)
+    : 0;
 
   return (
     <div className="min-h-screen bg-[#0A192F] text-[#F3EFE9] font-sans antialiased pb-24">
