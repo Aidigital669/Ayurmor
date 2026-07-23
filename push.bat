@@ -11,7 +11,7 @@ git add .
 echo.
 :: 2. Commit changes
 echo [2/3] Committing changes...
-git commit -m "feat: enhance backend APIs, AI chatbot knowledge base, and admin panel with Corporate & Compliance tracking"
+git commit -m "fix: resolve activeTab ternary condition branch in admin page for Vercel SWC compilation"
 
 echo.
 :: 3. Push to GitHub main branch

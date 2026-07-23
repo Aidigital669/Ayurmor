@@ -712,7 +712,7 @@ export default function AdminDashboard() {
                   </table>
                 </div>
               </div>
-            ) : (
+            ) : activeTab === 'orders' ? (
               /* Orders Management Panel */
               <div className="p-6">
                 <div className="mb-6">
