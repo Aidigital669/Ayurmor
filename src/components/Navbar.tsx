@@ -64,9 +64,9 @@ export default function Navbar({
           {/* Real Ayurmor Logo */}
           <Link href="/" className="flex items-center gap-2 group py-0.5">
             <img 
-              src="/Ayurmor.png" 
+              src="/Ayurmor.svg" 
               alt="Ayurmor - Natural Goodness, Instant Wellness" 
-              className="h-10 md:h-12 w-auto object-contain mix-blend-multiply group-hover:scale-105 transition-transform"
+              className="h-10 md:h-12 w-auto object-contain group-hover:scale-105 transition-transform"
             />
           </Link>
 
