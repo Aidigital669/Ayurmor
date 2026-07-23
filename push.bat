@@ -11,7 +11,7 @@ git add .
 echo.
 :: 2. Commit changes
 echo [2/3] Committing changes...
-git commit -m "style: update social media links to clean round icon-only logos for WhatsApp, Instagram, and Facebook"
+git commit -m "feat: update Founder's Story section with official brand vision and founder message"
 
 echo.
 :: 3. Push to GitHub main branch

@@ -289,8 +289,8 @@ export default function ProductDetailPage() {
                 <span className="font-serif text-4xl font-bold text-[#0A192F]">
                   Rs. {product.price}
                 </span>
-                <span className="text-xs text-[#76BC21] bg-[#76BC21]/10 px-3 py-1 rounded-full font-bold border border-[#76BC21]/20">
-                  FREE Shipping & COD Included
+                <span className="text-xs text-[#0080FF] bg-[#0080FF]/10 px-3 py-1 rounded-full font-bold border border-[#0080FF]/20">
+                  FREE Shipping on Prepaid Orders
                 </span>
               </div>
 

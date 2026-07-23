@@ -212,9 +212,9 @@ export default function ShopSection({
                 <div className="flex flex-col gap-3.5 mt-auto pt-4 border-t border-slate-100">
                   <div className="flex items-center justify-between">
                     <span className="font-serif text-2xl font-bold text-[#0A192F]">Rs. {Number(product.price).toFixed(0)}</span>
-                    <span className="text-[10px] text-[#76BC21] bg-[#76BC21]/10 px-2.5 py-0.5 rounded-full font-bold border border-[#76BC21]/20">
-                      FREE Shipping & COD
-                    </span>
+                      <span className="text-[10px] text-[#0080FF] bg-[#0080FF]/10 px-2.5 py-0.5 rounded-full font-bold border border-[#0080FF]/20">
+                        FREE Shipping on Prepaid Orders
+                      </span>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -315,8 +315,8 @@ export default function ShopSection({
 
                     <div className="flex items-baseline gap-3 pt-2">
                       <span className="font-serif text-3xl font-bold text-forest">Rs. {Number(selectedProduct.price).toFixed(0)}</span>
-                      <span className="text-xs text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full font-bold">
-                        FREE Shipping & COD Included
+                      <span className="text-xs text-[#0080FF] bg-[#0080FF]/10 px-2.5 py-1 rounded-full font-bold border border-[#0080FF]/20">
+                        FREE Shipping on Prepaid Orders
                       </span>
                     </div>
 

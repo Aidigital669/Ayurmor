@@ -181,11 +181,10 @@ function getLocalKnowledgeFallback(msg: string): string {
 • **Benefits**: High calcium, 100% zero refined sugar, high fiber for bone strength & active minds.`;
   }
 
-  if (query.includes('ship') || query.includes('delivery') || query.includes('cod') || query.includes('whatsapp') || query.includes('order')) {
+  if (query.includes('ship') || query.includes('delivery') || query.includes('prepaid') || query.includes('whatsapp') || query.includes('order')) {
     return `🚚 **Shipping, Payment & WhatsApp Order**
-• **Shipping**: FREE express shipping across India on all orders!
-• **Cash on Delivery (COD)**: Available nationwide.
-• **Payment**: Razorpay instant checkout or Direct WhatsApp order.
+• **Shipping**: FREE express shipping on all prepaid orders across India!
+• **Payment**: Razorpay instant checkout (UPI, NetBanking, Cards) or Direct WhatsApp order.
 • **WhatsApp Support**: Chat or order directly at +91 7483 849 998!`;
   }
 
@@ -197,7 +196,7 @@ We offer 3 signature 100% pure botanical wellness mixes:
 3. 🍫 **Choco Multigrain Millet Malt** — Sprouted millets & cocoa for bone health (Rs. 299)
 
 📜 **FSSAI Reg: 21224169000054 | ISO 9001:2015 Certified**
-🚚 **FREE Shipping & COD across India!**
+🚚 **FREE Shipping on Prepaid Orders across India!**
 
 Feel free to ask me anything about ingredients, usage, or certifications!`;
 }

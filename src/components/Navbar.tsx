@@ -49,10 +49,13 @@ export default function Navbar({
       >
         {/* Top Announcement Bar - Logo Sky Blue & Navy */}
         <div className="bg-[#0A192F] text-sky-300 text-[11px] font-bold py-2 px-4 text-center border-b border-[#0080FF]/20 flex items-center justify-center gap-2 flex-wrap">
-          <span>🔥 Launch Offer: FREE Express Shipping & Cash on Delivery Across India!</span>
-          <span className="hidden sm:inline">•</span>
+          <span className="flex items-center gap-1.5 font-extrabold uppercase tracking-wider text-sky-300">
+            <span className="w-4 h-4 rounded-full bg-[#0080FF] text-white flex items-center justify-center text-[10px] shrink-0">✓</span>
+            <span>GET FREE SHIPPING ON ALL PREPAID ORDERS</span>
+          </span>
+          <span className="hidden sm:inline text-white/30">•</span>
           <span className="text-white font-mono bg-white/10 px-2 py-0.5 rounded border border-sky-400/20">FSSAI Reg: 21224169000054</span>
-          <span className="hidden sm:inline">•</span>
+          <span className="hidden sm:inline text-white/30">•</span>
           <span className="text-[#76BC21]">ISO 9001:2015 Certified</span>
         </div>
 

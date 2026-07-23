@@ -33,8 +33,8 @@ const FAQS: FAQItem[] = [
   },
   {
     category: 'Shipping & Delivery',
-    question: 'Do you offer Free Shipping and Cash on Delivery (COD)?',
-    answer: 'Yes! We provide 100% FREE express shipping across all pin codes in India. Cash on Delivery (COD) and Razorpay instant online payments are both supported. Orders are dispatched within 24 hours via automated Bigship logistics with live SMS/email tracking.'
+    question: 'How does Free Shipping work on Ayurmor orders?',
+    answer: 'We provide 100% FREE express shipping on all prepaid orders across all pin codes in India. Razorpay instant online payments, UPI, Net Banking, and cards are fully supported. Orders are dispatched within 24 hours via automated Bigship logistics with live SMS/email tracking.'
   },
   {
     category: 'Shelf Life & Storage',
