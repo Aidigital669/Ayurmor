@@ -149,11 +149,12 @@ export async function POST(req: NextRequest) {
 function getLocalKnowledgeFallback(msg: string): string {
   const query = msg.toLowerCase();
 
-  if (query.includes('fssai') || query.includes('iso') || query.includes('certif') || query.includes('address') || query.includes('company')) {
-    return `📜 **Ayurmor Certifications & Company Details**
-• **FSSAI License**: Reg. No. 21224169000054 (Govt. of Karnataka / FSSAI)
-• **ISO Standard**: ISO 9001:2015 Quality Management System (Cert: QCCI/25Q/SES/5850)
-• **Manufacturer**: Saish Technofarms, 137/5 Kagal Maneer, Kumta, Uttara Kannada, Karnataka - 581362, India.`;
+  if (query.includes('fssai') || query.includes('iso') || query.includes('certif') || query.includes('address') || query.includes('company') || query.includes('zeyora') || query.includes('saish')) {
+    return `📜 **Ayurmor Certifications & Corporate Details**
+• **Manufactured by**: **Saish Technofarms** (FSSAI Reg No.: **21224169000054**, ISO 9001:2015 Certified)
+  📍 *Address*: 137/5 Kagal Maneer, Kumta, Uttara Kannada, Karnataka - 581362, India.
+• **Marketed by**: **Zeyora Global Trading Co.** (GSTIN: **33AEQPT6920G1Z6**, FSSAI License No.: **124250140000673**)
+  📍 *Address*: Kombai Nagar, Tiruchengode – 637211, Tamil Nadu, India.`;
   }
 
   if (query.includes('moringa') || query.includes('soup') || query.includes('green')) {

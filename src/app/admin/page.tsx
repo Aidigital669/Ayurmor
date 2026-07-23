@@ -9,7 +9,7 @@ import {
 import Link from 'next/link';
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'products' | 'orders' | 'contacts'>('products');
+  const [activeTab, setActiveTab] = useState<'products' | 'orders' | 'contacts' | 'compliance'>('products');
   const [products, setProducts] = useState<any[]>([]);
   const [orders, setOrders] = useState<any[]>([]);
   const [contacts, setContacts] = useState<any[]>([]);
@@ -571,10 +571,10 @@ export default function AdminDashboard() {
         </section>
 
         {/* Tab Buttons */}
-        <div className="flex border-b border-white/5 gap-6 text-sm font-bold uppercase tracking-wider">
+        <div className="flex border-b border-white/5 gap-6 text-sm font-bold uppercase tracking-wider overflow-x-auto">
           <button 
             onClick={() => setActiveTab('products')}
-            className={`pb-3 transition-all relative ${
+            className={`pb-3 transition-all relative whitespace-nowrap ${
               activeTab === 'products' ? 'text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-[#E7977D]' : 'text-white/40 hover:text-white'
             }`}
           >
@@ -582,7 +582,7 @@ export default function AdminDashboard() {
           </button>
           <button 
             onClick={() => setActiveTab('orders')}
-            className={`pb-3 transition-all relative ${
+            className={`pb-3 transition-all relative whitespace-nowrap ${
               activeTab === 'orders' ? 'text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-[#E7977D]' : 'text-white/40 hover:text-white'
             }`}
           >
@@ -590,11 +590,19 @@ export default function AdminDashboard() {
           </button>
           <button 
             onClick={() => setActiveTab('contacts')}
-            className={`pb-3 transition-all relative ${
+            className={`pb-3 transition-all relative whitespace-nowrap ${
               activeTab === 'contacts' ? 'text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-[#E7977D]' : 'text-white/40 hover:text-white'
             }`}
           >
             Callback Enquiries ({contacts.length})
+          </button>
+          <button 
+            onClick={() => setActiveTab('compliance')}
+            className={`pb-3 transition-all relative whitespace-nowrap ${
+              activeTab === 'compliance' ? 'text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-[#E7977D]' : 'text-white/40 hover:text-white'
+            }`}
+          >
+            Corporate & Compliance Info
           </button>
         </div>
 
@@ -872,6 +880,65 @@ export default function AdminDashboard() {
                       )}
                     </tbody>
                   </table>
+                </div>
+              </div>
+            ) : (
+              /* Corporate & Compliance Panel */
+              <div className="p-6 space-y-8">
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-white">Corporate Identity & Regulatory Compliance</h3>
+                  <p className="text-xs text-[#5A8B73]">Official manufacturer, marketer, FSSAI registration, GSTIN, and brand compliance guidelines active across the website.</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Manufacturer Card */}
+                  <div className="bg-[#0b1a15] p-6 rounded-2xl border border-emerald-500/20 space-y-4">
+                    <div className="flex items-center justify-between border-b border-white/5 pb-3">
+                      <div>
+                        <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider block">Sole Manufacturer</span>
+                        <h4 className="font-serif text-xl font-bold text-white">Saish Technofarms</h4>
+                      </div>
+                      <span className="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-[10px] font-bold uppercase">
+                        FSSAI Registered
+                      </span>
+                    </div>
+
+                    <div className="space-y-2 text-xs text-white/80">
+                      <p><strong className="text-white">FSSAI Reg. No.:</strong> <span className="font-mono text-emerald-400">21224169000054</span></p>
+                      <p><strong className="text-white">ISO Standard:</strong> <span className="font-mono text-sky-400">ISO 9001:2015</span> (QCCI LLP & UGAC Accredited)</p>
+                      <p><strong className="text-white">Facility Address:</strong> 137/5 Kagal Maneer, Kumta, Uttara Kannada, Karnataka - 581362, India.</p>
+                    </div>
+                  </div>
+
+                  {/* Marketer Card */}
+                  <div className="bg-[#0b1a15] p-6 rounded-2xl border border-sky-500/20 space-y-4">
+                    <div className="flex items-center justify-between border-b border-white/5 pb-3">
+                      <div>
+                        <span className="text-[10px] text-sky-400 font-bold uppercase tracking-wider block">Marketed By</span>
+                        <h4 className="font-serif text-xl font-bold text-white">Zeyora Global Trading Co.</h4>
+                      </div>
+                      <span className="px-2.5 py-1 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-full text-[10px] font-bold uppercase">
+                        GSTIN Verified
+                      </span>
+                    </div>
+
+                    <div className="space-y-2 text-xs text-white/80">
+                      <p><strong className="text-white">GSTIN:</strong> <span className="font-mono text-sky-400">33AEQPT6920G1Z6</span></p>
+                      <p><strong className="text-white">FSSAI License No.:</strong> <span className="font-mono text-emerald-400">124250140000673</span></p>
+                      <p><strong className="text-white">Corporate Address:</strong> Kombai Nagar, Tiruchengode – 637211, Tamil Nadu, India.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Brand Compliance Rules Banner */}
+                <div className="p-5 bg-white/5 border border-white/10 rounded-2xl space-y-3">
+                  <h4 className="font-serif text-base font-bold text-[#E7977D]">Global Website Brand Compliance Rules</h4>
+                  <ul className="text-xs text-white/80 space-y-2 list-disc list-inside">
+                    <li><strong>100% Pure Botanical:</strong> Replaced all "Organic" claims with "100% Pure", "Wild-Crafted", or "Natural".</li>
+                    <li><strong>Hygienic Packaging:</strong> Updated all quality references from "Repackaging" to "Hygienic Packaging".</li>
+                    <li><strong>Dynamic Routing:</strong> Every product card routes to its unique `/product/[id]` detail page with custom specs & nutrition facts.</li>
+                    <li><strong>Header Link Navigation:</strong> Clicking "Home" or logo on any subpage returns to `/` homepage root cleanly.</li>
+                  </ul>
                 </div>
               </div>
             )}
