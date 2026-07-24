@@ -8,7 +8,7 @@ export default function Certifications() {
       <div className="max-width-1200 mx-auto">
         <div className="text-center mb-6">
           <span className="text-[11px] uppercase tracking-widest text-amber-300 font-bold px-3 py-1 bg-amber-400/10 rounded-full border border-amber-400/20">
-            Certified Excellence & Authentic Standards
+            Quality Management Standards & Product Transparency
           </span>
         </div>
 
@@ -18,9 +18,9 @@ export default function Certifications() {
             <div className="w-12 h-12 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h4 className="font-serif font-bold text-sm text-white mb-1">FSSAI Certified</h4>
-            <p className="text-[10px] text-emerald-200/80 font-mono">Reg: 21224169000054</p>
-            <span className="text-[9px] text-white/50 mt-1">Govt. of Karnataka Approved</span>
+            <h4 className="font-serif font-bold text-sm text-white mb-1">FSSAI Registered</h4>
+            <p className="text-[10px] text-emerald-200/80 font-mono">Reg. No. 21224169000054</p>
+            <span className="text-[9px] text-white/50 mt-1">Food Safety Standard</span>
           </div>
 
           {/* ISO 9001:2015 */}
@@ -33,24 +33,24 @@ export default function Certifications() {
             <span className="text-[9px] text-white/50 mt-1">Quality Management System</span>
           </div>
 
-          {/* GMP Certified */}
+          {/* Hygienically Manufactured */}
           <div className="bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex flex-col items-center hover:bg-white/10 transition-all duration-300 group">
             <div className="w-12 h-12 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
               <CheckCircle className="w-6 h-6" />
             </div>
-            <h4 className="font-serif font-bold text-sm text-white mb-1">GMP Compliant</h4>
-            <p className="text-[10px] text-emerald-200/80">Hygienic Packaging</p>
-            <span className="text-[9px] text-white/50 mt-1">Stringent Safety Checks</span>
+            <h4 className="font-serif font-bold text-sm text-white mb-1">Hygienic Process</h4>
+            <p className="text-[10px] text-emerald-200/80">Securely Packed</p>
+            <span className="text-[9px] text-white/50 mt-1">Quality Checked</span>
           </div>
 
-          {/* 100% Wild-Crafted */}
+          {/* Selected Ingredients */}
           <div className="bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex flex-col items-center hover:bg-white/10 transition-all duration-300 group">
             <div className="w-12 h-12 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
               <Leaf className="w-6 h-6" />
             </div>
-            <h4 className="font-serif font-bold text-sm text-white mb-1">100% Natural</h4>
-            <p className="text-[10px] text-emerald-200/80">Zero Refined Sugar</p>
-            <span className="text-[9px] text-white/50 mt-1">No Synthetic Additives</span>
+            <h4 className="font-serif font-bold text-sm text-white mb-1">Quality Ingredients</h4>
+            <p className="text-[10px] text-emerald-200/80">Transparent Labels</p>
+            <span className="text-[9px] text-white/50 mt-1">Check Product Packs</span>
           </div>
 
           {/* Made in India */}
@@ -60,7 +60,7 @@ export default function Certifications() {
             </div>
             <h4 className="font-serif font-bold text-sm text-white mb-1">Made in India</h4>
             <p className="text-[10px] text-emerald-200/80">Saish Technofarms</p>
-            <span className="text-[9px] text-white/50 mt-1">Uttara Kannada, Karnataka</span>
+            <span className="text-[9px] text-white/50 mt-1">Uttara Kannada, KA</span>
           </div>
         </div>
       </div>

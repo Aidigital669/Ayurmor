@@ -18,9 +18,9 @@ interface Testimonial {
 const REVIEWS: Testimonial[] = [
   {
     id: 1,
-    quote: "I absolutely love the Moringa Premix Soup! It is so refreshing, warming, and healthy. It takes only a minute to prepare and keeps me energized throughout my long working day. Perfect for my evening snack routine!",
+    quote: "I love the Moringa Premix Soup. It is warm, tasty and easy to prepare during office breaks. Perfect for a quick, comforting cup between meetings!",
     name: "Priya Sharma",
-    title: "Verified Buyer",
+    title: "Customer Feedback",
     location: "Bengaluru, Karnataka",
     rating: 5,
     productUsed: "Moringa Premix Soup",
@@ -28,9 +28,9 @@ const REVIEWS: Testimonial[] = [
   },
   {
     id: 2,
-    quote: "I've been drinking the Choco Multigrain Millet Malt daily, and it's delicious! The rich dark cocoa flavor makes it super tasty while the sprouted millets keep it highly nutritious. Even my kids ask for it every morning!",
+    quote: "I've been enjoying the Choco Multigrain Millet Malt drink daily. The rich chocolate taste and sprouted millets make it a great warm drink for the whole family. No boiling needed!",
     name: "Rahul Kulkarni",
-    title: "Fitness Enthusiast",
+    title: "Customer Feedback",
     location: "Pune, Maharashtra",
     rating: 5,
     productUsed: "Choco Multigrain Millet Malt",
@@ -38,22 +38,22 @@ const REVIEWS: Testimonial[] = [
   },
   {
     id: 3,
-    quote: "The ABC Malt Powder is my absolute favorite. The mix of apple, beetroot, and carrot with raw almonds and cashews tastes amazing. Plus, no need to boil — it's super convenient for my busy morning commute!",
+    quote: "The Ayurmor ABC Latte Mix is smooth and tasty with warm milk. It takes less than a minute to mix, perfect for busy morning routines before work.",
     name: "Aisha Mohammed",
-    title: "Working Professional",
+    title: "Customer Feedback",
     location: "Hyderabad, Telangana",
     rating: 5,
-    productUsed: "ABC Malt Powder",
+    productUsed: "ABC Latte Mix",
     avatar: "AM"
   },
   {
     id: 4,
-    quote: "Finding authentic sprouted millet malts without refined sugar was tough until I found Ayurmor. Clean, high quality ingredients and lightning fast delivery across India!",
+    quote: "Clear ingredient lists, great taste and fast delivery. Very convenient instant soups and malt mixes for our daily home routines.",
     name: "Suresh Hegde",
-    title: "Verified Buyer",
+    title: "Customer Feedback",
     location: "Mangaluru, Karnataka",
     rating: 5,
-    productUsed: "Choco Millet & ABC Malt",
+    productUsed: "ABC Malt & Moringa Soup",
     avatar: "SH"
   }
 ];
@@ -124,7 +124,7 @@ export default function Testimonials() {
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-2 mt-8 mb-12">
           {REVIEWS.map((_, index) => (
             <button
               key={index}
@@ -134,6 +134,16 @@ export default function Testimonials() {
               onClick={() => setCurrentIdx(index)}
               aria-label={`Go to Testimonial ${index + 1}`}
             />
+          ))}
+        </div>
+
+        {/* Customer Assurance Strip */}
+        <div className="pt-8 border-t border-[#0F3D2E]/10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center text-xs text-[#0F3D2E] font-medium">
+          {["Secure Packaging", "Fast Dispatch", "Responsive Support", "Transparent Ingredients", "Quality Checked", "FSSAI Registered"].map((badge, idx) => (
+            <div key={idx} className="bg-white/80 p-3 rounded-2xl border border-[#0F3D2E]/10 flex flex-col items-center justify-center">
+              <CheckCircle className="w-4 h-4 text-emerald-600 mb-1" />
+              <span>{badge}</span>
+            </div>
           ))}
         </div>
 

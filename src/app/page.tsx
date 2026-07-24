@@ -7,6 +7,7 @@ import HeroCarousel from '@/components/HeroCarousel';
 import Certifications from '@/components/Certifications';
 import WhyAyurmor from '@/components/WhyAyurmor';
 import ShopSection, { Product } from '@/components/ShopSection';
+import ShopByNeed from '@/components/ShopByNeed';
 import FounderStory from '@/components/FounderStory';
 import Testimonials from '@/components/Testimonials';
 import BlogsSection from '@/components/BlogsSection';
@@ -261,24 +262,24 @@ export default function Home() {
       {/* 3. Certifications & Trust Badges Strip */}
       <Certifications />
 
-      {/* 4. Social Proof Impact Counter */}
+      {/* 4. Customer Assurance Strip */}
       <div className="bg-white py-10 px-6 border-b border-[#0F3D2E]/10 shadow-sm">
         <div className="max-width-1200 mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div>
-            <h3 className="font-serif text-3xl sm:text-4xl font-bold text-forest">10,000+</h3>
-            <p className="text-xs text-sage-grey font-medium mt-1">Happy Customers Nationwide</p>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0A192F]">Growing</h3>
+            <p className="text-xs text-slate-600 font-medium mt-1">Wellness Community</p>
           </div>
           <div>
-            <h3 className="font-serif text-3xl sm:text-4xl font-bold text-forest">4.9 ★</h3>
-            <p className="text-xs text-sage-grey font-medium mt-1">Average Verified Rating</p>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0A192F]">60-Sec</h3>
+            <p className="text-xs text-slate-600 font-medium mt-1">Instant Preparation</p>
           </div>
           <div>
-            <h3 className="font-serif text-3xl sm:text-4xl font-bold text-forest">100%</h3>
-            <p className="text-xs text-sage-grey font-medium mt-1">Pure & Chemical-Free</p>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0A192F]">Selected</h3>
+            <p className="text-xs text-slate-600 font-medium mt-1">Quality Food Ingredients</p>
           </div>
           <div>
-            <h3 className="font-serif text-3xl sm:text-4xl font-bold text-forest">98%</h3>
-            <p className="text-xs text-sage-grey font-medium mt-1">Repeat Orders Rate</p>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0A192F]">Everyday</h3>
+            <p className="text-xs text-slate-600 font-medium mt-1">Built for Repeat Use</p>
           </div>
         </div>
       </div>
@@ -298,7 +299,10 @@ export default function Home() {
         onToggleWishlist={toggleWishlist}
       />
 
-      {/* 7. Founder's Story Section */}
+      {/* 7. Shop by Need & Routine Packs Section */}
+      <ShopByNeed />
+
+      {/* 8. Founder's Story Section */}
       <FounderStory />
 
       {/* 8. Customer Reviews & Testimonials */}

@@ -9,15 +9,29 @@ import {
 import Link from 'next/link';
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'products' | 'orders' | 'contacts' | 'compliance'>('products');
+  const [activeTab, setActiveTab] = useState<'products' | 'orders' | 'slides' | 'contacts' | 'compliance'>('products');
   const [products, setProducts] = useState<any[]>([]);
   const [orders, setOrders] = useState<any[]>([]);
+  const [slides, setSlides] = useState<any[]>([]);
   const [contacts, setContacts] = useState<any[]>([]);
   const [dbSource, setDbSource] = useState<string>('database');
   const [loading, setLoading] = useState<boolean>(true);
   const [actionLoading, setActionLoading] = useState<boolean>(false);
   const [initDbMsg, setInitDbMsg] = useState<string>('');
   const [dbConnectionError, setDbConnectionError] = useState<string>('');
+
+  // Hero Slide Form Modal State
+  const [showSlideModal, setShowSlideModal] = useState<boolean>(false);
+  const [editingSlide, setEditingSlide] = useState<any | null>(null);
+  const [slideForm, setSlideForm] = useState({
+    category: '',
+    title: '',
+    subtitle: '',
+    tagline: '',
+    badge: '',
+    bg_color: 'from-[#FFEBE5] via-[#FFCFC0] to-[#E7977D]',
+    image: '/hero_abc.png'
+  });
 
   // Product Form Modal State
   const [showProductModal, setShowProductModal] = useState<boolean>(false);
@@ -260,9 +274,97 @@ export default function AdminDashboard() {
     }
   };
 
+  const fetchSlides = async () => {
+    try {
+      const res = await fetch('/api/slides');
+      const data = await res.json();
+      if (data.success) {
+        setSlides(data.slides || []);
+      }
+    } catch (err) {
+      console.error('Error fetching slides:', err);
+    }
+  };
+
+  const handleOpenAddSlide = () => {
+    setEditingSlide(null);
+    setSlideForm({
+      category: 'Daily Convenience',
+      title: '',
+      subtitle: '',
+      tagline: '',
+      badge: 'Ready in 60s',
+      bg_color: 'from-[#FFEBE5] via-[#FFCFC0] to-[#E7977D]',
+      image: '/hero_abc.png'
+    });
+    setShowSlideModal(true);
+  };
+
+  const handleOpenEditSlide = (slide: any) => {
+    setEditingSlide(slide);
+    setSlideForm({
+      category: slide.category || '',
+      title: slide.title || '',
+      subtitle: slide.subtitle || '',
+      tagline: slide.tagline || '',
+      badge: slide.badge || '',
+      bg_color: slide.bg_color || slide.bgColor || 'from-[#FFEBE5] via-[#FFCFC0] to-[#E7977D]',
+      image: slide.image || '/hero_abc.png'
+    });
+    setShowSlideModal(true);
+  };
+
+  const handleSlideSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setActionLoading(true);
+    try {
+      const payload = {
+        ...slideForm,
+        id: editingSlide?.id
+      };
+      const method = editingSlide ? 'PUT' : 'POST';
+      const res = await fetch('/api/admin/slides', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(editingSlide ? 'Slide updated successfully!' : 'Slide added successfully!');
+        setShowSlideModal(false);
+        await fetchSlides();
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    } catch (err: any) {
+      alert(`Error: ${err.message}`);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleDeleteSlide = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this hero slide?')) return;
+    setActionLoading(true);
+    try {
+      const res = await fetch(`/api/admin/slides?id=${id}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (data.success) {
+        alert('Slide deleted successfully!');
+        await fetchSlides();
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    } catch (err: any) {
+      alert(`Error: ${err.message}`);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
   const loadData = async () => {
     setLoading(true);
-    await Promise.all([fetchProducts(), fetchOrders(), fetchContacts()]);
+    await Promise.all([fetchProducts(), fetchOrders(), fetchContacts(), fetchSlides()]);
     setLoading(false);
   };
 
@@ -589,6 +691,14 @@ export default function AdminDashboard() {
             Manage Orders ({orders.length})
           </button>
           <button 
+            onClick={() => setActiveTab('slides')}
+            className={`pb-3 transition-all relative whitespace-nowrap ${
+              activeTab === 'slides' ? 'text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-[#E7977D]' : 'text-white/40 hover:text-white'
+            }`}
+          >
+            Hero Slides ({slides.length})
+          </button>
+          <button 
             onClick={() => setActiveTab('contacts')}
             className={`pb-3 transition-all relative whitespace-nowrap ${
               activeTab === 'contacts' ? 'text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-[#E7977D]' : 'text-white/40 hover:text-white'
@@ -882,7 +992,7 @@ export default function AdminDashboard() {
                   </table>
                 </div>
               </div>
-            ) : (
+            ) : activeTab === 'compliance' ? (
               /* Corporate & Compliance Panel */
               <div className="p-6 space-y-8">
                 <div>
@@ -941,10 +1051,212 @@ export default function AdminDashboard() {
                   </ul>
                 </div>
               </div>
-            )}
+            ) : activeTab === 'slides' ? (
+              /* Hero Slides Management Panel */
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-white">Hero Carousel Slides</h3>
+                    <p className="text-xs text-[#5A8B73]">Manage homepage banner slides, taglines, badges, and background styling.</p>
+                  </div>
+                  <button 
+                    onClick={handleOpenAddSlide}
+                    className="px-5 py-2.5 bg-[#E7977D] text-[#0b1a15] rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#ffebe5] hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-1.5"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>Add New Slide</span>
+                  </button>
+                </div>
+
+                <div className="overflow-x-auto rounded-xl border border-white/5">
+                  <table className="w-full text-left border-collapse text-sm">
+                    <thead>
+                      <tr className="bg-white/5 text-[#5A8B73] font-bold uppercase tracking-wider text-xs border-b border-white/5">
+                        <th className="p-4">Slide Info</th>
+                        <th className="p-4">Category</th>
+                        <th className="p-4">Badge</th>
+                        <th className="p-4">Tagline Preview</th>
+                        <th className="p-4 text-center">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {slides.map((s) => (
+                        <tr key={s.id} className="hover:bg-white/5 transition-colors">
+                          <td className="p-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center p-1 border border-white/5 relative overflow-hidden">
+                                <img src={s.image || '/hero_abc.png'} alt={s.title} className="max-w-full max-h-full object-contain" />
+                              </div>
+                              <div>
+                                <h4 className="font-serif text-base font-bold text-white leading-tight">{s.title}</h4>
+                                <span className="text-xs text-sky-400 font-semibold">{s.subtitle}</span>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="p-4">
+                            <span className="text-xs bg-[#5A8B73]/10 text-[#88B29C] border border-[#5A8B73]/10 px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">
+                              {s.category}
+                            </span>
+                          </td>
+                          <td className="p-4">
+                            {s.badge ? (
+                              <span className="text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/15 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                                {s.badge}
+                              </span>
+                            ) : (
+                              <span className="text-white/20 text-xs italic">-</span>
+                            )}
+                          </td>
+                          <td className="p-4 text-xs text-white/70 max-w-xs truncate">
+                            {s.tagline}
+                          </td>
+                          <td className="p-4">
+                            <div className="flex items-center justify-center gap-2">
+                              <button 
+                                onClick={() => handleOpenEditSlide(s)}
+                                className="p-2 border border-white/5 hover:border-white/10 hover:bg-white/5 rounded-full text-white/80 hover:text-white transition-all active:scale-95"
+                                title="Edit Slide"
+                              >
+                                <Edit2 className="w-4 h-4" />
+                              </button>
+                              <button 
+                                onClick={() => handleDeleteSlide(s.id)}
+                                className="p-2 border border-rose-500/10 hover:border-rose-500/20 hover:bg-rose-500/10 rounded-full text-rose-400 hover:text-rose-300 transition-all active:scale-95"
+                                title="Delete Slide"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                      {slides.length === 0 && (
+                        <tr>
+                          <td colSpan={5} className="text-center py-12 text-white/40 italic">
+                            No slides found. Click Add New Slide to create one.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : null}
           </section>
         )}
       </main>
+
+      {/* Hero Slide Form Modal */}
+      {showSlideModal && (
+        <div className="fixed inset-0 z-50 overflow-hidden flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={() => setShowSlideModal(false)} />
+          
+          <div className="bg-[#0F3D2E] border border-white/10 rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl relative z-10 text-white">
+            <button onClick={() => setShowSlideModal(false)} className="absolute top-4 right-4 p-1.5 hover:bg-white/5 rounded-full text-white/70 hover:text-white">
+              <X className="w-5 h-5" />
+            </button>
+
+            <h3 className="font-serif text-2xl font-bold mb-2">
+              {editingSlide ? 'Edit Hero Banner Slide' : 'Add New Hero Banner Slide'}
+            </h3>
+            <p className="text-xs text-[#5A8B73] mb-6">Manage banner titles, subtitles, taglines, badges, and background graphics.</p>
+
+            <form onSubmit={handleSlideSubmit} className="space-y-4 text-sm">
+              <div className="max-h-[60vh] overflow-y-auto pr-2 space-y-4">
+                <div>
+                  <label className="block text-xs uppercase text-[#5A8B73] font-bold tracking-wider mb-1.5">Slide Main Title</label>
+                  <input 
+                    type="text" 
+                    required
+                    placeholder="e.g. Delicious Daily Refreshment"
+                    value={slideForm.title}
+                    onChange={(e) => setSlideForm({ ...slideForm, title: e.target.value })}
+                    className="w-full bg-[#0b1a15] border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/20 focus:outline-none focus:border-[#E7977D]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs uppercase text-[#5A8B73] font-bold tracking-wider mb-1.5">Product Subtitle</label>
+                  <input 
+                    type="text" 
+                    required
+                    placeholder="e.g. ABC Latte Mix (Malt Drink)"
+                    value={slideForm.subtitle}
+                    onChange={(e) => setSlideForm({ ...slideForm, subtitle: e.target.value })}
+                    className="w-full bg-[#0b1a15] border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/20 focus:outline-none focus:border-[#E7977D]"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs uppercase text-[#5A8B73] font-bold tracking-wider mb-1.5">Category</label>
+                    <input 
+                      type="text" 
+                      required
+                      placeholder="e.g. Daily Convenience"
+                      value={slideForm.category}
+                      onChange={(e) => setSlideForm({ ...slideForm, category: e.target.value })}
+                      className="w-full bg-[#0b1a15] border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/20 focus:outline-none focus:border-[#E7977D]"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs uppercase text-[#5A8B73] font-bold tracking-wider mb-1.5">Badge Text</label>
+                    <input 
+                      type="text" 
+                      placeholder="e.g. Ready in 60s, Bestseller"
+                      value={slideForm.badge}
+                      onChange={(e) => setSlideForm({ ...slideForm, badge: e.target.value })}
+                      className="w-full bg-[#0b1a15] border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/20 focus:outline-none focus:border-[#E7977D]"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs uppercase text-[#5A8B73] font-bold tracking-wider mb-1.5">Tagline / Description</label>
+                  <textarea 
+                    rows={3}
+                    placeholder="Describe the product highlight for the homepage hero carousel..."
+                    value={slideForm.tagline}
+                    onChange={(e) => setSlideForm({ ...slideForm, tagline: e.target.value })}
+                    className="w-full bg-[#0b1a15] border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-white/20 focus:outline-none focus:border-[#E7977D] text-xs resize-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs uppercase text-[#5A8B73] font-bold tracking-wider mb-1.5">Image Path</label>
+                  <select 
+                    value={slideForm.image}
+                    onChange={(e) => setSlideForm({ ...slideForm, image: e.target.value })}
+                    className="w-full bg-[#0b1a15] border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-[#E7977D]"
+                  >
+                    <option value="/hero_abc.png">/hero_abc.png (ABC Latte Mix)</option>
+                    <option value="/hero_moringa.png">/hero_moringa.png (Moringa Premix Soup)</option>
+                    <option value="/hero_choco.png">/hero_choco.png (Choco Multigrain Millet Malt)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="pt-4 flex items-center justify-end gap-3 border-t border-white/10">
+                <button 
+                  type="button" 
+                  onClick={() => setShowSlideModal(false)}
+                  className="px-5 py-2.5 rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition-all text-xs font-bold uppercase"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit" 
+                  disabled={actionLoading}
+                  className="px-6 py-2.5 bg-[#E7977D] text-[#0b1a15] rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#ffebe5] active:scale-95 transition-all flex items-center gap-1.5 disabled:opacity-50"
+                >
+                  {actionLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : null}
+                  <span>{editingSlide ? 'Update Slide' : 'Add Slide'}</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Product Form Modal */}
       {showProductModal && (

@@ -41,80 +41,82 @@ interface Product {
 const DEFAULT_PRODUCTS: Product[] = [
   {
     id: 'moringa-soup-premix',
-    category: 'Botanical Soups',
-    title: 'Instant Moringa Premix Soup',
-    price: 349,
+    category: 'Premix Soups',
+    title: 'Ayurmor Moringa Premix Soup - Instant Moringa Soup Powder',
+    price: 299,
     image: '/hero_moringa.png',
     svg_type: 'moringa',
-    rating_count: 142,
-    tag: 'FSSAI Certified',
-    description: '100% natural, nutrient-dense instant Moringa soup prepared from pure wild-harvested drumstick leaves, roasted Ayurvedic herbs, and savory sea salt. Zero artificial preservatives or hidden chemicals.',
+    rating_count: 124,
+    tag: 'Ready in 60s',
+    description: 'Enjoy the comforting taste of moringa in a warm, savoury soup that is ready in just one minute. Ayurmor Moringa Premix Soup is crafted for busy lifestyles - simply add hot water, stir well and enjoy a light, satisfying soup at home, work or while travelling.',
     benefits: [
-      'Rich in Plant Antioxidants & Iron',
-      'Supports Healthy Metabolism & Immunity',
-      'Instant 10-Second Warm Prep',
-      'Zero Refined Sugars & Low Sodium'
+      'Ready in 60 seconds (no cooking required)',
+      'Warm, savoury and comforting herbal flavour',
+      'Convenient light snack for home, office & travel',
+      'Easy way to enjoy moringa in daily food routines'
     ],
-    ingredients: 'Pure Moringa Oleifera Leaf Powder, Roasted Cumin, Black Pepper, Asafoetida, Rock Salt, Dehydrated Garlic, Plant Gums.',
-    usage_instructions: 'Add 1 pouch (15g) to 150ml boiling water. Stir well for 10 seconds. Serve hot with a drop of ghee or fresh lemon juice.',
+    ingredients: 'Pure Moringa Oleifera leaf powder, Roasted cumin powder, Black salt, Lemon peel powder, Ginger powder, Black pepper, Rock salt, Spices & Herbs. Allergen advice: Processed in a facility handling milk solids, gluten & nuts.',
+    usage_instructions: 'Empty one serving into a cup or bowl. Add 180-200 ml hot water. Stir well until completely dissolved. Let stand for 1 minute if needed. Serve hot.',
     nutritional_facts: [
-      'Energy: 42 kcal per serving',
-      'Protein: 2.8g',
-      'Dietary Fiber: 3.1g',
-      'Iron: 24% RDA',
-      'Calcium: 18% RDA'
+      'Energy: 320 kcal (per 100g)',
+      'Protein: 22g',
+      'Carbohydrates: 48g',
+      'Dietary Fiber: 12g',
+      'Sodium: 850mg',
+      'Iron: 25mg'
     ]
   },
   {
-    id: 'abc-malt-powder',
-    category: 'Superfood Malts',
-    title: 'ABC Latte Mix (Malt) Powder',
+    id: 'abc-latte-mix',
+    category: 'Instant Malt Drinks',
+    title: 'Ayurmor ABC Latte Mix - Apple, Beetroot & Carrot Malt Drink',
     price: 299,
     image: '/hero_abc.png',
     svg_type: 'abc',
     rating_count: 98,
     tag: 'Bestseller',
-    description: 'A vibrant superfood malt crafted from real Apple, Beetroot, Carrot, sprouted millets, and raw palm jaggery. Designed for natural glow, stamina, and daily vitality.',
+    description: 'Ayurmor ABC Latte Mix is a delicious instant wellness beverage made with apple, beetroot, carrot, almonds and cashews. Designed for busy lifestyles, it mixes easily with hot milk or water to create a smooth, satisfying drink in less than a minute - no boiling required.',
     benefits: [
-      'Natural Blood Purifier & Glow Booster',
-      'Rich in Vitamin C, Iron & Folate',
-      'Delicious Fruit & Sprouted Grain Flavor',
-      '100% Chemical-Free & No Refined Sugar'
+      'Instant drink ready in less than a minute',
+      'Made with real apple, beetroot, carrot, almond and cashew',
+      'Smooth, creamy & satisfying taste',
+      'Ideal for breakfast, office breaks & evening refreshment'
     ],
-    ingredients: 'Dehydrated Apple Powder, Beetroot Extract, Carrot Powder, Sprouted Finger Millet (Ragi), Raw Palm Sugar, Almond Flakes, Cardamom.',
-    usage_instructions: 'Mix 2 tablespoons (20g) into a glass of warm milk or water. Whisk thoroughly until smooth. Can be enjoyed warm or cold as a smoothie base.',
+    ingredients: 'Dehydrated apple powder, Beetroot powder, Carrot powder, Almond powder, Cashew powder, Sprouted Ragi malt base, Cardamom powder, Raw palm sugar. Allergen advice: Contains nuts (Almonds & Cashews).',
+    usage_instructions: 'Add 2-3 teaspoons to 150-200 ml hot milk or warm water. Stir well until smooth. Add sweetener only if desired. Serve warm or chilled.',
     nutritional_facts: [
-      'Energy: 78 kcal per serving',
-      'Carbohydrates: 16.2g',
-      'Natural Sugars: 8.5g (from fruit/jaggery)',
-      'Iron: 32% RDA',
-      'Vitamin C: 15mg'
+      'Energy: 385 kcal (per 100g)',
+      'Protein: 12g',
+      'Carbohydrates: 68g',
+      'Dietary Fiber: 8g',
+      'Calcium: 180mg',
+      'Iron: 18mg'
     ]
   },
   {
-    id: 'choco-multigrain-malt',
-    category: 'Superfood Malts',
-    title: 'Choco Multigrain Millet Malt',
-    price: 279,
+    id: 'choco-multigrain-millet-malt',
+    category: 'Instant Malt Drinks',
+    title: 'Ayurmor Choco Multigrain Millet Malt Mix - Instant Chocolate Millet Drink',
+    price: 299,
     image: '/hero_choco.png',
     svg_type: 'choco',
-    rating_count: 116,
-    tag: 'Kid Favorite',
-    description: 'Wholesome sprouted 7-millet malt infused with Dutch raw cocoa and almond powder. The perfect nutritious chocolate drink for growing kids and active adults.',
+    rating_count: 182,
+    tag: 'Family Favorite',
+    description: 'Ayurmor Choco Multigrain Millet Malt Mix brings together carefully selected millets with rich chocolate flavour. Ready in less than a minute, it mixes easily with hot milk or water and makes a creamy, satisfying drink for breakfast, evening refreshment or daily family routines.',
     benefits: [
-      '7 Sprouted Ancient Grains Power',
-      'Pure Cocoa Rich in Polyphenols',
-      'Supports Bone Density & Brain Focus',
-      'Zero Synthetic Preservatives'
+      'Delicious rich chocolate flavour',
+      'Made with sprouted multigrain millets',
+      'Instant preparation - no boiling required',
+      'Suitable for older children, students & adults'
     ],
-    ingredients: 'Sprouted Ragi, Bajra, Jowar, Foxtail Millet, Little Millet, Raw Cocoa Powder, Almond Powder, Raw Cane Sugar, Vanilla Bean.',
-    usage_instructions: 'Stir 2 spoons (20g) into warm or hot milk. Mix thoroughly for 10 seconds. Enjoy a creamy, nourishing chocolate malt drink.',
+    ingredients: 'Sprouted Finger Millet (Ragi), Sprouted Pearl Millet (Bajra), Sprouted Foxtail Millet, Cocoa powder, Almond powder, Milk solids, Natural sugar, Cardamom. Allergen advice: Contains milk solids and nuts.',
+    usage_instructions: 'Add 2-3 teaspoons to 150-200 ml hot milk. Stir until smooth. For a lighter drink, use hot water. Add sweetener only if desired.',
     nutritional_facts: [
-      'Energy: 85 kcal per serving',
-      'Protein: 3.4g',
-      'Dietary Fiber: 4.2g',
-      'Calcium: 140mg',
-      'Magnesium: 45mg'
+      'Energy: 360 kcal (per 100g)',
+      'Protein: 14g',
+      'Carbohydrates: 65g',
+      'Dietary Fiber: 9g',
+      'Calcium: 410mg'
     ]
   }
 ];
@@ -143,12 +145,14 @@ export default function ProductDetailPage() {
 
     // 2. Keyword fallback matching
     if (!found) {
-      if (pidStr === '1' || pidStr.includes('moringa') || pidStr.includes('soup')) {
+      if (pidStr === '1' || pidStr.includes('moringa')) {
         found = DEFAULT_PRODUCTS.find(p => p.svg_type === 'moringa');
       } else if (pidStr === '2' || pidStr.includes('abc') || pidStr.includes('latte')) {
         found = DEFAULT_PRODUCTS.find(p => p.svg_type === 'abc');
       } else if (pidStr === '3' || pidStr.includes('choco') || pidStr.includes('millet')) {
         found = DEFAULT_PRODUCTS.find(p => p.svg_type === 'choco');
+      } else if (pidStr === '4' || pidStr.includes('mushroom')) {
+        found = DEFAULT_PRODUCTS.find(p => p.svg_type === 'mushroom');
       }
     }
 
@@ -162,13 +166,13 @@ export default function ProductDetailPage() {
           if (data && (data.id || data.title)) {
             setProduct({
               id: String(data.id || productId),
-              category: data.category || 'Superfood Malts',
+              category: data.category || 'Instant Food Mixes',
               title: data.title || 'Ayurmor Wellness Mix',
               price: Number(data.price || 299),
               image: data.image || (data.svg_type === 'abc' ? '/hero_abc.png' : data.svg_type === 'choco' ? '/hero_choco.png' : '/hero_moringa.png'),
               svg_type: data.svg_type || 'moringa',
               rating_count: data.rating_count || 100,
-              tag: data.tag || 'FSSAI Certified',
+              tag: data.tag || 'FSSAI Registered',
               description: data.description,
               benefits: typeof data.benefits === 'string' ? data.benefits.split('\n') : (data.benefits || []),
               ingredients: data.ingredients,

@@ -12,34 +12,44 @@ interface FAQItem {
 
 const FAQS: FAQItem[] = [
   {
+    category: 'About Ayurmor',
+    question: 'What is Ayurmor?',
+    answer: 'Ayurmor is a wellness food brand offering instant malt drinks and premix soups made with carefully selected ingredients for modern daily routines.'
+  },
+  {
     category: 'Products & Ingredients',
-    question: 'Are Ayurmor products 100% natural and sugar-free?',
-    answer: 'Yes! All Ayurmor mixes are crafted with 100% natural, pure botanical ingredients. We do not use any refined white sugars, artificial preservatives, synthetic colors, or chemical additives. Sweetness comes from raw palm sugar, real fruit crystals, or wholesome cocoa.'
+    question: 'Are Ayurmor products made with natural ingredients?',
+    answer: 'Ayurmor focuses on carefully selected food ingredients. Please refer to each product label for the complete ingredient list, sweetener information and nutrition details.'
   },
   {
-    category: 'Usage & Safety',
-    question: 'Are your malts and soups safe for growing kids and elders?',
-    answer: 'Absolutely. Sprouted millets (Ragi, Bajra, Foxtail) and wild-crafted Moringa leaves are nutrient-dense superfoods packed with bio-available calcium, iron, and fiber, making them excellent daily nutrition for active children, adults, and seniors.'
+    category: 'Preparation & Usage',
+    question: 'Do Ayurmor products require boiling?',
+    answer: 'No! Most Ayurmor instant mixes are designed for quick 60-second preparation without lengthy boiling or cooking. Add hot milk or hot water as instructed on the pack, stir well and enjoy.'
   },
   {
-    category: 'Certifications & Safety',
-    question: 'Is Ayurmor certified by FSSAI and ISO?',
-    answer: 'Yes. Ayurmor is manufactured by Saish Technofarms under FSSAI Reg. No. 21224169000054 & ISO 9001:2015 Certification, and marketed by Zeyora Global Trading Co. (Kombai Nagar, Tiruchengode – 637211, FSSAI No. 124250140000673, GSTIN: 33AEQPT6920G1Z6).'
+    category: 'Dietary & Vegetarian',
+    question: 'Are the products vegetarian?',
+    answer: 'Yes. Ayurmor products display the green vegetarian symbol on packaging. Please check individual product labels for complete confirmation.'
   },
   {
-    category: 'Preparation',
-    question: 'How do I prepare Ayurmor mixes?',
-    answer: 'Preparation takes under 15 seconds! For Moringa Soup: add 1 tbsp (10g) to 150ml boiling water, stir well, and enjoy. For ABC Malt & Choco Millet Malt: add 2 spoonfuls (20g-25g) to a cup of warm milk or hot water and stir briskly. No boiling required!'
+    category: 'Allergen Information',
+    question: 'Do the products contain allergens?',
+    answer: 'Some Ayurmor products contain nuts (almonds, cashews), milk solids, cocoa, or gluten depending on the formulation. Always check the ingredient list and allergen statement on each pack before consumption.'
   },
   {
-    category: 'Shipping & Delivery',
+    category: 'Medical Disclaimer',
+    question: 'Can I consume Ayurmor products if I have a medical condition?',
+    answer: 'If you are pregnant, nursing, have a medical condition or take medication, consult a healthcare professional before consuming any wellness food product.'
+  },
+  {
+    category: 'Orders & Shipping',
     question: 'How does Free Shipping work on Ayurmor orders?',
-    answer: 'We provide 100% FREE express shipping on all prepaid orders across all pin codes in India. Razorpay instant online payments, UPI, Net Banking, and cards are fully supported. Orders are dispatched within 24 hours via automated Bigship logistics with live SMS/email tracking.'
+    answer: 'Free shipping is available on prepaid orders across India as per current website offers. COD availability depends on pincode serviceability.'
   },
   {
-    category: 'Shelf Life & Storage',
+    category: 'Storage & Shelf Life',
     question: 'What is the shelf life and storage instruction?',
-    answer: 'Ayurmor products have a shelf life of 9 months from the date of manufacture. Store in a cool, dry place away from direct sunlight. Keep the food-grade pouch sealed or transfer to an airtight container after opening.'
+    answer: 'Manufacturing date, expiry/best-before date and batch details are printed on every pack. Store in a cool, dry place; reseal after opening; use a dry spoon; avoid moisture and direct sunlight.'
   }
 ];
 

@@ -7,31 +7,31 @@ import { ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Sparkles } from 'lu
 const HERO_SLIDES = [
   {
     id: 1,
-    category: "Daily Cellular Energy",
-    title: "Nourish from Within",
-    subtitle: "ABC Malt Powder",
-    tagline: "Our signature ABC Malt Powder merges the biological goodness of fresh apples, pure beetroots, and crisp carrots. Fortified with premium almonds and raw cashews for sustained vigor.",
-    badge: "Enriched with Iron",
+    category: "Instant Wellness Beverage",
+    title: "Ayurmor ABC Latte Mix",
+    subtitle: "Apple, Beetroot & Carrot Wellness Drink",
+    tagline: "Ayurmor ABC Latte Mix is a delicious instant wellness beverage made with apple, beetroot, carrot, almonds and cashews. Designed for busy lifestyles, it mixes easily with hot milk or water to create a smooth, satisfying drink in less than a minute - no boiling required.",
+    badge: "Instant Convenience",
     bgColor: "from-[#FFEBE5] via-[#FFCFC0] to-[#E7977D]",
     image: "/hero_abc.png"
   },
   {
     id: 2,
-    category: "Detoxification & Immunity",
-    title: "Pure Green Vitality",
-    subtitle: "Moringa Premix Soup",
-    tagline: "Cold-process milled moringa leaves blended into an instant herbal soup. Restore metabolic equilibrium, flush out toxins, and activate clean cellular energy in 10 seconds.",
-    badge: "100% Wild-Crafted",
+    category: "Instant Premix Soup",
+    title: "Ayurmor Moringa Premix Soup",
+    subtitle: "Instant Moringa Soup Powder",
+    tagline: "Enjoy the comforting taste of moringa in a warm, savoury soup that is ready in just one minute. Ayurmor Moringa Premix Soup is crafted for busy lifestyles - simply add hot water, stir well and enjoy a light, satisfying soup at home, work or while travelling.",
+    badge: "Ready in 60s",
     bgColor: "from-[#EEF5F1] via-[#D0E2D7] to-[#88B29C]",
     image: "/hero_moringa.png"
   },
   {
     id: 3,
-    category: "Family Active Nutrition",
-    title: "Rich Cocoa Strength",
-    subtitle: "Choco Multigrain Millet Malt",
-    tagline: "A luxurious blend of premium dark cocoa and sprouted ancient millets. Sweetened naturally, packed with essential minerals, and designed for active minds of all ages.",
-    badge: "Zero Refined Sugar",
+    category: "Instant Chocolate Malt",
+    title: "Ayurmor Choco Multigrain Millet Malt",
+    subtitle: "Instant Chocolate Millet Drink",
+    tagline: "Ayurmor Choco Multigrain Millet Malt Mix brings together carefully selected millets with rich chocolate flavour. Ready in less than a minute, it mixes easily with hot milk or water and makes a creamy, satisfying drink for breakfast, evening refreshment or daily family routines.",
+    badge: "No Boiling Required",
     bgColor: "from-[#FDFBF7] via-[#EADBCE] to-[#AC8C7D]",
     image: "/hero_choco.png"
   }
@@ -120,7 +120,7 @@ export default function HeroCarousel() {
                 href="#products"
                 className="px-7 py-3.5 bg-[#0080FF] text-white font-bold text-xs uppercase tracking-wider rounded-full hover:bg-[#0066CC] shadow-premium-lg transition-all duration-300 flex items-center gap-2"
               >
-                <span>Shop Best Sellers</span>
+                <span>Shop Wellness Mixes</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
@@ -128,7 +128,7 @@ export default function HeroCarousel() {
                 href="#values"
                 className="px-7 py-3.5 bg-white/90 hover:bg-white text-[#0A192F] font-bold text-xs uppercase tracking-wider rounded-full border border-[#0080FF]/20 shadow-sm transition-all duration-300 hover:text-[#0080FF]"
               >
-                Our Science & Purity
+                View Quality Promise
               </a>
             </motion.div>
           </div>

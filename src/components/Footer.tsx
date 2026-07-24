@@ -66,7 +66,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-xs text-slate-300 leading-relaxed max-w-sm">
-              Ayurmor by Saish Technofarms crafts 100% natural, pure botanical health mixes, instant nutrient-rich Moringa soup, and sprouted multigrain millet malts.
+              Ayurmor by Saish Technofarms offers instant malt drinks and premix soups made with carefully selected ingredients for modern everyday routines.
             </p>
 
             <div className="space-y-1.5 text-xs text-slate-300 pt-1">
@@ -228,7 +228,7 @@ export default function Footer() {
 
         {/* Disclaimer Note */}
         <div className="py-4 border-b border-white/5 text-[11px] text-slate-400 leading-normal">
-          <p><strong className="text-slate-300">Disclaimer:</strong> Ayurmor products are nutritional food supplements intended to support general wellness and nutrition. They are not intended to diagnose, treat, cure, or prevent any disease. Individual results may vary based on lifestyle and health conditions.</p>
+          <p><strong className="text-slate-300">Disclaimer:</strong> Ayurmor products are food products intended to complement a balanced diet and healthy lifestyle. They are not intended to diagnose, treat, cure or prevent any disease.</p>
         </div>
 
         {/* Bottom Copyright */}

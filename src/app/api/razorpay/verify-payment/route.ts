@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import pool from '@/lib/db';
+import { createBigshipDraft } from '@/lib/bigship';
 
 export async function POST(req: Request) {
   try {
@@ -42,7 +43,6 @@ export async function POST(req: Request) {
     const isSignatureValid = generatedSignature === razorpay_signature;
 
     if (isSignatureValid) {
-      // Step 3: Run the Custom Logistics Bot & Log Order in Database
       const couriers = ['Delhivery', 'Blue Dart', 'DTDC', 'Xpressbees', 'Shadowfax'];
       const courier_partner = couriers[Math.floor(Math.random() * couriers.length)];
       const tracking_number = 'AM' + Math.floor(10000000 + Math.random() * 90000000);
@@ -63,8 +63,9 @@ export async function POST(req: Request) {
           shipping_status, 
           courier_partner, 
           tracking_number, 
-          items_json
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          items_json,
+          bigship_status
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `;
 
       const values = [
@@ -77,16 +78,32 @@ export async function POST(req: Request) {
         'paid',
         razorpay_payment_id,
         order_date,
-        'dispatched', // Mark as instantly dispatched
+        'processing',
         courier_partner,
         tracking_number,
-        JSON.stringify(items || [])
+        JSON.stringify(items || []),
+        'pending'
       ];
 
       let dbLogged = false;
+      let bigshipCreated = false;
+      let orderDbId = null;
+
       try {
-        await pool.query(insertSql, values);
+        const [result]: any = await pool.query(insertSql, values);
         dbLogged = true;
+        orderDbId = result?.insertId;
+
+        // Auto-create Bigship Outbound Order Draft
+        if (orderDbId) {
+          const warehouseId = parseInt(process.env.BIGSHIP_WAREHOUSE_ID || '117684', 10);
+          try {
+            await createBigshipDraft(orderDbId, warehouseId);
+            bigshipCreated = true;
+          } catch (bigshipErr) {
+            console.warn('Bigship auto draft creation notice:', bigshipErr);
+          }
+        }
       } catch (dbErr) {
         console.error('Failed to write order to database:', dbErr);
       }
@@ -97,7 +114,8 @@ export async function POST(req: Request) {
         orderNumber: order_number,
         trackingNumber: tracking_number,
         courierPartner: courier_partner,
-        dbLogged: dbLogged
+        dbLogged: dbLogged,
+        bigshipCreated: bigshipCreated
       });
     } else {
       return NextResponse.json({

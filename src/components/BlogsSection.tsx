@@ -24,114 +24,114 @@ interface BlogPost {
 const BLOGS: BlogPost[] = [
   {
     id: 'blog-1',
-    category: 'Ayurvedic Heritage',
-    title: 'Why Traditional Indian Ingredients Still Matter Today',
-    summary: 'Discover how millets, native herbs, and botanicals offer sustainable, bio-available nutrition for modern busy lives.',
+    category: 'Indian Ingredients',
+    title: 'Why Millets, Moringa and Mushrooms Are Returning to Modern Indian Diets',
+    summary: 'Discover how traditional ingredients are being reimagined into convenient instant malt drinks and 60-second soups.',
     readTime: '4 min read',
-    author: 'Ayurmor Wellness Team',
+    author: 'Ayurmor Editorial Desk',
     date: 'July 20, 2026',
     image: '/hero_moringa.png',
     content: {
-      intro: 'For centuries, traditional Indian kitchens relied on whole millets, therapeutic spices, wild botanicals, and functional herbs to maintain vitality and immunity. In recent decades, processed refined grains took over, leading to widespread nutrient gaps. Today, a wellness renaissance is bringing these superfoods back.',
+      intro: 'Traditional Indian kitchens long valued whole millets, moringa leaves, and mushroom nutrition. Modern lifestyles require convenience, which is why instant malt drinks and premix soups are making these foods accessible again.',
       keyPoints: [
         {
-          title: 'The Heritage of Indian Nutrition',
-          text: 'Sprouted finger millet (Ragi), pearl millet (Bajra), and foxtail millet are rich in natural calcium, dietary fiber, and complex carbohydrates that keep blood sugar steady.'
+          title: 'The Value of Traditional Indian Ingredients',
+          text: 'Millets such as Ragi, Bajra, and Foxtail millet offer familiar taste, comforting texture, and wholesome daily food value.'
         },
         {
-          title: 'Botanicals & Functional Herbs',
-          text: 'Wild-crafted Moringa leaves, roasted cumin, black pepper, and cardamom enhance digestion (Agni) and accelerate cellular detox without reliance on synthetic supplements.'
+          title: 'Moringa & Mushroom Nutrition',
+          text: 'Moringa leaves and savoury mushroom powders provide a warm, satisfying soup experience without lengthy cooking.'
         },
         {
-          title: 'Blending Tradition with Modern Convenience',
-          text: 'Ayurmor reimagines these age-old ingredients into instant 10-second soup mixes and daily lattes so you can enjoy authentic wellness without hours of grinding or boiling.'
+          title: 'Modern Convenience for Busy Routines',
+          text: 'Ayurmor combines these classic ingredients into 60-second mixes that fit seamlessly into office, home, and travel routines.'
         }
       ],
-      conclusion: 'Reconnecting with traditional Indian ingredients is not just a trend—it is a sustainable, time-tested approach to lifelong vigor and preventive health.'
+      conclusion: 'Reconnecting with traditional ingredients through modern instant formats makes everyday wellness simple and enjoyable.'
     }
   },
   {
     id: 'blog-2',
-    category: 'Daily Nutrition',
-    title: 'Healthy Snacking Without Compromise',
-    summary: 'Swap sugary energy drinks and refined snacks for nutrient-dense, sprouted malt drinks and instant herbal soups.',
+    category: 'Daily Snacking',
+    title: 'Healthy Evening Snacks: Instant Soups and Malt Drinks for Busy Days',
+    summary: 'Swap heavy fried snacks for warm, savoury moringa and mushroom premix soups or delicious chocolate millet malts.',
     readTime: '3 min read',
-    author: 'Dr. Wellness Desk',
+    author: 'Ayurmor Food Desk',
     date: 'July 18, 2026',
     image: '/hero_abc.png',
     content: {
-      intro: 'Mid-afternoon energy crashes often lead to unhealthy impulse snacking on refined sugars and fried foods. Smart snacking isn’t about eating less—it’s about choosing nutrient-dense foods that nourish your cells.',
+      intro: 'Evening hunger between lunch and dinner often leads to quick snack choices. Light, warm instant soups and malt drinks offer a comforting alternative.',
       keyPoints: [
         {
-          title: 'Why Healthy Snacks Matter',
-          text: 'Consuming clean protein, wholesome fiber, and natural minerals between meals prevents glucose spikes, sharpens mental focus, and supports weight management.'
+          title: 'Light Evening Warm Refreshment',
+          text: 'A 60-second cup of Moringa Premix Soup or Cream of Mushroom Soup provides a warm, savoury pause during office breaks.'
         },
         {
-          title: 'Nutrient Density Over Empty Calories',
-          text: 'Our ABC Malt (Apple, Beetroot, Carrot) and Choco Millet Malt deliver natural iron, natural cocoa polyphenols, and essential minerals without a single gram of refined sugar.'
+          title: 'Family-Friendly Malt Drinks',
+          text: 'Ayurmor ABC Latte Mix and Choco Multigrain Millet Malt provide delicious warm drinks for kids, students, and working adults.'
         },
         {
-          title: 'On-the-Go Convenience',
-          text: 'Whether you are at your office desk, traveling, or preparing your kids for school, instant warm malts and soups offer instant nourishment in under 15 seconds.'
+          title: 'Quick Preparation Anywhere',
+          text: 'Just add hot water or hot milk, stir well, and enjoy anywhere — no boiling or cooking required.'
         }
       ],
-      conclusion: 'Snack smarter by fueling your body with clean, natural ingredients that taste delicious and support long-term metabolic health.'
+      conclusion: 'Smart evening routines start with light, warm, convenient choices that taste great and fit your schedule.'
     }
   },
   {
     id: 'blog-3',
-    category: 'Lifestyle & Habits',
-    title: 'Building Better Eating Habits—One Small Step at a Time',
-    summary: 'Simple, actionable micro-habits to transform your daily energy, digestion, and hydration routines effortlessly.',
+    category: 'Healthy Habits',
+    title: '5 Simple Daily Food Habits for Busy Professionals and Families',
+    summary: 'Practical daily routines to integrate instant wellness mixes into your breakfast, office desk breaks, and travel routines.',
     readTime: '5 min read',
-    author: 'Ayurmor Health Coach',
+    author: 'Ayurmor Wellness Team',
     date: 'July 15, 2026',
     image: '/hero_choco.png',
     content: {
-      intro: 'Drastic diets rarely last. Sustainable health comes from small, repeatable daily habits that naturally integrate into your existing lifestyle.',
+      intro: 'Sustainable food habits are built on simple, repeatable choices rather than complicated diet plans.',
       keyPoints: [
         {
-          title: 'Start Your Morning Warm',
-          text: 'Begin your day with a warm cup of ABC Malt or Moringa Soup to kickstart digestion, awaken your digestive fire, and rehydrate after night hours.'
+          title: 'Warm Morning Drink',
+          text: 'Start your morning with a glass of ABC Latte Mix made with apple, beetroot, carrot, almonds, and cashews.'
         },
         {
-          title: 'Prioritize Whole Foods Over Extracts',
-          text: 'Whenever possible, choose whole sprouted millets, real fruit powders, and almonds over chemical isolate powders.'
+          title: 'Desk-Friendly Office Snack',
+          text: 'Keep Moringa or Mushroom premix soup sachets in your desk drawer for a quick 1-minute warm break.'
         },
         {
-          title: 'Consistent Meal Intervals',
-          text: 'Avoid skipping meals. Pairing a nutrient-dense warm malt drink with your morning routine provides steady fuel for active minds.'
+          title: 'Family Evening Drink',
+          text: 'Serve warm Choco Multigrain Millet Malt to kids after school or sports.'
         }
       ],
-      conclusion: 'Focus on progress over perfection. One wholesome choice each morning creates momentum toward lifelong well-being.'
+      conclusion: 'Small everyday habits create long-term satisfaction and convenience for your whole family.'
     }
   },
   {
     id: 'blog-4',
-    category: 'Quality & Science',
-    title: 'Our Uncompromising Commitment to Quality at Ayurmor',
-    summary: 'Inside our FSSAI-registered & ISO 9001:2015 certified process—from ethical sourcing to packaging freshness.',
+    category: 'Quality & Safety',
+    title: 'How Ayurmor Checks Quality: Ingredients, FSSAI, Packaging and Storage',
+    summary: 'Inside our FSSAI-registered manufacturing and quality control standards at Saish Technofarms.',
     readTime: '4 min read',
-    author: 'Quality Assurance Head',
+    author: 'Quality Assurance Team',
     date: 'July 12, 2026',
     image: '/hero_moringa.png',
     content: {
-      intro: 'At Saish Technofarms (Ayurmor), quality is not an afterthought—it is the foundation of everything we craft. From farm sourcing to final sealed pouch, every batch undergoes rigorous quality testing.',
+      intro: 'At Saish Technofarms (Ayurmor), quality is guided by strict manufacturing, hygienic processing, and transparent ingredient labelling.',
       keyPoints: [
         {
-          title: 'Ethical & Pure Sourcing',
-          text: 'We source 100% wild-crafted Moringa leaves, sprouted ancient millets, and raw cocoa directly from trusted growers committed to clean cultivation.'
+          title: 'Carefully Selected Sourcing',
+          text: 'We carefully select ingredients, including moringa, millets, fruits, nuts, cocoa, and mushrooms from verified suppliers.'
         },
         {
-          title: 'ISO 9001:2015 & FSSAI Standards',
-          text: 'Operating under FSSAI Reg. No. 21224169000054 and ISO 9001:2015 certification (QCCI/25Q/SES/5850), our facility follows strict hygienic packaging & quality protocols.'
+          title: 'FSSAI Registration & ISO 9001:2015 Standards',
+          text: 'Manufactured under FSSAI Reg. No. 21224169000054 with ISO 9001:2015 Quality Management System oversight.'
         },
         {
-          title: 'Preserving Bio-Activity & Freshness',
-          text: 'We use gentle, low-temperature milling to protect sensitive enzymes, vitamins, and natural aromas, sealed in moisture-barrier food-grade packaging.'
+          title: 'Hygienic Packaging & Clear Labelling',
+          text: 'All packs display full ingredient declarations, allergen statements, expiry dates, and batch information.'
         }
       ],
-      conclusion: 'When you choose Ayurmor, you are bringing certified purity, safety, and authentic wellness into your home.'
+      conclusion: 'Transparent labelling and quality standards build confidence and trust with every Ayurmor product.'
     }
   }
 ];
