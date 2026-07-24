@@ -44,25 +44,25 @@ const DEFAULT_DETAILS: Record<string, {
   benefits: string[];
 }> = {
   moringa: {
-    description: "Moringa Premix Soup is a nutrient-dense, warm, comforting herbal soup mix crafted from 100% wild-crafted Moringa leaves. Milled fresh to preserve raw enzymes, it delivers a clean, green energy boost while aiding digestion and natural metabolic detox.",
-    ingredients: "Pure Moringa Oleifera leaves, Roasted cumin, Black salt, Lemon peel powder, Ginger, Black pepper, Rock salt.",
-    usage: "Add 1 tablespoon (10g) of premix to a cup. Pour 150ml of boiling water. Stir well and let it sit for 10 seconds. Enjoy warm!",
-    nutrition: ["Energy: 320 kcal (per 100g)", "Protein: 22g", "Carbohydrates: 48g", "Dietary Fiber: 12g", "Iron: 25mg"],
-    benefits: ["Rich in Antioxidants", "Enhances Immune Function", "Supports Natural Detoxification", "Improves Energy Levels"]
+    description: "Enjoy the comforting taste of moringa in a warm, savoury soup that is ready in just one minute. Ayurmor Moringa Premix Soup is crafted for busy lifestyles - simply add hot water, stir well and enjoy a light, satisfying soup at home, work or while travelling.",
+    ingredients: "Pure Moringa Oleifera leaf powder, Roasted cumin powder, Black salt, Lemon peel powder, Ginger powder, Black pepper, Rock salt, Spices & Herbs. Allergen advice: Processed in a facility handling milk solids, gluten & nuts.",
+    usage: "Empty one serving into a cup or bowl. Add 180-200 ml hot water. Stir well until completely dissolved. Let stand for 1 minute if needed. Serve hot.",
+    nutrition: ["Energy: 320 kcal (per 100g)", "Protein: 22g", "Carbohydrates: 48g", "Dietary Fiber: 12g", "Sodium: 850mg", "Iron: 25mg"],
+    benefits: ["Ready in 60 seconds (no cooking required)", "Warm, savoury and comforting herbal flavour", "Convenient light snack for home, office & travel", "Easy way to enjoy moringa in daily food routines"]
   },
   abc: {
-    description: "Our signature ABC Latte Mix fuses raw apples, sweet red beetroots, and clean carrots into a powerhouse malt. Fortified with roasted almonds and cashews, it offers sustained daily vigor, natural skin glow, and supports blood purification.",
-    ingredients: "Dehydrated apple powder, Beetroot extract, Carrot crystals, Sprouted Ragi malt, Roasted almonds, Cashew kernels, Cardamom, Raw palm sugar.",
-    usage: "Add 2 spoonfuls (20g) to 200ml of hot milk or warm water. Stir briskly until smooth. Drink every morning for best results.",
-    nutrition: ["Energy: 385 kcal (per 100g)", "Protein: 12g", "Iron: 32mg", "Vitamin A: 1200 mcg", "Calcium: 180mg"],
-    benefits: ["Enriched with Iron", "Boosts Hemoglobin levels", "Natural Skin Radiance", "Sustained Energy"]
+    description: "Ayurmor ABC Latte Mix is a delicious instant wellness beverage made with apple, beetroot, carrot, almonds and cashews. Designed for busy lifestyles, it mixes easily with hot milk or water to create a smooth, satisfying drink in less than a minute - no boiling required.",
+    ingredients: "Dehydrated apple powder, Beetroot powder, Carrot powder, Almond powder, Cashew powder, Sprouted Ragi malt base, Cardamom powder, Raw palm sugar. Allergen advice: Contains nuts (Almonds & Cashews).",
+    usage: "Add 2-3 teaspoons to 150-200 ml hot milk or warm water. Stir well until smooth. Add sweetener only if desired. Serve warm or chilled.",
+    nutrition: ["Energy: 385 kcal (per 100g)", "Protein: 12g", "Carbohydrates: 68g", "Dietary Fiber: 8g", "Calcium: 180mg", "Iron: 18mg"],
+    benefits: ["Instant drink ready in less than a minute", "Made with real apple, beetroot, carrot, almond and cashew", "Smooth, creamy & satisfying taste", "Ideal for breakfast, office breaks & evening refreshment"]
   },
   choco: {
-    description: "A luxurious, rich dark cocoa blend paired with sprouted ancient grains (Finger Millet, Pearl Millet, Foxtail Millet). Sweetened naturally without refined sugars, it is the ultimate health malt for growing children and active adults.",
-    ingredients: "Premium Dark Cocoa powder, Sprouted Finger Millet (Ragi), Sprouted Pearl Millet (Bajra), Sprouted Foxtail Millet, Almond flour, Coconut sugar, Cardamom, Pinch of sea salt.",
-    usage: "Add 2 tablespoons (25g) to a glass of hot milk (or vegan milk). Stir well. No boiling needed!",
-    nutrition: ["Energy: 360 kcal (per 100g)", "Protein: 14g", "Calcium: 410mg", "Dietary Fiber: 9g", "Zinc: 4.5mg"],
-    benefits: ["Rich in Calcium", "Zero Refined Sugar", "High Dietary Fiber", "Great for Bone Health"]
+    description: "Ayurmor Choco Multigrain Millet Malt Mix brings together carefully selected millets with rich chocolate flavour. Ready in less than a minute, it mixes easily with hot milk or water and makes a creamy, satisfying drink for breakfast, evening refreshment or daily family routines.",
+    ingredients: "Sprouted Finger Millet (Ragi), Sprouted Pearl Millet (Bajra), Sprouted Foxtail Millet, Cocoa powder, Almond powder, Milk solids, Natural sugar, Cardamom. Allergen advice: Contains milk solids and nuts.",
+    usage: "Add 2-3 teaspoons to 150-200 ml hot milk. Stir until smooth. For a lighter drink, use hot water. Add sweetener only if desired.",
+    nutrition: ["Energy: 360 kcal (per 100g)", "Protein: 14g", "Carbohydrates: 65g", "Dietary Fiber: 9g", "Calcium: 410mg"],
+    benefits: ["Delicious rich chocolate flavour", "Made with sprouted multigrain millets", "Instant preparation - no boiling required", "Suitable for older children, students & adults"]
   }
 };
 
@@ -91,26 +91,21 @@ export default function ShopSection({
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [activeTab, setActiveTab] = useState<'desc' | 'ing' | 'use' | 'nut'>('desc');
 
-  const categories = ['All', 'Superfood Malts', 'Premix Soups'];
+  // Derived display fields with safe fallbacks
+  const pDesc = selectedProduct?.description ?? '';
+  const pBenefits = selectedProduct?.benefits ? selectedProduct.benefits.split(',').map(b => b.trim()) : [];
+  const pIngredients = selectedProduct?.ingredients ?? '';
+  const pUsage = selectedProduct?.usage_instructions ?? '';
+  const pNutrition = selectedProduct?.nutrition ? selectedProduct.nutrition.split(',').map(n => n.trim()) : [];
+
+
+  const categories = ['All', 'Instant Malt Drinks', 'Premix Soups', 'Combo Packs'];
 
   const displayedProducts = filteredProducts.filter(p => {
     if (activeCategory === 'All') return true;
-    return p.category.toLowerCase().includes(activeCategory.toLowerCase());
+    return p.category.toLowerCase().includes(activeCategory.toLowerCase()) || 
+           (activeCategory === 'Instant Malt Drinks' && (p.category.toLowerCase().includes('malt') || p.category.toLowerCase().includes('superfood')));
   });
-
-  // Extract selected product specs
-  const pType = selectedProduct?.svg_type || 'moringa';
-  const pDesc = selectedProduct?.description || DEFAULT_DETAILS[pType]?.description || "No description provided.";
-  const pIngredients = selectedProduct?.ingredients || DEFAULT_DETAILS[pType]?.ingredients || "No ingredients listed.";
-  const pUsage = selectedProduct?.usage_instructions || DEFAULT_DETAILS[pType]?.usage || "No directions provided.";
-  
-  const pNutrition = selectedProduct?.nutrition 
-    ? selectedProduct.nutrition.split('\n').map(n => n.trim()).filter(Boolean)
-    : (DEFAULT_DETAILS[pType]?.nutrition || []);
-
-  const pBenefits = selectedProduct?.benefits
-    ? selectedProduct.benefits.split('\n').map(b => b.trim()).filter(Boolean)
-    : (DEFAULT_DETAILS[pType]?.benefits || []);
 
   return (
     <section className="py-24 px-6 bg-white" id="products">
@@ -120,13 +115,13 @@ export default function ShopSection({
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
           <div>
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#76BC21] bg-[#76BC21]/10 px-3.5 py-1 rounded-full border border-[#76BC21]/20 inline-flex items-center gap-1.5 mb-2">
-              <Sparkles className="w-3.5 h-3.5" /> Milled Fresh Weekly
+              <Sparkles className="w-3.5 h-3.5" /> Instant & Convenience Food
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0A192F]">
-              Our Best Seller Botanical Blends
+              Shop Ayurmor Wellness Mixes
             </h2>
             <p className="text-slate-600 text-sm font-light mt-1">
-              Select a blend to explore ingredients, benefits, and instant preparation guides.
+              Choose from instant malt drinks and premix soups made for home, office, travel and everyday routines.
             </p>
           </div>
 
