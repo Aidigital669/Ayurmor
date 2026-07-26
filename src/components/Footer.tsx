@@ -211,7 +211,7 @@ export default function Footer() {
                 <p className="text-[11px] text-slate-300 font-semibold"><strong className="text-white font-bold">FSSAI No:</strong> 124250140000673</p>
               </div>
 
-              <div className="space-y-1 pt-2 border-t border-white/10">
+              <div className="space-y-1.5 pt-2 border-t border-white/10">
                 <p className="flex items-center gap-2 text-sky-300 font-medium">
                   <PhoneIcon className="w-3.5 h-3.5 text-sky-400" />
                   <a href="tel:+917483849998" className="hover:underline">+91 7483 849 998</a>
@@ -220,6 +220,17 @@ export default function Footer() {
                   <MailIcon className="w-3.5 h-3.5 text-sky-400" />
                   <a href="mailto:Saishtechnofarms@gmail.com" className="hover:underline">Saishtechnofarms@gmail.com</a>
                 </p>
+                <div className="pt-1">
+                  <a 
+                    href="https://wa.me/917483849998" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#25D366] hover:underline font-semibold bg-[#25D366]/10 px-2.5 py-1 rounded-full border border-[#25D366]/20"
+                  >
+                    <WhatsappIcon className="w-3.5 h-3.5" />
+                    <span>Need help choosing a product? Chat with us on WhatsApp.</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

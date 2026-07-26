@@ -13,6 +13,8 @@ import {
   Leaf
 } from 'lucide-react';
 
+import { useCart } from '@/context/CartContext';
+
 interface NavbarProps {
   cartCount?: number;
   wishlistCount?: number;
@@ -22,12 +24,16 @@ interface NavbarProps {
 }
 
 export default function Navbar({
-  cartCount = 0,
+  cartCount: propCartCount,
   wishlistCount = 0,
   searchQuery = '',
   setSearchQuery = () => { },
-  onOpenCart = () => { }
+  onOpenCart: propOnOpenCart
 }: NavbarProps) {
+  const { cartCount: contextCartCount, openCart } = useCart();
+  const effectiveCartCount = propCartCount !== undefined ? propCartCount : contextCartCount;
+  const handleOpenCart = propOnOpenCart || openCart;
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -144,20 +150,20 @@ export default function Navbar({
 
               {/* Cart Icon Drawer Trigger */}
               <button
-                onClick={onOpenCart}
-                className="relative p-2.5 bg-[#0080FF] text-white rounded-full hover:bg-[#0066CC] transition-all duration-300 shadow-md group flex items-center justify-center"
+                onClick={handleOpenCart}
+                className="relative p-2.5 bg-[#0080FF] text-white rounded-full hover:bg-[#0066CC] transition-all duration-300 shadow-md group flex items-center justify-center cursor-pointer"
                 aria-label="View Shopping Cart"
               >
                 <ShoppingCart className="w-4 h-4 text-white" />
                 <AnimatePresence>
-                  {cartCount > 0 && (
+                  {effectiveCartCount > 0 && (
                     <motion.span
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       exit={{ scale: 0 }}
                       className="absolute -top-1 -right-1 bg-[#76BC21] text-white font-extrabold text-[10px] w-4 h-4 rounded-full flex items-center justify-center shadow border-2 border-white"
                     >
-                      {cartCount}
+                      {effectiveCartCount}
                     </motion.span>
                   )}
                 </AnimatePresence>

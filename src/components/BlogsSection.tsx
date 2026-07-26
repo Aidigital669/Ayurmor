@@ -25,22 +25,22 @@ const BLOGS: BlogPost[] = [
   {
     id: 'blog-1',
     category: 'Indian Ingredients',
-    title: 'Why Millets, Moringa and Mushrooms Are Returning to Modern Indian Diets',
-    summary: 'Discover how traditional ingredients are being reimagined into convenient instant malt drinks and 60-second soups.',
+    title: 'Why Millets and Moringa Are Returning to Modern Indian Diets',
+    summary: 'Discover how traditional ingredients like sprouted millets and moringa are being reimagined into convenient instant malt drinks and 60-second soups.',
     readTime: '4 min read',
     author: 'Ayurmor Editorial Desk',
     date: 'July 20, 2026',
     image: '/hero_moringa.png',
     content: {
-      intro: 'Traditional Indian kitchens long valued whole millets, moringa leaves, and mushroom nutrition. Modern lifestyles require convenience, which is why instant malt drinks and premix soups are making these foods accessible again.',
+      intro: 'Traditional Indian kitchens long valued whole millets and moringa leaves for everyday food habits. Modern lifestyles require convenience, which is why instant malt drinks and premix soups are making these foods accessible again.',
       keyPoints: [
         {
           title: 'The Value of Traditional Indian Ingredients',
           text: 'Millets such as Ragi, Bajra, and Foxtail millet offer familiar taste, comforting texture, and wholesome daily food value.'
         },
         {
-          title: 'Moringa & Mushroom Nutrition',
-          text: 'Moringa leaves and savoury mushroom powders provide a warm, satisfying soup experience without lengthy cooking.'
+          title: 'Moringa Leaf Goodness',
+          text: 'Pure Moringa Oleifera leaf powder combined with gentle herbs provides a warm, satisfying soup experience without lengthy cooking.'
         },
         {
           title: 'Modern Convenience for Busy Routines',
@@ -54,7 +54,7 @@ const BLOGS: BlogPost[] = [
     id: 'blog-2',
     category: 'Daily Snacking',
     title: 'Healthy Evening Snacks: Instant Soups and Malt Drinks for Busy Days',
-    summary: 'Swap heavy fried snacks for warm, savoury moringa and mushroom premix soups or delicious chocolate millet malts.',
+    summary: 'Swap heavy fried snacks for warm, savoury moringa premix soups or delicious chocolate millet malts.',
     readTime: '3 min read',
     author: 'Ayurmor Food Desk',
     date: 'July 18, 2026',
@@ -64,7 +64,7 @@ const BLOGS: BlogPost[] = [
       keyPoints: [
         {
           title: 'Light Evening Warm Refreshment',
-          text: 'A 60-second cup of Moringa Premix Soup or Cream of Mushroom Soup provides a warm, savoury pause during office breaks.'
+          text: 'A 60-second cup of Moringa Premix Soup provides a warm, savoury pause during office desk breaks.'
         },
         {
           title: 'Family-Friendly Malt Drinks',
@@ -82,7 +82,7 @@ const BLOGS: BlogPost[] = [
     id: 'blog-3',
     category: 'Healthy Habits',
     title: '5 Simple Daily Food Habits for Busy Professionals and Families',
-    summary: 'Practical daily routines to integrate instant wellness mixes into your breakfast, office desk breaks, and travel routines.',
+    summary: 'Practical daily routines to integrate instant wellness mixes into your breakfast, office desk breaks, and family routines.',
     readTime: '5 min read',
     author: 'Ayurmor Wellness Team',
     date: 'July 15, 2026',
@@ -96,7 +96,7 @@ const BLOGS: BlogPost[] = [
         },
         {
           title: 'Desk-Friendly Office Snack',
-          text: 'Keep Moringa or Mushroom premix soup sachets in your desk drawer for a quick 1-minute warm break.'
+          text: 'Keep Moringa premix soup sachets in your desk drawer for a quick 1-minute warm break.'
         },
         {
           title: 'Family Evening Drink',
@@ -120,7 +120,7 @@ const BLOGS: BlogPost[] = [
       keyPoints: [
         {
           title: 'Carefully Selected Sourcing',
-          text: 'We carefully select ingredients, including moringa, millets, fruits, nuts, cocoa, and mushrooms from verified suppliers.'
+          text: 'We carefully select ingredients, including moringa, millets, fruits, nuts, and spices from verified suppliers.'
         },
         {
           title: 'FSSAI Registration & ISO 9001:2015 Standards',
@@ -132,6 +132,62 @@ const BLOGS: BlogPost[] = [
         }
       ],
       conclusion: 'Transparent labelling and quality standards build confidence and trust with every Ayurmor product.'
+    }
+  },
+  {
+    id: 'blog-5',
+    category: 'Product Focus',
+    title: 'ABC Malt Powder: Apple, Beetroot and Carrot in One Instant Drink',
+    summary: 'Learn how ABC Latte Mix brings together dehydrated apple, beetroot, carrot, almond and cashew for everyday wellness.',
+    readTime: '3 min read',
+    author: 'Ayurmor Product Desk',
+    date: 'July 10, 2026',
+    image: '/hero_abc.png',
+    content: {
+      intro: 'ABC (Apple, Beetroot, Carrot) is famous for its vibrant taste and wholesome nutrients. Ayurmor brings it to you as an instant malt powder for milk or hot water.',
+      keyPoints: [
+        {
+          title: 'Real Fruit & Vegetable Powder',
+          text: 'Combines dehydrated apple, beetroot, and carrot powder with sprouted millet base and raw palm sugar.'
+        },
+        {
+          title: 'Nutty Comfort',
+          text: 'Blended with real almond and cashew powder for a rich, satisfying mouthfeel.'
+        },
+        {
+          title: 'No Boiling Required',
+          text: 'Stir 2-3 teaspoons in 150-200 ml hot milk or water. Ready in under 60 seconds.'
+        }
+      ],
+      conclusion: 'A convenient, delicious beverage mix for breakfast, office breaks, and family routines.'
+    }
+  },
+  {
+    id: 'blog-6',
+    category: 'Product Focus',
+    title: 'Moringa Soup for Office Breaks: A Warm One-Minute Snack Idea',
+    summary: 'Why office professionals love keeping Moringa Premix Soup sachets at their desks.',
+    readTime: '3 min read',
+    author: 'Ayurmor Wellness Team',
+    date: 'July 08, 2026',
+    image: '/hero_moringa.png',
+    content: {
+      intro: 'Long work hours at the desk call for light, comforting warm breaks. Ayurmor Moringa Premix Soup offers a savoury 60-second alternative.',
+      keyPoints: [
+        {
+          title: 'Instant 60-Second Preparation',
+          text: 'Just pour hot water from the office water dispenser, stir briskly, and enjoy warm.'
+        },
+        {
+          title: 'Herbal & Zesty Spice Blend',
+          text: 'Crafted with roasted cumin, black salt, lemon peel powder, ginger, and black pepper.'
+        },
+        {
+          title: 'Light & Satisfying',
+          text: 'A light savory snack option that fits busy workday schedules.'
+        }
+      ],
+      conclusion: 'Keep a pouch in your desk drawer for a quick, comforting office break.'
     }
   }
 ];

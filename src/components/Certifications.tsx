@@ -29,8 +29,8 @@ export default function Certifications() {
               <Award className="w-6 h-6" />
             </div>
             <h4 className="font-serif font-bold text-sm text-white mb-1">ISO 9001:2015</h4>
-            <p className="text-[10px] text-emerald-200/80 font-mono">Cert: QCCI/25Q/SES/5850</p>
-            <span className="text-[9px] text-white/50 mt-1">Quality Management System</span>
+            <p className="text-[10px] text-emerald-200/80 font-mono">Quality Management System</p>
+            <span className="text-[9px] text-white/50 mt-1">Cert: QCCI/25Q/SES/5850</span>
           </div>
 
           {/* Hygienically Manufactured */}
@@ -38,7 +38,7 @@ export default function Certifications() {
             <div className="w-12 h-12 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
               <CheckCircle className="w-6 h-6" />
             </div>
-            <h4 className="font-serif font-bold text-sm text-white mb-1">Hygienic Process</h4>
+            <h4 className="font-serif font-bold text-sm text-white mb-1">Hygienically Manufactured</h4>
             <p className="text-[10px] text-emerald-200/80">Securely Packed</p>
             <span className="text-[9px] text-white/50 mt-1">Quality Checked</span>
           </div>
@@ -48,9 +48,9 @@ export default function Certifications() {
             <div className="w-12 h-12 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
               <Leaf className="w-6 h-6" />
             </div>
-            <h4 className="font-serif font-bold text-sm text-white mb-1">Quality Ingredients</h4>
+            <h4 className="font-serif font-bold text-sm text-white mb-1">Quality-Checked Ingredients</h4>
             <p className="text-[10px] text-emerald-200/80">Transparent Labels</p>
-            <span className="text-[9px] text-white/50 mt-1">Check Product Packs</span>
+            <span className="text-[9px] text-white/50 mt-1">Check Individual Packs</span>
           </div>
 
           {/* Made in India */}

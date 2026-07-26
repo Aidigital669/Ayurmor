@@ -7,11 +7,11 @@ import { ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Sparkles } from 'lu
 const HERO_SLIDES = [
   {
     id: 1,
-    category: "Instant Wellness Beverage",
-    title: "Ayurmor ABC Latte Mix",
-    subtitle: "Apple, Beetroot & Carrot Wellness Drink",
-    tagline: "Ayurmor ABC Latte Mix is a delicious instant wellness beverage made with apple, beetroot, carrot, almonds and cashews. Designed for busy lifestyles, it mixes easily with hot milk or water to create a smooth, satisfying drink in less than a minute - no boiling required.",
-    badge: "Instant Convenience",
+    category: "Instant Wellness Mixes for Modern Daily Routines",
+    title: "Ayurmor Instant Wellness Mixes",
+    subtitle: "ABC Malt Powder for Everyday Nourishment",
+    tagline: "Ayurmor ABC Malt Powder is an instant wellness beverage made with apple, beetroot, carrot, almonds and cashews. It mixes easily with hot milk or water to create a smooth, satisfying drink for breakfast, evening refreshment or daily routines.",
+    badge: "Natural Goodness. Instant Convenience.",
     bgColor: "from-[#FFEBE5] via-[#FFCFC0] to-[#E7977D]",
     image: "/hero_abc.png"
   },
@@ -30,8 +30,8 @@ const HERO_SLIDES = [
     category: "Instant Chocolate Malt",
     title: "Ayurmor Choco Multigrain Millet Malt",
     subtitle: "Instant Chocolate Millet Drink",
-    tagline: "Ayurmor Choco Multigrain Millet Malt Mix brings together carefully selected millets with rich chocolate flavour. Ready in less than a minute, it mixes easily with hot milk or water and makes a creamy, satisfying drink for breakfast, evening refreshment or daily family routines.",
-    badge: "No Boiling Required",
+    tagline: "Ayurmor Choco Multigrain Millet Malt Mix brings together carefully selected millets with rich chocolate flavour. Ready in less than a minute, it mixes easily with hot milk or water and makes a creamy, satisfying drink for breakfast, evening refreshment or daily routines.",
+    badge: "Everyday Wellness",
     bgColor: "from-[#FDFBF7] via-[#EADBCE] to-[#AC8C7D]",
     image: "/hero_choco.png"
   }
@@ -125,8 +125,15 @@ export default function HeroCarousel() {
               </a>
 
               <a
+                href="#products"
+                className="px-6 py-3.5 bg-white/90 hover:bg-white text-[#0A192F] font-bold text-xs uppercase tracking-wider rounded-full border border-[#0080FF]/20 shadow-sm transition-all duration-300 hover:text-[#0080FF]"
+              >
+                Explore Soups & Malt Drinks
+              </a>
+
+              <a
                 href="#values"
-                className="px-7 py-3.5 bg-white/90 hover:bg-white text-[#0A192F] font-bold text-xs uppercase tracking-wider rounded-full border border-[#0080FF]/20 shadow-sm transition-all duration-300 hover:text-[#0080FF]"
+                className="px-6 py-3.5 bg-white/70 hover:bg-white text-slate-700 font-bold text-xs uppercase tracking-wider rounded-full border border-slate-300/40 shadow-xs transition-all duration-300 hover:text-[#0080FF]"
               >
                 View Quality Promise
               </a>

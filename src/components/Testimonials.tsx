@@ -24,7 +24,8 @@ const REVIEWS: Testimonial[] = [
     location: "Bengaluru, Karnataka",
     rating: 5,
     productUsed: "Moringa Premix Soup",
-    avatar: "PS"
+    avatar: "PS",
+    promptCategory: "Taste & Preparation"
   },
   {
     id: 2,
@@ -34,7 +35,8 @@ const REVIEWS: Testimonial[] = [
     location: "Pune, Maharashtra",
     rating: 5,
     productUsed: "Choco Multigrain Millet Malt",
-    avatar: "RK"
+    avatar: "RK",
+    promptCategory: "Ease of Preparation"
   },
   {
     id: 3,
@@ -44,17 +46,19 @@ const REVIEWS: Testimonial[] = [
     location: "Hyderabad, Telangana",
     rating: 5,
     productUsed: "ABC Latte Mix",
-    avatar: "AM"
+    avatar: "AM",
+    promptCategory: "Taste & Convenience"
   },
   {
     id: 4,
-    quote: "Clear ingredient lists, great taste and fast delivery. Very convenient instant soups and malt mixes for our daily home routines.",
+    quote: "Clear ingredient lists, great packaging, tasty wellness drinks and fast delivery. Highly recommend Ayurmor mixes for daily routines.",
     name: "Suresh Hegde",
     title: "Customer Feedback",
     location: "Mangaluru, Karnataka",
     rating: 5,
     productUsed: "ABC Malt & Moringa Soup",
-    avatar: "SH"
+    avatar: "SH",
+    promptCategory: "Packaging & Delivery"
   }
 ];
 

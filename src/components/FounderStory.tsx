@@ -26,25 +26,20 @@ export default function FounderStory() {
                 Bringing the goodness of traditional Indian ingredients into convenient, modern food formats for everyday lifestyles.
               </p>
 
-              <div className="pt-4 border-t border-[#0F3D2E]/10 grid grid-cols-2 gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#0F3D2E] flex items-center justify-center font-bold text-xs">
-                    🌾
-                  </div>
-                  <div>
-                    <h5 className="font-bold text-xs text-[#0F3D2E]">Quality Ingredients</h5>
-                    <p className="text-[10px] text-sage-grey">Carefully selected</p>
-                  </div>
+              <div className="pt-4 border-t border-[#0F3D2E]/10 grid grid-cols-3 gap-2">
+                <div className="flex flex-col items-center text-center p-2 bg-emerald-50/60 rounded-xl border border-emerald-100">
+                  <span className="text-sm mb-1">🌾</span>
+                  <h5 className="font-bold text-[11px] text-[#0F3D2E]">Quality-Focused Ingredients</h5>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs">
-                    ⚡
-                  </div>
-                  <div>
-                    <h5 className="font-bold text-xs text-[#0F3D2E]">Instant Formats</h5>
-                    <p className="text-[10px] text-sage-grey">60-second prep</p>
-                  </div>
+                <div className="flex flex-col items-center text-center p-2 bg-sky-50/60 rounded-xl border border-sky-100">
+                  <span className="text-sm mb-1">🔍</span>
+                  <h5 className="font-bold text-[11px] text-[#0080FF]">Transparent Product Info</h5>
+                </div>
+
+                <div className="flex flex-col items-center text-center p-2 bg-amber-50/60 rounded-xl border border-amber-100">
+                  <span className="text-sm mb-1">📦</span>
+                  <h5 className="font-bold text-[11px] text-amber-800">Hygienically Packed</h5>
                 </div>
               </div>
 

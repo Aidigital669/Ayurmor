@@ -51,6 +51,8 @@ const jsonLd = {
   ]
 };
 
+import Providers from '@/components/Providers';
+
 export default function RootLayout({
   children,
 }: {
@@ -82,7 +84,9 @@ fbq('track', 'PageView');
           </noscript>
         </head>
       <body className="antialiased min-h-screen">
-        {children}
+        <Providers>
+          {children}
+        </Providers>
         {/* Meta Pixel Code Footer */}
         <script
           dangerouslySetInnerHTML={{

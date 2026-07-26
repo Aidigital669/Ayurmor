@@ -17,80 +17,134 @@ import {
   Minus,
   CheckCircle2,
   ChevronRight,
+  ChevronLeft,
   Share2
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useCart } from '@/context/CartContext';
 
 interface Product {
   id: string;
   category: string;
   title: string;
   price: number;
+  mrp?: number;
   image?: string;
+  images?: string[];
   svg_type: string;
   rating_count: number;
   tag?: string;
+  net_weight?: string;
+  servings?: string;
+  tagline?: string;
   description?: string;
   benefits?: string[];
   ingredients?: string;
+  allergen?: string;
   usage_instructions?: string;
+  taste_profile?: string;
+  perfect_for?: string;
+  storage?: string;
   nutritional_facts?: string[];
+  faqs?: { q: string; a: string }[];
 }
 
 const DEFAULT_PRODUCTS: Product[] = [
-  {
-    id: 'moringa-soup-premix',
-    category: 'Premix Soups',
-    title: 'Ayurmor Moringa Premix Soup - Instant Moringa Soup Powder',
-    price: 299,
-    image: '/hero_moringa.png',
-    svg_type: 'moringa',
-    rating_count: 124,
-    tag: 'Ready in 60s',
-    description: 'Enjoy the comforting taste of moringa in a warm, savoury soup that is ready in just one minute. Ayurmor Moringa Premix Soup is crafted for busy lifestyles - simply add hot water, stir well and enjoy a light, satisfying soup at home, work or while travelling.',
-    benefits: [
-      'Ready in 60 seconds (no cooking required)',
-      'Warm, savoury and comforting herbal flavour',
-      'Convenient light snack for home, office & travel',
-      'Easy way to enjoy moringa in daily food routines'
-    ],
-    ingredients: 'Pure Moringa Oleifera leaf powder, Roasted cumin powder, Black salt, Lemon peel powder, Ginger powder, Black pepper, Rock salt, Spices & Herbs. Allergen advice: Processed in a facility handling milk solids, gluten & nuts.',
-    usage_instructions: 'Empty one serving into a cup or bowl. Add 180-200 ml hot water. Stir well until completely dissolved. Let stand for 1 minute if needed. Serve hot.',
-    nutritional_facts: [
-      'Energy: 320 kcal (per 100g)',
-      'Protein: 22g',
-      'Carbohydrates: 48g',
-      'Dietary Fiber: 12g',
-      'Sodium: 850mg',
-      'Iron: 25mg'
-    ]
-  },
   {
     id: 'abc-latte-mix',
     category: 'Instant Malt Drinks',
     title: 'Ayurmor ABC Latte Mix - Apple, Beetroot & Carrot Malt Drink',
     price: 299,
+    mrp: 349,
     image: '/hero_abc.png',
+    images: ['/hero_abc.png', '/ABC1.jpeg', '/ABC2.jpeg', '/ABC3.jpeg', '/ABC4.jpeg'],
     svg_type: 'abc',
     rating_count: 98,
     tag: 'Bestseller',
+    net_weight: '200g Pouch',
+    servings: '20 Servings',
+    tagline: 'Natural Goodness. Instant Convenience. Everyday Wellness.',
     description: 'Ayurmor ABC Latte Mix is a delicious instant wellness beverage made with apple, beetroot, carrot, almonds and cashews. Designed for busy lifestyles, it mixes easily with hot milk or water to create a smooth, satisfying drink in less than a minute - no boiling required.',
     benefits: [
       'Instant drink ready in less than a minute',
       'Made with real apple, beetroot, carrot, almond and cashew',
       'Smooth, creamy & satisfying taste',
-      'Ideal for breakfast, office breaks & evening refreshment'
+      'Convenient for breakfast, office breaks and evening refreshment',
+      'Complements a balanced daily diet'
     ],
     ingredients: 'Dehydrated apple powder, Beetroot powder, Carrot powder, Almond powder, Cashew powder, Sprouted Ragi malt base, Cardamom powder, Raw palm sugar. Allergen advice: Contains nuts (Almonds & Cashews).',
-    usage_instructions: 'Add 2-3 teaspoons to 150-200 ml hot milk or warm water. Stir well until smooth. Add sweetener only if desired. Serve warm or chilled.',
+    allergen: 'Contains nuts (Almonds & Cashews). Processed in a hygiene-controlled facility.',
+    usage_instructions: 'Add 2-3 teaspoons (10g) to 150-200 ml hot milk or warm water. Stir well until smooth. Add sweetener only if desired. Serve warm or chilled.',
+    taste_profile: 'Smooth, creamy, mildly fruity, nutty and comforting.',
+    perfect_for: 'Breakfast, office breaks, post-school drink, evening refreshment, travel and family routines.',
+    storage: 'Store in a cool, dry place. Use a dry spoon. Reseal tightly after opening. Avoid direct sunlight and moisture.',
     nutritional_facts: [
       'Energy: 385 kcal (per 100g)',
       'Protein: 12g',
       'Carbohydrates: 68g',
-      'Dietary Fiber: 8g',
+      'Total Sugar: 24g',
+      'Added Sugar: 12g (Raw Palm Sugar)',
+      'Dietary Fibre: 8g',
+      'Fat: 7.5g',
+      'Saturated Fat: 1.2g',
+      'Sodium: 45mg',
       'Calcium: 180mg',
       'Iron: 18mg'
+    ],
+    faqs: [
+      { q: 'What is Ayurmor ABC Latte Mix?', a: 'It is an instant beverage mix made with apple, beetroot, carrot, almond and cashew ingredients, designed for quick preparation with hot milk or water.' },
+      { q: 'Does it require boiling?', a: 'No. Add 2-3 teaspoons to hot milk or water, stir well and enjoy.' },
+      { q: 'When can I drink it?', a: 'It can be enjoyed during breakfast, office breaks, evening refreshment or whenever you want a quick and satisfying drink.' },
+      { q: 'Can children consume it?', a: 'Older children can enjoy it as part of a balanced diet. Parents should check the ingredient list for allergens.' },
+      { q: 'Does it contain nuts?', a: 'Yes, almond and cashew are included. People with nut allergies should avoid it or consult a healthcare professional.' }
+    ]
+  },
+  {
+    id: 'moringa-soup-premix',
+    category: 'Premix Soups',
+    title: 'Ayurmor Moringa Premix Soup - Instant Moringa Soup Powder',
+    price: 299,
+    mrp: 349,
+    image: '/Moringo1.jpeg',
+    images: ['/Moringo1.jpeg', '/Moringo2.jpeg', '/Moringo3.jpeg', '/Moringo4.jpeg', '/hero_moringa.png'],
+    svg_type: 'moringa',
+    rating_count: 124,
+    tag: 'Ready in 60s',
+    net_weight: '150g Pouch',
+    servings: '15 Servings',
+    tagline: 'The Goodness of Moringa. Ready in Just One Minute.',
+    description: 'Enjoy the comforting taste of moringa in a warm, savoury soup that is ready in just one minute. Ayurmor Moringa Premix Soup is crafted for busy lifestyles - simply add hot water, stir well and enjoy a light, satisfying soup at home, work or while travelling.',
+    benefits: [
+      'Ready in 60 seconds (no cooking required)',
+      'Warm, savoury, herbal and comforting flavour',
+      'Convenient light snack for home, office & travel',
+      'Easy way to enjoy moringa as part of everyday food habits',
+      'Suitable for office, travel and evening use'
+    ],
+    ingredients: 'Pure Moringa Oleifera leaf powder, Roasted cumin powder, Black salt, Lemon peel powder, Ginger powder, Black pepper, Rock salt, Spices & Herbs. Allergen advice: Processed in a facility handling milk solids, gluten, soy or nuts.',
+    allergen: 'Processed in a facility handling milk solids, gluten, soy or nuts.',
+    usage_instructions: 'Empty one serving into a cup. Add 180-200 ml hot water. Stir well until completely dissolved. Let stand for 1 minute if needed. Serve hot.',
+    taste_profile: 'Warm, savoury, herbal, comforting and light.',
+    perfect_for: 'Office desk breaks, light evening snacks, travel comfort, rainy day warmth.',
+    storage: 'Store in a cool, dry place. Use a dry spoon. Reseal tightly after opening. Avoid moisture and direct sunlight.',
+    nutritional_facts: [
+      'Energy: 320 kcal (per 100g)',
+      'Protein: 22g',
+      'Carbohydrates: 48g',
+      'Total Sugar: 2.5g',
+      'Added Sugar: 0g (Zero Added Sugar)',
+      'Fat: 4.8g',
+      'Sodium: 850mg (Lab Verified)',
+      'Dietary Fibre: 12g',
+      'Iron: 25mg'
+    ],
+    faqs: [
+      { q: 'Is this an instant soup?', a: 'Yes. Add hot water, stir well and enjoy.' },
+      { q: 'Does it require cooking?', a: 'No. It is designed for quick preparation without cooking.' },
+      { q: 'When can I consume it?', a: 'It can be enjoyed as a morning refreshment, evening snack, office break beverage or light soup between meals.' },
+      { q: 'Is it travel-friendly?', a: 'Yes. The compact pack makes it convenient for travel and office use.' },
+      { q: 'Is moringa good for daily food habits?', a: 'Moringa is widely appreciated as a nutrient-rich plant and can be enjoyed as part of a balanced diet.' }
     ]
   },
   {
@@ -98,25 +152,46 @@ const DEFAULT_PRODUCTS: Product[] = [
     category: 'Instant Malt Drinks',
     title: 'Ayurmor Choco Multigrain Millet Malt Mix - Instant Chocolate Millet Drink',
     price: 299,
+    mrp: 349,
     image: '/hero_choco.png',
+    images: ['/hero_choco.png', '/Choco1.jpeg', '/Choco2.jpeg'],
     svg_type: 'choco',
     rating_count: 182,
     tag: 'Family Favorite',
+    net_weight: '200g Pouch',
+    servings: '20 Servings',
+    tagline: 'Wholesome Millet Goodness with a Delicious Chocolate Twist.',
     description: 'Ayurmor Choco Multigrain Millet Malt Mix brings together carefully selected millets with rich chocolate flavour. Ready in less than a minute, it mixes easily with hot milk or water and makes a creamy, satisfying drink for breakfast, evening refreshment or daily family routines.',
     benefits: [
-      'Delicious rich chocolate flavour',
-      'Made with sprouted multigrain millets',
-      'Instant preparation - no boiling required',
-      'Suitable for older children, students & adults'
+      'Delicious chocolate flavour with rich cocoa strength',
+      'Made with sprouted multigrain millet ingredients',
+      'Instant preparation — no boiling required',
+      'Smooth and creamy taste with comforting millet body',
+      'Suitable for older children, students, working professionals & families'
     ],
-    ingredients: 'Sprouted Finger Millet (Ragi), Sprouted Pearl Millet (Bajra), Sprouted Foxtail Millet, Cocoa powder, Almond powder, Milk solids, Natural sugar, Cardamom. Allergen advice: Contains milk solids and nuts.',
-    usage_instructions: 'Add 2-3 teaspoons to 150-200 ml hot milk. Stir until smooth. For a lighter drink, use hot water. Add sweetener only if desired.',
+    ingredients: 'Sprouted Finger Millet (Ragi), Sprouted Pearl Millet (Bajra), Sprouted Foxtail Millet, Cocoa powder, Almond powder, Milk solids, Natural sugar, Cardamom.',
+    allergen: 'Contains milk solids and nuts (Almond powder). Processed in a facility handling milk, gluten, soy or nuts.',
+    usage_instructions: 'Add 2-3 teaspoons (10g) to 150-200 ml hot milk. Stir until smooth. For a lighter drink, use warm water. Add sweetener only if desired.',
+    taste_profile: 'Rich chocolate, creamy, smooth and comforting with millet-based body.',
+    perfect_for: 'Kids post-school energy drink, active breakfast, office break, evening chocolate boost for adults.',
+    storage: 'Store in a cool, dry place. Reseal tightly after opening. Avoid moisture.',
     nutritional_facts: [
-      'Energy: 360 kcal (per 100g)',
-      'Protein: 14g',
-      'Carbohydrates: 65g',
-      'Dietary Fiber: 9g',
-      'Calcium: 410mg'
+      'Energy: 360 kcal (per 100g) | 36 kcal (per serving)',
+      'Protein: 14g (per 100g) | 1.4g (per serving)',
+      'Carbohydrates: 65g (per 100g) | 6.5g (per serving)',
+      'Total Sugar: 20g (per 100g) | 2.0g (per serving)',
+      'Added Sugar: 10g (per 100g) | 1.0g (per serving)',
+      'Dietary Fibre: 9g (per 100g) | 0.9g (per serving)',
+      'Total Fat: 5.5g (per 100g) | 0.55g (per serving)',
+      'Sodium: 60mg (per 100g) | 6mg (per serving)',
+      'Calcium: 410mg (per 100g) | 41mg (per serving)'
+    ],
+    faqs: [
+      { q: 'Is it an instant drink?', a: 'Yes. Mix with hot milk or hot water and stir well.' },
+      { q: 'Does it require boiling?', a: 'No. It is designed for instant preparation.' },
+      { q: 'Can children consume it?', a: 'Older children can enjoy it as part of a balanced diet. Parents should check the ingredient list for allergens.' },
+      { q: 'Is it only for children?', a: 'No. It can be enjoyed by students, working professionals, families and adults as a warm chocolate malt drink.' },
+      { q: 'Can I drink it with water?', a: 'Yes, but hot milk gives a richer and creamier taste.' }
     ]
   }
 ];
@@ -125,8 +200,10 @@ export default function ProductDetailPage() {
   const params = useParams();
   const router = useRouter();
   const productId = params?.id as string;
+  const { addToCart, buyNow, openCart } = useCart();
 
   const [product, setProduct] = useState<Product | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string>('');
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<'desc' | 'ing' | 'use' | 'nut'>('desc');
   const [isWishlisted, setIsWishlisted] = useState(false);
@@ -151,25 +228,33 @@ export default function ProductDetailPage() {
         found = DEFAULT_PRODUCTS.find(p => p.svg_type === 'abc');
       } else if (pidStr === '3' || pidStr.includes('choco') || pidStr.includes('millet')) {
         found = DEFAULT_PRODUCTS.find(p => p.svg_type === 'choco');
-      } else if (pidStr === '4' || pidStr.includes('mushroom')) {
-        found = DEFAULT_PRODUCTS.find(p => p.svg_type === 'mushroom');
       }
     }
 
     if (found) {
       setProduct(found);
+      setSelectedImage(found.image || found.images?.[0] || '/hero_moringa.png');
     } else {
       // 3. API fetch fallback
       fetch(`/api/products/${productId}`)
         .then(res => res.json())
         .then(data => {
           if (data && (data.id || data.title)) {
+            const fallbackImg = data.image || (data.svg_type === 'abc' ? '/hero_abc.png' : data.svg_type === 'choco' ? '/hero_choco.png' : '/Moringo1.jpeg');
+            const fallbackImages = data.images || (
+              data.svg_type === 'abc' 
+                ? ['/hero_abc.png', '/ABC1.jpeg', '/ABC2.jpeg', '/ABC3.jpeg', '/ABC4.jpeg']
+                : data.svg_type === 'choco'
+                ? ['/hero_choco.png', '/Choco1.jpeg', '/Choco2.jpeg']
+                : ['/Moringo1.jpeg', '/Moringo2.jpeg', '/Moringo3.jpeg', '/Moringo4.jpeg', '/hero_moringa.png']
+            );
             setProduct({
               id: String(data.id || productId),
               category: data.category || 'Instant Food Mixes',
               title: data.title || 'Ayurmor Wellness Mix',
               price: Number(data.price || 299),
-              image: data.image || (data.svg_type === 'abc' ? '/hero_abc.png' : data.svg_type === 'choco' ? '/hero_choco.png' : '/hero_moringa.png'),
+              image: fallbackImg,
+              images: fallbackImages,
               svg_type: data.svg_type || 'moringa',
               rating_count: data.rating_count || 100,
               tag: data.tag || 'FSSAI Registered',
@@ -179,11 +264,16 @@ export default function ProductDetailPage() {
               usage_instructions: data.usage_instructions,
               nutritional_facts: typeof data.nutrition === 'string' ? data.nutrition.split('\n') : (data.nutritional_facts || [])
             });
+            setSelectedImage(fallbackImg);
           } else {
             setProduct(DEFAULT_PRODUCTS[0]);
+            setSelectedImage(DEFAULT_PRODUCTS[0].image || '/hero_abc.png');
           }
         })
-        .catch(() => setProduct(DEFAULT_PRODUCTS[0]));
+        .catch(() => {
+          setProduct(DEFAULT_PRODUCTS[0]);
+          setSelectedImage(DEFAULT_PRODUCTS[0].image || '/hero_abc.png');
+        });
     }
   }, [productId]);
 
@@ -195,22 +285,40 @@ export default function ProductDetailPage() {
     );
   }
 
+  const galleryList = product.images && product.images.length > 0 
+    ? product.images 
+    : [product.image || '/hero_moringa.png'];
+
+  const currentImg = selectedImage || product.image || galleryList[0];
+  const activeIndex = galleryList.indexOf(currentImg) !== -1 ? galleryList.indexOf(currentImg) : 0;
+
+  const handlePrevImage = () => {
+    const prevIdx = (activeIndex - 1 + galleryList.length) % galleryList.length;
+    setSelectedImage(galleryList[prevIdx]);
+  };
+
+  const handleNextImage = () => {
+    const nextIdx = (activeIndex + 1) % galleryList.length;
+    setSelectedImage(galleryList[nextIdx]);
+  };
+
   const handleAddToCart = () => {
+    if (!product) return;
+    addToCart(product, quantity);
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 2000);
   };
 
   const handleBuyNow = () => {
-    // Redirect to checkout or open cart
-    alert(`Proceeding to checkout for ${quantity}x ${product.title}`);
+    if (!product) return;
+    buyNow(product, quantity);
   };
 
   return (
     <div className="min-h-screen bg-[#F4F8FC] text-slate-900 font-sans">
       {/* Header Announcement & Navbar */}
       <Navbar 
-        onOpenCart={() => {}} 
-        cartCount={addedToCart ? 1 : 0} 
+        onOpenCart={openCart} 
         wishlistCount={isWishlisted ? 1 : 0} 
       />
 
@@ -236,35 +344,92 @@ export default function ProductDetailPage() {
         {/* Product Details Section */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-premium-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-12 mb-16">
           
-          {/* Left: Product Image Display Stage */}
-          <div className="lg:col-span-6 bg-[#F4F8FC] rounded-3xl overflow-hidden border border-slate-200 relative min-h-[420px] sm:min-h-[500px] flex items-center justify-center group shadow-inner">
-            {/* Subtle top gradient overlay for maximum button visibility */}
-            <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/40 via-black/15 to-transparent pointer-events-none z-10" />
+          {/* Left: Product Image Display Stage + Multi-Image Carousel */}
+          <div className="lg:col-span-6 flex flex-col gap-4">
+            <div className="bg-[#F4F8FC] rounded-3xl overflow-hidden border border-slate-200 relative min-h-[380px] sm:min-h-[460px] flex items-center justify-center group shadow-inner">
+              {/* Subtle top gradient overlay */}
+              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 via-black/10 to-transparent pointer-events-none z-10" />
 
-            {/* Top-Left Tag Badge */}
-            {product.tag && (
-              <span className="absolute top-4 left-4 sm:top-5 sm:left-5 z-20 bg-[#0A192F]/90 backdrop-blur-md text-sky-300 text-xs font-extrabold px-4 py-1.5 rounded-full shadow-lg border border-[#0080FF]/40 tracking-wider">
-                {product.tag}
-              </span>
+              {/* Top-Left Tag Badge */}
+              {product.tag && (
+                <span className="absolute top-4 left-4 sm:top-5 sm:left-5 z-20 bg-[#0A192F]/90 backdrop-blur-md text-sky-300 text-xs font-extrabold px-4 py-1.5 rounded-full shadow-lg border border-[#0080FF]/40 tracking-wider">
+                  {product.tag}
+                </span>
+              )}
+              
+              {/* Top-Right Wishlist Button */}
+              <button 
+                onClick={() => setIsWishlisted(!isWishlisted)}
+                className={`absolute top-4 right-4 sm:top-5 sm:right-5 z-20 w-11 h-11 rounded-full flex items-center justify-center shadow-lg bg-white/95 backdrop-blur-md transition-all hover:scale-110 active:scale-95 ${
+                  isWishlisted ? 'text-red-500' : 'text-slate-600 hover:text-red-500'
+                }`}
+                aria-label="Wishlist"
+              >
+                <Heart className="w-5 h-5" fill={isWishlisted ? 'currentColor' : 'none'} />
+              </button>
+
+              {/* Left Carousel Arrow */}
+              {galleryList.length > 1 && (
+                <button
+                  onClick={handlePrevImage}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/90 shadow-md border border-slate-200 flex items-center justify-center text-[#0A192F] hover:bg-[#0080FF] hover:text-white transition-all duration-200"
+                  aria-label="Previous Image"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+              )}
+
+              {/* Right Carousel Arrow */}
+              {galleryList.length > 1 && (
+                <button
+                  onClick={handleNextImage}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/90 shadow-md border border-slate-200 flex items-center justify-center text-[#0A192F] hover:bg-[#0080FF] hover:text-white transition-all duration-200"
+                  aria-label="Next Image"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              )}
+
+              {/* Image Counter Indicator */}
+              {galleryList.length > 1 && (
+                <span className="absolute bottom-4 z-20 bg-black/60 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/20">
+                  {activeIndex + 1} / {galleryList.length}
+                </span>
+              )}
+
+              {/* Product Image - 100% Full Cover Stage */}
+              <img
+                src={currentImg}
+                alt={`${product.title} view ${activeIndex + 1}`}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none"
+              />
+            </div>
+
+            {/* Horizontal Multi-Image Carousel / Sequence Thumbnail Strip */}
+            {galleryList.length > 1 && (
+              <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-slate-300">
+                {galleryList.map((imgUrl, idx) => {
+                  const isSelected = imgUrl === currentImg;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedImage(imgUrl)}
+                      className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 flex-shrink-0 transition-all duration-200 shadow-sm ${
+                        isSelected 
+                          ? 'border-[#0080FF] ring-2 ring-[#0080FF]/30 scale-105 shadow-md' 
+                          : 'border-slate-200 opacity-70 hover:opacity-100 hover:border-slate-400'
+                      }`}
+                    >
+                      <img
+                        src={imgUrl}
+                        alt={`${product.title} thumbnail ${idx + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  );
+                })}
+              </div>
             )}
-            
-            {/* Top-Right Wishlist Button */}
-            <button 
-              onClick={() => setIsWishlisted(!isWishlisted)}
-              className={`absolute top-4 right-4 sm:top-5 sm:right-5 z-20 w-11 h-11 rounded-full flex items-center justify-center shadow-lg bg-white/95 backdrop-blur-md transition-all hover:scale-110 active:scale-95 ${
-                isWishlisted ? 'text-red-500' : 'text-slate-600 hover:text-red-500'
-              }`}
-              aria-label="Wishlist"
-            >
-              <Heart className="w-5 h-5" fill={isWishlisted ? 'currentColor' : 'none'} />
-            </button>
-
-            {/* Product Image - 100% Full Cover Stage */}
-            <img
-              src={product.image || '/hero_moringa.png'}
-              alt={product.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 select-none"
-            />
           </div>
 
           {/* Right: Product Purchase Details */}
@@ -278,35 +443,83 @@ export default function ProductDetailPage() {
                 {product.title}
               </h1>
 
-              {/* Review Stars & Assurance */}
-              <div className="flex items-center gap-3 text-amber-500 text-sm mb-4">
-                {"★★★★★".split("").map((star, idx) => (
-                  <span key={idx}>{star}</span>
-                ))}
-                <span className="text-slate-500 text-xs font-semibold">
-                  ({product.rating_count} Verified Customer Reviews)
-                </span>
+              {/* Review Stars & Trust Badges Strip (Page 9 Report Requirement) */}
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <div className="flex items-center gap-2 text-amber-500 text-sm">
+                  {"★★★★★".split("").map((star, idx) => (
+                    <span key={idx}>{star}</span>
+                  ))}
+                  <span className="text-slate-500 text-xs font-semibold">
+                    ({product.rating_count} Verified Customer Reviews)
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-[10px] bg-emerald-50 text-emerald-700 font-extrabold px-2.5 py-1 rounded-full border border-emerald-200">
+                    🟢 100% Veg
+                  </span>
+                  <span className="text-[10px] bg-sky-50 text-[#0080FF] font-extrabold px-2.5 py-1 rounded-full border border-sky-200">
+                    ⚡ Instant Mix
+                  </span>
+                  <span className="text-[10px] bg-slate-100 text-slate-700 font-bold px-2.5 py-1 rounded-full border border-slate-200">
+                    🔥 No Boiling
+                  </span>
+                </div>
               </div>
 
-              {/* Price Display */}
-              <div className="flex items-baseline gap-4 py-3 border-y border-slate-100 mb-6">
-                <span className="font-serif text-4xl font-bold text-[#0A192F]">
-                  Rs. {product.price}
-                </span>
-                <span className="text-xs text-[#0080FF] bg-[#0080FF]/10 px-3 py-1 rounded-full font-bold border border-[#0080FF]/20">
-                  FREE Shipping on Prepaid Orders
-                </span>
+              {/* Price & Pack Size Display */}
+              <div className="flex items-baseline justify-between py-3 border-y border-slate-100 mb-6">
+                <div className="flex items-baseline gap-3">
+                  <span className="font-serif text-4xl font-bold text-[#0A192F]">
+                    Rs. {product.price}
+                  </span>
+                  <span className="text-sm text-slate-400 line-through">
+                    Rs. {product.mrp || 349}
+                  </span>
+                </div>
+                
+                <div className="text-right">
+                  <span className="text-xs font-bold text-[#0A192F] bg-slate-100 px-3 py-1 rounded-full border border-slate-200 block mb-1">
+                    📦 {product.net_weight || '200g Pouch'} ({product.servings || '20 Servings'})
+                  </span>
+                  <span className="text-[10px] text-[#0080FF] font-bold">
+                    FREE Shipping on Prepaid Orders
+                  </span>
+                </div>
               </div>
 
-              {/* Description */}
+              {/* Tagline & Short Description */}
+              {product.tagline && (
+                <p className="text-xs font-bold uppercase tracking-wider text-[#0080FF] mb-2">
+                  {product.tagline}
+                </p>
+              )}
               <p className="text-slate-700 text-sm leading-relaxed mb-6 font-light">
                 {product.description}
               </p>
 
-              {/* Key Benefits List */}
+              {/* Taste Profile & Perfect For (Page 9 & 10 Recommendation) */}
+              {(product.taste_profile || product.perfect_for) && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 bg-[#F4F8FC] p-4 rounded-2xl border border-slate-200">
+                  {product.taste_profile && (
+                    <div>
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0A192F] block mb-0.5">Taste Profile:</span>
+                      <p className="text-xs text-slate-700 font-medium">{product.taste_profile}</p>
+                    </div>
+                  )}
+                  {product.perfect_for && (
+                    <div>
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0A192F] block mb-0.5">Perfect For:</span>
+                      <p className="text-xs text-slate-700 font-medium">{product.perfect_for}</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Key Health & Convenience Benefits List */}
               {product.benefits && (
                 <div className="space-y-2.5 mb-8">
-                  <h4 className="font-serif font-bold text-sm text-[#0A192F]">Key Health Benefits:</h4>
+                  <h4 className="font-serif font-bold text-sm text-[#0A192F]">Why You Will Love It:</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {product.benefits.map((b, i) => (
                       <div key={i} className="flex items-center gap-2 text-xs font-medium text-slate-800 bg-[#F4F8FC] p-2.5 rounded-xl border border-slate-200">
@@ -371,7 +584,7 @@ export default function ProductDetailPage() {
           </div>
         </div>
 
-        {/* Detailed Tabs: Ingredients, Directions, Nutrition */}
+        {/* Detailed Specification Tabs: Ingredients, Directions, Nutrition, Storage & FAQ */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-premium-lg p-6 sm:p-10 mb-16">
           <div className="flex gap-8 border-b border-slate-200 font-serif text-lg font-bold mb-8 overflow-x-auto pb-2">
             <button 
@@ -388,7 +601,7 @@ export default function ProductDetailPage() {
                 activeTab === 'ing' ? 'text-[#0080FF] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-[#0080FF]' : 'text-slate-500 hover:text-[#0A192F]'
               }`}
             >
-              Ingredients
+              Ingredients & Allergens
             </button>
             <button 
               onClick={() => setActiveTab('use')}
@@ -404,7 +617,15 @@ export default function ProductDetailPage() {
                 activeTab === 'nut' ? 'text-[#0080FF] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-[#0080FF]' : 'text-slate-500 hover:text-[#0A192F]'
               }`}
             >
-              Nutritional Facts
+              Nutritional Facts & Storage
+            </button>
+            <button 
+              onClick={() => setActiveTab('faq' as any)}
+              className={`pb-3 transition-all relative whitespace-nowrap ${
+                activeTab === ('faq' as any) ? 'text-[#0080FF] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-[#0080FF]' : 'text-slate-500 hover:text-[#0A192F]'
+              }`}
+            >
+              Product FAQ
             </button>
           </div>
 
@@ -412,44 +633,110 @@ export default function ProductDetailPage() {
             {activeTab === 'desc' && (
               <div className="space-y-4">
                 <p className="text-base">{product.description}</p>
+
+                {/* Storage Instructions Box */}
+                {product.storage && (
+                  <div className="p-4 bg-amber-50/70 rounded-2xl border border-amber-200">
+                    <h4 className="font-bold text-xs text-amber-900 uppercase tracking-wider mb-1">📌 Storage Instructions</h4>
+                    <p className="text-xs text-amber-900 leading-relaxed font-medium">{product.storage}</p>
+                  </div>
+                )}
+
                 <div className="p-4 bg-sky-50 rounded-2xl border border-sky-100">
-                  <h4 className="font-bold text-xs text-[#0080FF] uppercase tracking-wider mb-2">Manufacturing & Marketing Assurance</h4>
+                  <h4 className="font-bold text-xs text-[#0080FF] uppercase tracking-wider mb-2">Manufacturing & Quality Assurance</h4>
                   <p className="text-xs text-slate-700 leading-relaxed">
                     <strong>Manufactured by:</strong> <strong className="text-[#0A192F] font-extrabold">Saish Technofarms</strong> (FSSAI Reg. No. 21224169000054 & ISO 9001:2015 Certified).<br />
-                    <strong>Marketed by:</strong> <strong className="text-[#0080FF] font-extrabold">Zeyora Global Trading Co.</strong>, Kombai Nagar, Tiruchengode – 637211 (FSSAI No. 124250140000673, GSTIN: 33AEQPT6920G1Z6).
+                    <strong>Marketed by:</strong> <strong className="text-[#0080FF] font-extrabold">Zeyora Global Trading Co.</strong>, Tiruchengode – 637211 (FSSAI No. 124250140000673, GSTIN: 33AEQPT6920G1Z6).
                   </p>
                 </div>
               </div>
             )}
 
             {activeTab === 'ing' && (
-              <div className="bg-[#F4F8FC] p-6 rounded-2xl border border-slate-200 space-y-2">
-                <h4 className="font-serif font-bold text-base text-[#0A192F]">Complete Ingredients List:</h4>
-                <p className="text-sm italic text-slate-700">{product.ingredients}</p>
+              <div className="space-y-4">
+                <div className="bg-[#F4F8FC] p-6 rounded-2xl border border-slate-200 space-y-2">
+                  <h4 className="font-serif font-bold text-base text-[#0A192F]">Complete Ingredient Declaration (Descending Order by Weight):</h4>
+                  <p className="text-sm italic text-slate-800">{product.ingredients}</p>
+                </div>
+
+                {product.allergen && (
+                  <div className="bg-red-50 p-4 rounded-2xl border border-red-200 text-xs text-red-800">
+                    <strong>⚠️ Allergen Advice:</strong> {product.allergen}
+                  </div>
+                )}
               </div>
             )}
 
             {activeTab === 'use' && (
-              <div className="bg-[#F4F8FC] p-6 rounded-2xl border border-slate-200 space-y-2">
-                <h4 className="font-serif font-bold text-base text-[#0A192F]">Instant 10-Second Preparation:</h4>
-                <p className="text-sm text-slate-700">{product.usage_instructions}</p>
+              <div className="bg-[#F4F8FC] p-6 rounded-2xl border border-slate-200 space-y-3">
+                <h4 className="font-serif font-bold text-base text-[#0A192F]">Step-by-Step 60-Second Preparation:</h4>
+                <p className="text-sm text-slate-800 font-medium">{product.usage_instructions}</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-center text-xs">
+                  <div className="bg-white p-3 rounded-xl border border-slate-200 font-bold text-[#0A192F]">1. Add 2-3 tsp / 1 sachet</div>
+                  <div className="bg-white p-3 rounded-xl border border-slate-200 font-bold text-[#0A192F]">2. Add 150-200ml hot liquid</div>
+                  <div className="bg-white p-3 rounded-xl border border-slate-200 font-bold text-[#0A192F]">3. Stir 15s & Enjoy Warm</div>
+                </div>
               </div>
             )}
 
             {activeTab === 'nut' && (
-              <div className="bg-[#F4F8FC] p-6 rounded-2xl border border-slate-200">
-                <h4 className="font-serif font-bold text-base text-[#0A192F] mb-4">Nutritional Values (Approx. per 100g):</h4>
-                {product.nutritional_facts ? (
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {product.nutritional_facts.map((n, i) => (
-                      <li key={i} className="flex items-center gap-2 text-xs font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200">
-                        <span className="w-2 h-2 rounded-full bg-[#76BC21]" />
-                        <span>{n}</span>
-                      </li>
+              <div className="space-y-4">
+                {/* Serving Size & Pack Info (Page 17 Recommendation) */}
+                <div className="flex flex-wrap items-center justify-between gap-3 bg-sky-50 p-4 rounded-2xl border border-sky-100 text-xs">
+                  <div>
+                    <span className="font-bold text-[#0080FF] uppercase tracking-wider block">Serving Size Suggestion:</span>
+                    <span className="text-slate-800 font-semibold">10g (2 to 3 teaspoons) per cup</span>
+                  </div>
+                  <div>
+                    <span className="font-bold text-[#0080FF] uppercase tracking-wider block">Servings Per Pack:</span>
+                    <span className="text-slate-800 font-semibold">{product.servings || '20 Servings per 200g pack'}</span>
+                  </div>
+                </div>
+
+                <div className="bg-[#F4F8FC] p-6 rounded-2xl border border-slate-200">
+                  <h4 className="font-serif font-bold text-base text-[#0A192F] mb-4">Nutritional Facts Declaration (Per 100g & Per Serving):</h4>
+                  {product.nutritional_facts ? (
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {product.nutritional_facts.map((n, i) => (
+                        <li key={i} className="flex items-center gap-2 text-xs font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                          <span className="w-2 h-2 rounded-full bg-[#76BC21] shrink-0" />
+                          <span>{n}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-xs text-slate-500 italic">Nutritional facts available on pouch label.</p>
+                  )}
+                </div>
+
+                {/* Storage instruction */}
+                {product.storage && (
+                  <div className="bg-amber-50/70 p-4 rounded-2xl border border-amber-200 text-xs text-amber-900 font-medium">
+                    <strong>📌 Storage Guidelines:</strong> {product.storage}
+                  </div>
+                )}
+
+                {/* Product Level Disclaimer (Page 17 Standard) */}
+                <div className="bg-slate-100 p-4 rounded-2xl border border-slate-200 text-[11px] text-slate-600 leading-relaxed">
+                  <strong>Standard Product Disclaimer:</strong> "This is a food product intended to complement a balanced diet. It is not intended to diagnose, treat, cure or prevent any disease."
+                </div>
+              </div>
+            )}
+
+            {activeTab === ('faq' as any) && (
+              <div className="space-y-3">
+                <h4 className="font-serif font-bold text-base text-[#0A192F] mb-3">Frequently Asked Questions for {product.title}:</h4>
+                {product.faqs && product.faqs.length > 0 ? (
+                  <div className="space-y-3">
+                    {product.faqs.map((f, i) => (
+                      <div key={i} className="bg-[#F4F8FC] p-4 rounded-2xl border border-slate-200">
+                        <h5 className="font-bold text-sm text-[#0A192F] mb-1">Q: {f.q}</h5>
+                        <p className="text-xs text-slate-700 font-light leading-relaxed">A: {f.a}</p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 ) : (
-                  <p className="text-xs text-slate-500 italic">Nutritional facts available on pouch label.</p>
+                  <p className="text-xs text-slate-500 italic">No specific FAQs for this product.</p>
                 )}
               </div>
             )}
