@@ -13,6 +13,7 @@ interface Testimonial {
   rating: number;
   productUsed: string;
   avatar: string;
+  promptCategory?: string;
 }
 
 const REVIEWS: Testimonial[] = [

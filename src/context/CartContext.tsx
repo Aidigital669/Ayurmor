@@ -9,8 +9,9 @@ export interface ProductItem {
   category?: string;
   image?: string;
   svg_type?: string;
-  tag?: string;
+  tag?: string | null;
   description?: string;
+  [key: string]: any;
 }
 
 export interface CartItem {
