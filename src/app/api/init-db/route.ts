@@ -126,6 +126,36 @@ export async function GET() {
       }
     }
 
+    // Create product_reviews table
+    const createReviewsTableQuery = `
+      CREATE TABLE IF NOT EXISTS product_reviews (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        product_id VARCHAR(100) NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) DEFAULT NULL,
+        location VARCHAR(255) DEFAULT NULL,
+        rating INT NOT NULL DEFAULT 5,
+        title VARCHAR(255) NOT NULL,
+        review TEXT NOT NULL,
+        status VARCHAR(50) DEFAULT 'approved',
+        created_at VARCHAR(100) DEFAULT NULL
+      )
+    `;
+    await connection.query(createReviewsTableQuery);
+
+    // Seed product reviews if empty
+    const [reviewRows]: any = await connection.query('SELECT COUNT(*) as count FROM product_reviews');
+    if (reviewRows[0].count === 0) {
+      const insertReviewsQuery = `
+        INSERT INTO product_reviews (product_id, name, email, location, rating, title, review, status, created_at) VALUES
+        ('abc-latte-mix', 'Priya Sharma', 'priya@gmail.com', 'Bengaluru, KA', 5, 'Smooth and delicious morning malt!', 'I have been drinking the ABC Latte Mix every morning with warm milk. It mixes easily without any lumps and tastes so comforting!', 'approved', '2026-07-20 10:30 AM'),
+        ('abc-latte-mix', 'Aisha Mohammed', 'aisha@gmail.com', 'Hyderabad, TS', 5, 'Quick 1-minute breakfast booster', 'Takes less than a minute to make before leaving for work. Clear ingredient declaration and great quality packaging.', 'approved', '2026-07-22 08:15 AM'),
+        ('moringa-premix-soup', 'Rahul Kulkarni', 'rahul@gmail.com', 'Pune, MH', 5, 'Very comforting office soup', 'The Moringa Premix Soup is warm, savoury and ready in just 60 seconds. Perfect for office breaks!', 'approved', '2026-07-21 04:45 PM'),
+        ('choco-multigrain-millet-malt', 'Suresh Hegde', 'suresh@gmail.com', 'Mangaluru, KA', 5, 'Kids love the chocolate taste!', 'Rich chocolate flavour with sprouted millet body. Whole family enjoys it daily.', 'approved', '2026-07-24 07:10 PM')
+      `;
+      await connection.query(insertReviewsQuery);
+    }
+
     // Create hero_slides table
     const createSlidesTableQuery = `
       CREATE TABLE IF NOT EXISTS hero_slides (

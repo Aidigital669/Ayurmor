@@ -9,11 +9,12 @@ import {
 import Link from 'next/link';
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'products' | 'orders' | 'slides' | 'contacts' | 'compliance'>('products');
+  const [activeTab, setActiveTab] = useState<'products' | 'orders' | 'slides' | 'contacts' | 'reviews' | 'compliance'>('products');
   const [products, setProducts] = useState<any[]>([]);
   const [orders, setOrders] = useState<any[]>([]);
   const [slides, setSlides] = useState<any[]>([]);
   const [contacts, setContacts] = useState<any[]>([]);
+  const [adminReviews, setAdminReviews] = useState<any[]>([]);
   const [contactFilter, setContactFilter] = useState<'all' | 'b2b' | 'contact' | 'newsletter' | 'callback' | 'chatbot'>('all');
   const [contactSearch, setContactSearch] = useState<string>('');
   const [dbSource, setDbSource] = useState<string>('database');
@@ -276,6 +277,53 @@ export default function AdminDashboard() {
     }
   };
 
+  const fetchAdminReviews = async () => {
+    try {
+      const res = await fetch('/api/reviews');
+      const data = await res.json();
+      if (data.success) {
+        setAdminReviews(data.reviews || []);
+      }
+    } catch (err) {
+      console.error('Error fetching admin reviews:', err);
+    }
+  };
+
+  const handleUpdateReviewStatus = async (id: number, status: string) => {
+    try {
+      const res = await fetch('/api/reviews', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status })
+      });
+      const data = await res.json();
+      if (data.success) {
+        await fetchAdminReviews();
+      } else {
+        alert(data.error || 'Failed to update review status');
+      }
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
+  const handleDeleteReview = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this customer review?')) return;
+    try {
+      const res = await fetch(`/api/reviews?id=${id}`, {
+        method: 'DELETE'
+      });
+      const data = await res.json();
+      if (data.success) {
+        await fetchAdminReviews();
+      } else {
+        alert(data.error || 'Failed to delete review');
+      }
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
   const fetchSlides = async () => {
     try {
       const res = await fetch('/api/slides');
@@ -366,7 +414,7 @@ export default function AdminDashboard() {
 
   const loadData = async () => {
     setLoading(true);
-    await Promise.all([fetchProducts(), fetchOrders(), fetchContacts(), fetchSlides()]);
+    await Promise.all([fetchProducts(), fetchOrders(), fetchContacts(), fetchSlides(), fetchAdminReviews()]);
     setLoading(false);
   };
 
@@ -642,10 +690,10 @@ export default function AdminDashboard() {
         )}
 
         {/* Metric Cards Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           <div className="bg-[#0F3D2E]/30 p-6 rounded-2xl border border-white/5 shadow-lg flex items-center justify-between">
             <div>
-              <span className="text-xs text-[#5A8B73] font-bold uppercase tracking-wider">Total Sales (Processed)</span>
+              <span className="text-xs text-[#5A8B73] font-bold uppercase tracking-wider">Total Sales</span>
               <h3 className="font-serif text-3xl font-bold mt-2 text-white">Rs. {totalSales.toFixed(2)}</h3>
             </div>
             <div className="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center">
@@ -670,6 +718,16 @@ export default function AdminDashboard() {
             </div>
             <div className="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-full flex items-center justify-center">
               <Layers className="w-6 h-6" />
+            </div>
+          </div>
+
+          <div className="bg-[#0F3D2E]/30 p-6 rounded-2xl border border-white/5 shadow-lg flex items-center justify-between">
+            <div>
+              <span className="text-xs text-[#5A8B73] font-bold uppercase tracking-wider">Customer Reviews</span>
+              <h3 className="font-serif text-3xl font-bold mt-2 text-white">{adminReviews.length}</h3>
+            </div>
+            <div className="w-12 h-12 bg-amber-400/10 text-amber-400 rounded-full flex items-center justify-center">
+              <Star className="w-6 h-6 fill-current" />
             </div>
           </div>
         </section>
@@ -706,7 +764,15 @@ export default function AdminDashboard() {
               activeTab === 'contacts' ? 'text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-[#E7977D]' : 'text-white/40 hover:text-white'
             }`}
           >
-            Callback Enquiries ({contacts.length})
+            Form Submissions ({contacts.length})
+          </button>
+          <button 
+            onClick={() => setActiveTab('reviews')}
+            className={`pb-3 transition-all relative whitespace-nowrap ${
+              activeTab === 'reviews' ? 'text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-[#E7977D]' : 'text-white/40 hover:text-white'
+            }`}
+          >
+            Product Reviews ({adminReviews.length})
           </button>
           <button 
             onClick={() => setActiveTab('compliance')}
@@ -1059,6 +1125,95 @@ export default function AdminDashboard() {
                         <tr>
                           <td colSpan={6} className="text-center py-12 text-white/40 italic">
                             No form submissions received yet.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : activeTab === 'reviews' ? (
+              /* Product Reviews & Star Ratings Panel */
+              <div className="p-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-white">Customer Reviews & Ratings Hub</h3>
+                    <p className="text-xs text-[#5A8B73]">View, approve, hide or delete customer star ratings and text feedback.</p>
+                  </div>
+                </div>
+
+                <div className="overflow-x-auto rounded-xl border border-white/5">
+                  <table className="w-full text-left border-collapse text-sm">
+                    <thead>
+                      <tr className="bg-white/5 text-[#5A8B73] font-bold uppercase tracking-wider text-xs border-b border-white/5">
+                        <th className="p-4">Date</th>
+                        <th className="p-4">Product ID</th>
+                        <th className="p-4">Customer Info</th>
+                        <th className="p-4">Star Rating</th>
+                        <th className="p-4">Review Content</th>
+                        <th className="p-4">Status</th>
+                        <th className="p-4 text-center">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {adminReviews.map((r) => (
+                        <tr key={r.id} className="hover:bg-white/5 transition-colors">
+                          <td className="p-4 text-white/70 text-xs font-medium whitespace-nowrap">
+                            {r.created_at || '-'}
+                          </td>
+                          <td className="p-4">
+                            <span className="text-xs font-mono font-bold text-[#E7977D] bg-white/5 px-2.5 py-1 rounded border border-white/10">
+                              {r.product_id}
+                            </span>
+                          </td>
+                          <td className="p-4">
+                            <div className="space-y-1">
+                              <h5 className="font-semibold text-white">{r.name}</h5>
+                              {r.location && <p className="text-xs text-white/40">{r.location}</p>}
+                              {r.email && <p className="text-xs text-sky-400">{r.email}</p>}
+                            </div>
+                          </td>
+                          <td className="p-4">
+                            <div className="flex items-center gap-1 text-amber-400 font-bold text-xs bg-[#0b1a15] px-2.5 py-1 rounded-full border border-amber-500/20 w-fit">
+                              {[...Array(Number(r.rating) || 5)].map((_, i) => (
+                                <Star key={i} className="w-3.5 h-3.5 fill-current shrink-0" />
+                              ))}
+                              <span className="ml-1 text-white">{r.rating}.0</span>
+                            </div>
+                          </td>
+                          <td className="p-4 text-xs max-w-xs">
+                            <h6 className="font-bold text-white mb-0.5">"{r.title}"</h6>
+                            <p className="text-slate-300 font-light leading-relaxed whitespace-pre-wrap">{r.review}</p>
+                          </td>
+                          <td className="p-4">
+                            <select
+                              value={r.status}
+                              onChange={(e) => handleUpdateReviewStatus(r.id, e.target.value)}
+                              className={`text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl border focus:outline-none bg-[#0b1a15] ${
+                                r.status === 'approved'
+                                  ? 'text-emerald-400 border-emerald-500/35'
+                                  : 'text-amber-400 border-amber-500/35'
+                              }`}
+                            >
+                              <option value="approved">Approved</option>
+                              <option value="hidden">Hidden</option>
+                            </select>
+                          </td>
+                          <td className="p-4 text-center">
+                            <button
+                              onClick={() => handleDeleteReview(r.id)}
+                              className="p-2 border border-rose-500/10 hover:border-rose-500/20 hover:bg-rose-500/10 rounded-full text-rose-400 hover:text-rose-300 transition-all active:scale-95"
+                              title="Delete Review"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                      {adminReviews.length === 0 && (
+                        <tr>
+                          <td colSpan={7} className="text-center py-12 text-white/40 italic">
+                            No product reviews submitted yet.
                           </td>
                         </tr>
                       )}

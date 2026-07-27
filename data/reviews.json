@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "product_id": "abc-latte-mix",
+    "name": "Priya Sharma",
+    "email": "priya@gmail.com",
+    "location": "Bengaluru, KA",
+    "rating": 5,
+    "title": "Smooth and delicious morning malt!",
+    "review": "I have been drinking the ABC Latte Mix every morning with warm milk. It mixes easily without any lumps and tastes so comforting!",
+    "status": "approved",
+    "created_at": "2026-07-20 10:30 AM"
+  },
+  {
+    "id": 2,
+    "product_id": "abc-latte-mix",
+    "name": "Aisha Mohammed",
+    "email": "aisha@gmail.com",
+    "location": "Hyderabad, TS",
+    "rating": 5,
+    "title": "Quick 1-minute breakfast booster",
+    "review": "Takes less than a minute to make before leaving for work. Clear ingredient declaration and great quality packaging.",
+    "status": "approved",
+    "created_at": "2026-07-22 08:15 AM"
+  },
+  {
+    "id": 3,
+    "product_id": "moringa-premix-soup",
+    "name": "Rahul Kulkarni",
+    "email": "rahul@gmail.com",
+    "location": "Pune, MH",
+    "rating": 5,
+    "title": "Very comforting office soup",
+    "review": "The Moringa Premix Soup is warm, savoury and ready in just 60 seconds. Perfect for office breaks!",
+    "status": "approved",
+    "created_at": "2026-07-21 04:45 PM"
+  },
+  {
+    "id": 4,
+    "product_id": "choco-multigrain-millet-malt",
+    "name": "Suresh Hegde",
+    "email": "suresh@gmail.com",
+    "location": "Mangaluru, KA",
+    "rating": 5,
+    "title": "Kids love the chocolate taste!",
+    "review": "Rich chocolate flavour with sprouted millet body. Whole family enjoys it daily.",
+    "status": "approved",
+    "created_at": "2026-07-24 07:10 PM"
+  }
+]
