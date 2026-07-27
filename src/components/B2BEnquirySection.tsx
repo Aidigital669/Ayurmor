@@ -5,6 +5,8 @@ import { Building2, Store, Gift, MessageCircle, Send, CheckCircle2 } from 'lucid
 
 export default function B2BEnquirySection() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -13,10 +15,43 @@ export default function B2BEnquirySection() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email || 'b2b-lead@ayurmor.com',
+          mobile: formData.phone,
+          message: formData.message,
+          type: 'b2b',
+          enquiry_type: formData.enquiryType
+        })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          enquiryType: 'Distributor / Retailer',
+          message: ''
+        });
+      } else {
+        setError(data.error || 'Failed to submit enquiry. Please try again.');
+      }
+    } catch (err: any) {
+      setError(err.message || 'Network error. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -170,11 +205,22 @@ export default function B2BEnquirySection() {
                   />
                 </div>
 
+                {error && (
+                  <p className="text-xs text-red-600 bg-red-50 p-2.5 rounded-lg font-medium">{error}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-[#0080FF] text-white font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-[#0066CC] shadow-lg transition-all flex items-center justify-center gap-2"
+                  disabled={loading}
+                  className="w-full py-3.5 bg-[#0080FF] text-white font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-[#0066CC] shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
-                  <Send className="w-4 h-4" /> Submit Partnership Enquiry
+                  {loading ? (
+                    <span>Submitting Enquiry...</span>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" /> Submit Partnership Enquiry
+                    </>
+                  )}
                 </button>
               </form>
             )}

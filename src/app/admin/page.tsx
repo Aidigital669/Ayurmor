@@ -14,6 +14,8 @@ export default function AdminDashboard() {
   const [orders, setOrders] = useState<any[]>([]);
   const [slides, setSlides] = useState<any[]>([]);
   const [contacts, setContacts] = useState<any[]>([]);
+  const [contactFilter, setContactFilter] = useState<'all' | 'b2b' | 'contact' | 'newsletter' | 'callback' | 'chatbot'>('all');
+  const [contactSearch, setContactSearch] = useState<string>('');
   const [dbSource, setDbSource] = useState<string>('database');
   const [loading, setLoading] = useState<boolean>(true);
   const [actionLoading, setActionLoading] = useState<boolean>(false);
@@ -910,11 +912,37 @@ export default function AdminDashboard() {
                 </div>
               </div>
             ) : activeTab === 'contacts' ? (
-              /* Callback Enquiries Management Panel */
+              /* All Website Form Submissions Panel */
               <div className="p-6">
-                <div className="mb-6">
-                  <h3 className="font-serif text-xl font-bold text-white">Callback & Contact Enquiries</h3>
-                  <p className="text-xs text-[#5A8B73]">Manage user queries and callback requests submitted from the Contact Us page.</p>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-white">Forms & Enquiries Central Hub</h3>
+                    <p className="text-xs text-[#5A8B73]">Manage B2B enquiries, contact support, newsletter subscriptions, callbacks & chatbot leads.</p>
+                  </div>
+                  
+                  {/* Category Filter Pills */}
+                  <div className="flex flex-wrap items-center gap-1.5 bg-[#0b1a15] p-1.5 rounded-2xl border border-white/10">
+                    {[
+                      { key: 'all', label: 'All' },
+                      { key: 'b2b', label: 'B2B Wholesale' },
+                      { key: 'contact', label: 'Contact Support' },
+                      { key: 'newsletter', label: 'Newsletter' },
+                      { key: 'callback', label: 'Callbacks' },
+                      { key: 'chatbot', label: 'AI Chatbot' },
+                    ].map(f => (
+                      <button
+                        key={f.key}
+                        onClick={() => setContactFilter(f.key as any)}
+                        className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
+                          contactFilter === f.key
+                            ? 'bg-[#E7977D] text-[#0b1a15] shadow'
+                            : 'text-white/60 hover:text-white hover:bg-white/5'
+                        }`}
+                      >
+                        {f.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="overflow-x-auto rounded-xl border border-white/5">
@@ -922,69 +950,115 @@ export default function AdminDashboard() {
                     <thead>
                       <tr className="bg-white/5 text-[#5A8B73] font-bold uppercase tracking-wider text-xs border-b border-white/5">
                         <th className="p-4">Submission Date</th>
+                        <th className="p-4">Form Category</th>
                         <th className="p-4">Contact Info</th>
-                        <th className="p-4">Message</th>
+                        <th className="p-4">Enquiry Details</th>
                         <th className="p-4">Status</th>
                         <th className="p-4 text-center">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5">
-                      {contacts.map((c) => (
-                        <tr key={c.id} className="hover:bg-white/5 transition-colors">
-                          <td className="p-4 text-white/70 text-xs font-medium">
-                            <div className="flex items-center gap-1.5">
-                              <Clock className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                              <span>{c.created_at || '-'}</span>
-                            </div>
-                          </td>
-                          <td className="p-4">
-                            <div className="space-y-1">
-                              <h5 className="font-semibold text-white">{c.name}</h5>
-                              <p className="text-xs text-white/40 flex items-center gap-1">
-                                <Mail className="w-3 h-3 text-sky-400" />
-                                <span>{c.email}</span>
-                              </p>
-                              <p className="text-xs text-sky-300 font-bold flex items-center gap-1">
-                                <Phone className="w-3 h-3 text-[#76BC21]" />
-                                <span>{c.mobile}</span>
-                              </p>
-                            </div>
-                          </td>
-                          <td className="p-4 text-xs text-slate-300 max-w-sm whitespace-pre-wrap leading-relaxed">
-                            {c.message || <span className="text-white/20 italic">No message provided. Request callback only.</span>}
-                          </td>
-                          <td className="p-4">
-                            <select
-                              value={c.status}
-                              onChange={(e) => handleUpdateContactStatus(c.id, e.target.value)}
-                              className={`text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl border focus:outline-none bg-[#0b1a15] ${
-                                c.status === 'resolved'
-                                  ? 'text-emerald-400 border-emerald-500/35'
-                                  : c.status === 'contacted'
-                                  ? 'text-blue-400 border-blue-500/35'
-                                  : 'text-amber-400 border-amber-500/35'
-                              }`}
-                            >
-                              <option value="new">New Enquiry</option>
-                              <option value="contacted">Contacted</option>
-                              <option value="resolved">Resolved</option>
-                            </select>
-                          </td>
-                          <td className="p-4 text-center">
-                            <button
-                              onClick={() => handleDeleteContact(c.id)}
-                              className="p-2 border border-rose-500/10 hover:border-rose-500/20 hover:bg-rose-500/10 rounded-full text-rose-400 hover:text-rose-300 transition-all active:scale-95"
-                              title="Delete Enquiry"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
+                      {contacts
+                        .filter(c => {
+                          if (contactFilter === 'all') return true;
+                          const cType = (c.type || 'contact').toLowerCase();
+                          return cType === contactFilter;
+                        })
+                        .map((c) => {
+                          const cType = (c.type || 'contact').toLowerCase();
+                          const badgeStyle = 
+                            cType === 'b2b' 
+                              ? 'bg-indigo-500/10 text-indigo-300 border-indigo-500/30' 
+                              : cType === 'newsletter'
+                              ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
+                              : cType === 'chatbot'
+                              ? 'bg-purple-500/10 text-purple-300 border-purple-500/30'
+                              : cType === 'callback'
+                              ? 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+                              : 'bg-sky-500/10 text-sky-300 border-sky-500/30';
+
+                          const badgeLabel = 
+                            cType === 'b2b' 
+                              ? 'B2B Wholesale' 
+                              : cType === 'newsletter'
+                              ? 'Newsletter'
+                              : cType === 'chatbot'
+                              ? 'AI Chatbot'
+                              : cType === 'callback'
+                              ? 'Callback'
+                              : 'Contact Support';
+
+                          return (
+                            <tr key={c.id} className="hover:bg-white/5 transition-colors">
+                              <td className="p-4 text-white/70 text-xs font-medium whitespace-nowrap">
+                                <div className="flex items-center gap-1.5">
+                                  <Clock className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                                  <span>{c.created_at || '-'}</span>
+                                </div>
+                              </td>
+                              <td className="p-4">
+                                <div className="space-y-1">
+                                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border inline-block ${badgeStyle}`}>
+                                    {badgeLabel}
+                                  </span>
+                                  {c.enquiry_type && (
+                                    <span className="text-[10px] text-white/50 block font-light">
+                                      {c.enquiry_type}
+                                    </span>
+                                  )}
+                                </div>
+                              </td>
+                              <td className="p-4">
+                                <div className="space-y-1">
+                                  <h5 className="font-semibold text-white">{c.name}</h5>
+                                  <p className="text-xs text-white/40 flex items-center gap-1">
+                                    <Mail className="w-3 h-3 text-sky-400" />
+                                    <span>{c.email}</span>
+                                  </p>
+                                  {c.mobile && c.mobile !== 'N/A' && (
+                                    <p className="text-xs text-sky-300 font-bold flex items-center gap-1">
+                                      <Phone className="w-3 h-3 text-[#76BC21]" />
+                                      <span>{c.mobile}</span>
+                                    </p>
+                                  )}
+                                </div>
+                              </td>
+                              <td className="p-4 text-xs text-slate-300 max-w-sm whitespace-pre-wrap leading-relaxed">
+                                {c.message || <span className="text-white/20 italic">No message details.</span>}
+                              </td>
+                              <td className="p-4">
+                                <select
+                                  value={c.status}
+                                  onChange={(e) => handleUpdateContactStatus(c.id, e.target.value)}
+                                  className={`text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl border focus:outline-none bg-[#0b1a15] ${
+                                    c.status === 'resolved'
+                                      ? 'text-emerald-400 border-emerald-500/35'
+                                      : c.status === 'contacted'
+                                      ? 'text-blue-400 border-blue-500/35'
+                                      : 'text-amber-400 border-amber-500/35'
+                                  }`}
+                                >
+                                  <option value="new">New Enquiry</option>
+                                  <option value="contacted">Contacted</option>
+                                  <option value="resolved">Resolved</option>
+                                </select>
+                              </td>
+                              <td className="p-4 text-center">
+                                <button
+                                  onClick={() => handleDeleteContact(c.id)}
+                                  className="p-2 border border-rose-500/10 hover:border-rose-500/20 hover:bg-rose-500/10 rounded-full text-rose-400 hover:text-rose-300 transition-all active:scale-95"
+                                  title="Delete Enquiry"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </button>
+                              </td>
+                            </tr>
+                          );
+                        })}
                       {contacts.length === 0 && (
                         <tr>
-                          <td colSpan={5} className="text-center py-12 text-white/40 italic">
-                            No callback requests received yet.
+                          <td colSpan={6} className="text-center py-12 text-white/40 italic">
+                            No form submissions received yet.
                           </td>
                         </tr>
                       )}

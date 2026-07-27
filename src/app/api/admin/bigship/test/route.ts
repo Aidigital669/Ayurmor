@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getBigshipToken, getBigshipWarehouses } from '@/lib/bigship';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const token = await getBigshipToken();

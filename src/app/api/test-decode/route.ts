@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const base64Str = "X5Z1aBOBKpXNMmmyzDRmYDdNaHZ1R0FtVDZQVlZLK3Q5VEZoanZYakZiekx5MmlOcWV5bzdUREJ0NDJrcTNXcnl6M3dJVkpxZ3hMVHdRa3BNMHVaNHJFQUxTRS8rUjhCbkF0eXJRTzU3RUtmN0pyZDNPUDBoYUdzRzVZPQ==";
   try {

@@ -77,6 +77,18 @@ export default function AIChatbot() {
         .slice(-6)
         .map(m => ({ sender: m.sender, text: m.text }));
 
+      // Silently log chatbot inquiry to /api/contact for Admin Panel tracking
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Chatbot Visitor',
+          email: 'chatbot-lead@ayurmor.com',
+          message: query,
+          type: 'chatbot'
+        })
+      }).catch(err => console.warn('Chatbot log error:', err));
+
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

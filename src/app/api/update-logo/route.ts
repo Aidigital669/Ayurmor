@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const srcFile = `C:\\Users\\ADMIN\\.gemini\\antigravity-ide\\brain\\bceecd13-3ed9-41c9-afea-dd0a06c31593\\media__1784705001178.jpg`;

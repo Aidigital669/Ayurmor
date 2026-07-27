@@ -3,6 +3,8 @@ import pool from '@/lib/db';
 import fs from 'fs';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+
 // Helper for local file fallback storage if MySQL is offline
 const DATA_DIR = path.join(process.cwd(), 'data');
 const CONTACTS_FILE = path.join(DATA_DIR, 'contacts.json');
@@ -31,17 +33,51 @@ function saveLocalContacts(data: any[]) {
   fs.writeFileSync(CONTACTS_FILE, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-// POST: Save new Callback / Contact Us request
+// POST: Save new Callback / Contact Us / B2B / Newsletter / Chatbot request
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, mobile, message } = body;
+    const { 
+      name, 
+      email, 
+      mobile, 
+      phone, 
+      message, 
+      type = 'contact', 
+      enquiry_type, 
+      enquiryType 
+    } = body;
 
-    if (!name || !email || !mobile) {
-      return NextResponse.json(
-        { success: false, error: 'Name, Email, and Mobile number are required.' },
-        { status: 400 }
-      );
+    const contactType = (type || 'contact').toLowerCase();
+    const finalEnquiryType = enquiry_type || enquiryType || null;
+    const finalPhone = (mobile || phone || '').trim();
+    const finalEmail = (email || '').trim();
+    
+    let finalName = (name || '').trim();
+    let finalMessage = (message || '').trim();
+
+    if (contactType === 'newsletter') {
+      if (!finalEmail) {
+        return NextResponse.json(
+          { success: false, error: 'Email address is required for newsletter subscription.' },
+          { status: 400 }
+        );
+      }
+      if (!finalName) finalName = 'Newsletter Subscriber';
+      if (!finalMessage) finalMessage = 'Subscribed for wellness tips & 15% discount code.';
+    } else {
+      if (!finalEmail) {
+        return NextResponse.json(
+          { success: false, error: 'Email address is required.' },
+          { status: 400 }
+        );
+      }
+      if (!finalName) {
+        return NextResponse.json(
+          { success: false, error: 'Name is required.' },
+          { status: 400 }
+        );
+      }
     }
 
     const createdAt = new Date().toLocaleString('en-IN', {
@@ -55,14 +91,16 @@ export async function POST(req: Request) {
     try {
       // Try DB insert first
       const query = `
-        INSERT INTO contacts (name, email, mobile, message, status, created_at)
-        VALUES (?, ?, ?, ?, 'new', ?)
+        INSERT INTO contacts (name, email, mobile, message, type, enquiry_type, status, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, 'new', ?)
       `;
       const [result]: any = await pool.query(query, [
-        name.trim(),
-        email.trim(),
-        mobile.trim(),
-        message ? message.trim() : '',
+        finalName,
+        finalEmail,
+        finalPhone || 'N/A',
+        finalMessage,
+        contactType,
+        finalEnquiryType,
         createdAt
       ]);
 
@@ -77,10 +115,12 @@ export async function POST(req: Request) {
     const local = getLocalContacts();
     const newEntry = {
       id: Date.now(),
-      name: name.trim(),
-      email: email.trim(),
-      mobile: mobile.trim(),
-      message: message ? message.trim() : '',
+      name: finalName,
+      email: finalEmail,
+      mobile: finalPhone || 'N/A',
+      message: finalMessage,
+      type: contactType,
+      enquiry_type: finalEnquiryType,
       status: 'new',
       created_at: createdAt,
       storage: savedInDb ? 'database' : 'file'
@@ -90,7 +130,11 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       success: true,
-      message: 'Callback request submitted successfully!',
+      message: contactType === 'newsletter' 
+        ? 'Subscribed to newsletter successfully!' 
+        : contactType === 'b2b' 
+        ? 'B2B Enquiry submitted successfully!' 
+        : 'Request submitted successfully!',
       entry: newEntry
     });
   } catch (error: any) {

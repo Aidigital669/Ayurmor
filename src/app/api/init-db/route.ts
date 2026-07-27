@@ -3,6 +3,8 @@ import mysql from 'mysql2/promise';
 import fs from 'fs';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     // Connect without selecting a database first
@@ -104,11 +106,25 @@ export async function GET() {
         email VARCHAR(255) NOT NULL,
         mobile VARCHAR(50) NOT NULL,
         message TEXT DEFAULT NULL,
+        type VARCHAR(50) DEFAULT 'contact',
+        enquiry_type VARCHAR(100) DEFAULT NULL,
         status VARCHAR(50) DEFAULT 'new',
         created_at VARCHAR(100) DEFAULT NULL
       )
     `;
     await connection.query(createContactsTableQuery);
+
+    const alterContactsColumns = [
+      "ALTER TABLE contacts ADD COLUMN type VARCHAR(50) DEFAULT 'contact'",
+      'ALTER TABLE contacts ADD COLUMN enquiry_type VARCHAR(100) DEFAULT NULL'
+    ];
+    for (const alterQuery of alterContactsColumns) {
+      try {
+        await connection.query(alterQuery);
+      } catch (err) {
+        // Suppress if column already exists
+      }
+    }
 
     // Create hero_slides table
     const createSlidesTableQuery = `

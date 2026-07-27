@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+
 // POST: Add a new hero slide
 export async function POST(req: Request) {
   try {
