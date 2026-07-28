@@ -1,6 +1,6 @@
 'use client';
 
-import { Truck, ShieldCheck, Clock, MessageCircle, CreditCard } from 'lucide-react';
+import { Truck, Clock, MessageCircle } from 'lucide-react';
 
 export default function DeliverySupportStrip() {
   const trustItems = [
@@ -9,12 +9,6 @@ export default function DeliverySupportStrip() {
       title: 'Free Shipping',
       subtitle: 'On all prepaid orders across India',
       color: 'text-[#0080FF]'
-    },
-    {
-      icon: CreditCard,
-      title: 'COD Available',
-      subtitle: 'Cash on delivery in major pin codes',
-      color: 'text-[#76BC21]'
     },
     {
       icon: Clock,
@@ -33,7 +27,7 @@ export default function DeliverySupportStrip() {
   return (
     <section className="bg-white border-y border-slate-200 py-6 shadow-sm">
       <div className="max-width-1200 mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
           {trustItems.map((item, idx) => {
             const Icon = item.icon;
             return (

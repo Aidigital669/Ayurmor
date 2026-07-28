@@ -153,7 +153,7 @@ export default function ShopByNeed() {
             </div>
             <div>
               <h4 className="font-serif font-bold text-base text-white">Prepaid Free Shipping Nationwide</h4>
-              <p className="text-xs text-sky-200/80 font-light">Fast dispatch across all PIN codes in India. COD options available by location.</p>
+              <p className="text-xs text-sky-200/80 font-light">Fast dispatch across all PIN codes in India.</p>
             </div>
           </div>
 

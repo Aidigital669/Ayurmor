@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { 
   Plus, Edit2, Trash2, Check, X, RefreshCw, 
   Layers, DollarSign, ShoppingCart, ArrowLeft, 
-  Settings, Loader2, Database, ExternalLink, Mail, Phone, Clock
+  Settings, Loader2, Database, ExternalLink, Mail, Phone, Clock, Star
 } from 'lucide-react';
 import Link from 'next/link';
 

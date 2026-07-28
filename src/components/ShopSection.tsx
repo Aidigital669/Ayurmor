@@ -110,7 +110,7 @@ export default function ShopSection({
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
 
-  const categories = ['All', 'Instant Malt Drinks', 'Premix Soups', 'Combo Packs'];
+  const categories = ['All', 'Instant Malt Drinks', 'Premix Soups'];
 
   const displayedProducts = filteredProducts.filter(p => {
     if (activeCategory === 'All') return true;
@@ -200,7 +200,7 @@ export default function ShopSection({
                 <div className="flex items-center justify-between gap-2 mb-1.5">
                   <span className="text-[#76BC21] text-xs font-bold uppercase tracking-wider">{product.category}</span>
                   <span className="text-[10px] text-slate-600 font-semibold bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">
-                    {product.net_weight || (product.svg_type === 'moringa' || product.svg_type === 'mushroom' ? '150g • 15 Servings' : '200g • 20 Servings')}
+                    {product.net_weight || '100g • Up to 20 Servings*'}
                   </span>
                 </div>
 

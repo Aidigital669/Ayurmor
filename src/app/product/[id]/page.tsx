@@ -62,8 +62,8 @@ const DEFAULT_PRODUCTS: Product[] = [
     svg_type: 'abc',
     rating_count: 98,
     tag: 'Bestseller',
-    net_weight: '200g Pouch',
-    servings: '20 Servings',
+    net_weight: '100g Pouch',
+    servings: 'Up to 20 Servings*',
     tagline: 'Natural Goodness. Instant Convenience. Everyday Wellness.',
     description: 'Ayurmor ABC Latte Mix is a delicious instant wellness beverage made with apple, beetroot, carrot, almonds and cashews. Designed for busy lifestyles, it mixes easily with hot milk or water to create a smooth, satisfying drink in less than a minute - no boiling required.',
     benefits: [
@@ -111,8 +111,8 @@ const DEFAULT_PRODUCTS: Product[] = [
     svg_type: 'moringa',
     rating_count: 124,
     tag: 'Ready in 60s',
-    net_weight: '150g Pouch',
-    servings: '15 Servings',
+    net_weight: '100g Pouch',
+    servings: 'Up to 20 Servings*',
     tagline: 'The Goodness of Moringa. Ready in Just One Minute.',
     description: 'Enjoy the comforting taste of moringa in a warm, savoury soup that is ready in just one minute. Ayurmor Moringa Premix Soup is crafted for busy lifestyles - simply add hot water, stir well and enjoy a light, satisfying soup at home, work or while travelling.',
     benefits: [
@@ -158,8 +158,8 @@ const DEFAULT_PRODUCTS: Product[] = [
     svg_type: 'choco',
     rating_count: 182,
     tag: 'Family Favorite',
-    net_weight: '200g Pouch',
-    servings: '20 Servings',
+    net_weight: '100g Pouch',
+    servings: 'Up to 20 Servings*',
     tagline: 'Wholesome Millet Goodness with a Delicious Chocolate Twist.',
     description: 'Ayurmor Choco Multigrain Millet Malt Mix brings together carefully selected millets with rich chocolate flavour. Ready in less than a minute, it mixes easily with hot milk or water and makes a creamy, satisfying drink for breakfast, evening refreshment or daily family routines.',
     benefits: [
@@ -565,7 +565,7 @@ export default function ProductDetailPage() {
                 
                 <div className="text-right">
                   <span className="text-xs font-bold text-[#0A192F] bg-slate-100 px-3 py-1 rounded-full border border-slate-200 block mb-1">
-                    📦 {product.net_weight || '200g Pouch'} ({product.servings || '20 Servings'})
+                    📦 {product.net_weight || '100g Pouch'} ({product.servings || 'Up to 20 Servings*'})
                   </span>
                   <span className="text-[10px] text-[#0080FF] font-bold">
                     FREE Shipping on Prepaid Orders
@@ -766,16 +766,21 @@ export default function ProductDetailPage() {
 
             {activeTab === 'nut' && (
               <div className="space-y-4">
-                {/* Serving Size & Pack Info (Page 17 Recommendation) */}
-                <div className="flex flex-wrap items-center justify-between gap-3 bg-sky-50 p-4 rounded-2xl border border-sky-100 text-xs">
-                  <div>
-                    <span className="font-bold text-[#0080FF] uppercase tracking-wider block">Serving Size Suggestion:</span>
-                    <span className="text-slate-800 font-semibold">10g (2 to 3 teaspoons) per cup</span>
+                {/* Serving Size & Pack Info */}
+                <div className="bg-sky-50 p-4 rounded-2xl border border-sky-100 text-xs space-y-2.5">
+                  <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div className="max-w-md">
+                      <span className="font-bold text-[#0080FF] uppercase tracking-wider block mb-0.5">Serving Size Suggestion:</span>
+                      <span className="text-slate-800 font-semibold leading-relaxed">3 g to 10 g, approximately 1 to 3 teaspoons per cup, based on taste preference.</span>
+                    </div>
+                    <div className="shrink-0">
+                      <span className="font-bold text-[#0080FF] uppercase tracking-wider block mb-0.5">Servings Per Pack:</span>
+                      <span className="text-slate-800 font-semibold">Up to 20 servings*</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="font-bold text-[#0080FF] uppercase tracking-wider block">Servings Per Pack:</span>
-                    <span className="text-slate-800 font-semibold">{product.servings || '20 Servings per 200g pack'}</span>
-                  </div>
+                  <p className="text-[11px] text-slate-500 italic pt-2 border-t border-sky-100/80">
+                    *Based on an average 5 g serving per cup. Actual servings may vary depending on quantity used.
+                  </p>
                 </div>
 
                 <div className="bg-[#F4F8FC] p-6 rounded-2xl border border-slate-200">

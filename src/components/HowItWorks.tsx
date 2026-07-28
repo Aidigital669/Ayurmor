@@ -20,7 +20,7 @@ export default function HowItWorks() {
     },
     {
       step: '03',
-      title: 'Stir Well for 10 Sec',
+      title: 'Stir Well for 10 Seconds',
       desc: 'Stir briskly until completely smooth. No boiling or long cooking required!',
       icon: '🥣',
       tag: 'Step 3'

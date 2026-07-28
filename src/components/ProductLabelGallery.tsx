@@ -12,7 +12,7 @@ export default function ProductLabelGallery() {
       subtitle: 'Apple, Beetroot, Carrot with Almond & Cashew',
       frontImg: '/ABC1.jpeg',
       backImg: '/ABC2.jpeg',
-      netWeight: '200g Pouch / 20 Servings',
+      netWeight: '100g Pouch / Up to 20 Servings*',
       fssai: 'FSSAI Reg. No. 21224169000054',
       ingredients: 'Dehydrated Apple Powder, Beetroot Powder, Carrot Powder, Almond Powder, Cashew Powder, Sprouted Ragi Base, Cardamom, Palm Sugar.',
       nutrition: [
@@ -28,7 +28,7 @@ export default function ProductLabelGallery() {
       subtitle: 'Shade-Dried Moringa Leaf with Cumin & Rock Salt',
       frontImg: '/Moringo1.jpeg',
       backImg: '/Moringo2.jpeg',
-      netWeight: '150g Pouch / 15 Servings',
+      netWeight: '100g Pouch / Up to 20 Servings*',
       fssai: 'FSSAI Reg. No. 21224169000054',
       ingredients: 'Pure Moringa Leaf Powder, Roasted Cumin Powder, Black Salt, Lemon Peel Powder, Ginger Powder, Black Pepper, Spices & Herbs.',
       nutrition: [
@@ -44,7 +44,7 @@ export default function ProductLabelGallery() {
       subtitle: 'Sprouted Millets with Dutch Cocoa Powder',
       frontImg: '/Choco1.jpeg',
       backImg: '/Choco2.jpeg',
-      netWeight: '200g Pouch / 20 Servings',
+      netWeight: '100g Pouch / Up to 20 Servings*',
       fssai: 'FSSAI Reg. No. 21224169000054',
       ingredients: 'Sprouted Finger Millet (Ragi), Sprouted Pearl Millet (Bajra), Sprouted Foxtail Millet, Dutch Cocoa Powder, Almond Powder, Milk Solids, Sugar.',
       nutrition: [

@@ -64,7 +64,7 @@ const FAQS: FAQItem[] = [
   {
     category: 'Orders & Delivery',
     question: 'How does Free Shipping work?',
-    answer: 'Free shipping is available on prepaid orders as per current website offer. COD availability depends on serviceability.'
+    answer: 'Free shipping is available on prepaid orders as per current website offer.'
   },
   {
     category: 'Returns & Support',
