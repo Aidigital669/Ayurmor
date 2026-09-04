@@ -5,7 +5,7 @@ import { Sparkles, Leaf, Check } from 'lucide-react';
 export default function IngredientTransparency() {
   const ingredients = [
     {
-      name: 'Fresh Apples',
+      name: 'Apple Powder',
       subtitle: 'Dehydrated Apple Powder',
       benefits: 'Rich in dietary fiber & natural fruity sweetness',
       icon: '🍎',
@@ -13,7 +13,7 @@ export default function IngredientTransparency() {
     },
     {
       name: 'Beetroot',
-      subtitle: 'Pure Beet Powder',
+      subtitle: 'Beetroot Powder',
       benefits: 'Supports healthy blood circulation & daily stamina',
       icon: '🪴',
       category: 'ABC Latte Mix'
@@ -27,7 +27,7 @@ export default function IngredientTransparency() {
     },
     {
       name: 'Moringa Leaf',
-      subtitle: 'Pure Moringa Oleifera',
+      subtitle: 'Moringa Leaf Powder',
       benefits: 'High protein, iron & essential antioxidants',
       icon: '🌿',
       category: 'Moringa Soup'
@@ -40,8 +40,8 @@ export default function IngredientTransparency() {
       category: 'Choco Malt'
     },
     {
-      name: 'Pure Cocoa',
-      subtitle: 'Natural Dutch Cocoa',
+      name: 'Cocoa Powder',
+      subtitle: 'Dutch Cocoa Powder',
       benefits: 'Rich chocolate flavor loved by kids & adults',
       icon: '🍫',
       category: 'Choco Malt'
@@ -49,14 +49,14 @@ export default function IngredientTransparency() {
     {
       name: 'Almonds & Cashews',
       subtitle: 'Crushed Nut Blend',
-      benefits: 'Good fats, protein & natural creaminess',
+      benefits: 'Adds nutty taste and creaminess to the blend.',
       icon: '🥜',
       category: 'ABC & Choco'
     },
     {
-      name: 'Wellness Mushroom',
-      subtitle: 'Button Mushroom Extract',
-      benefits: 'Rich earthy soup flavor & immune support',
+      name: 'Oyster Mushrooms',
+      subtitle: 'Protein & Fiber Rich Powder',
+      benefits: 'Rich earthy soup flavor, natural vitamins & immunity support',
       icon: '🍄',
       category: 'Mushroom Soup'
     }

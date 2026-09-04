@@ -46,6 +46,15 @@ Your goal is to warmly assist customers, answer questions about Ayurmor's produc
    - Nutrition (per 100g): Energy 360 kcal, Protein 14g, Calcium 410mg, Dietary Fiber 9g, Zinc 4.5mg.
    - Key Benefits: Rich in Calcium, Zero Refined Sugar, High Dietary Fiber, Great for Bone & Mind Health.
 
+4. MUSHROOM PREMIX SOUP (Cream of Mushroom):
+   - Category: Instant Gourmet Soup / Daily Wellness & Nutrition
+   - Price: Rs. 299 per pack
+   - Description: Rich, creamy, and wholesome instant gourmet soup crafted with real Oyster mushrooms, onion, garlic, black pepper, and aromatic spices. Delivers restaurant-quality comfort in 60 seconds with zero added MSG and zero preservatives.
+   - Ingredients: Oyster mushroom powder, Onion powder, Garlic powder, Black pepper powder, Natural herbs & spices, Roasted cumin, Rock salt, Corn starch base.
+   - Usage Instructions: Add 2 tablespoons (20g) to a cup or bowl. Pour 150-180ml hot water. Stir well until smooth without lumps. Enjoy warm!
+   - Nutrition (per 100g): Energy 340 kcal, Protein 18g, Carbohydrates 52g, Dietary Fiber 10g, Sodium 780mg, Iron 14mg.
+   - Key Benefits: Rich in Protein & Fiber from real Oyster Mushrooms, 100% Natural, No Added MSG, Instant 60s preparation, Deeply comforting & savoury.
+
 === SHIPPING, PAYMENT & WHATSAPP ORDERS ===
 - Shipping Fee: FREE express shipping across India on all orders!
 - Cash on Delivery (COD): Available nationwide!
@@ -181,6 +190,14 @@ function getLocalKnowledgeFallback(msg: string): string {
 • **Benefits**: High calcium, 100% zero refined sugar, high fiber for bone strength & active minds.`;
   }
 
+  if (query.includes('mushroom') || query.includes('oyster') || query.includes('cream of mushroom')) {
+    return `🍄 **Mushroom Premix Soup** (Rs. 299)
+• **Description**: Rich, creamy instant gourmet soup crafted with real Oyster mushrooms, onion, garlic and herbs with zero added MSG.
+• **Ingredients**: Oyster mushroom powder, Onion powder, Garlic powder, Black pepper, Roasted cumin, Rock salt, Natural herbs & spices.
+• **Preparation**: Add 2 tbsp (20g) to a cup, pour 150-180ml hot water, stir well until smooth, and enjoy warm!
+• **Benefits**: Rich in Protein & Fiber, 100% natural, no MSG, restaurant-quality creamy comfort in 60s.`;
+  }
+
   if (query.includes('ship') || query.includes('delivery') || query.includes('prepaid') || query.includes('whatsapp') || query.includes('order')) {
     return `🚚 **Shipping, Payment & WhatsApp Order**
 • **Shipping**: FREE express shipping on all prepaid orders across India!
@@ -190,10 +207,11 @@ function getLocalKnowledgeFallback(msg: string): string {
 
   return `✨ **Ayurmor Natural Botanical Health Blends**
 
-We offer 3 signature 100% pure botanical wellness mixes:
+We offer 4 signature 100% pure botanical wellness mixes:
 1. 🌿 **Moringa Premix Soup** — Instant detox & immunity boost (Rs. 299)
 2. 🥤 **ABC Malt Powder** — Apple, Beetroot & Carrot hemoglobin booster (Rs. 299)
 3. 🍫 **Choco Multigrain Millet Malt** — Sprouted millets & cocoa for bone health (Rs. 299)
+4. 🍄 **Mushroom Premix Soup** — Cream of oyster mushroom with zero MSG (Rs. 299)
 
 📜 **FSSAI Reg: 21224169000054 | ISO 9001:2015 Certified**
 🚚 **FREE Shipping on Prepaid Orders across India!**

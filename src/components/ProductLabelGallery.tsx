@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ShieldCheck, Check, Info, FileText } from 'lucide-react';
 
 export default function ProductLabelGallery() {
-  const [activeTab, setActiveTab] = useState<'abc' | 'moringa' | 'choco'>('abc');
+  const [activeTab, setActiveTab] = useState<'abc' | 'moringa' | 'choco' | 'mushroom'>('abc');
 
   const labelData = {
     abc: {
@@ -54,6 +54,22 @@ export default function ProductLabelGallery() {
         { label: 'Dietary Fiber', val: '9.0g' },
         { label: 'Calcium', val: '410mg' }
       ]
+    },
+    mushroom: {
+      title: 'Ayurmor Mushroom Premix Soup',
+      subtitle: 'Real Oyster Mushrooms with Garlic & Spices',
+      frontImg: '/Mushroom3.jpeg',
+      backImg: '/Mushroom1.jpeg',
+      netWeight: '100g Pouch / Up to 20 Servings*',
+      fssai: 'FSSAI Reg. No. 21224169000054',
+      ingredients: 'Oyster Mushroom Powder, Onion Powder, Garlic Powder, Black Pepper, Roasted Cumin, Rock Salt, Natural Herbs & Spices.',
+      nutrition: [
+        { label: 'Energy', val: '340 kcal' },
+        { label: 'Protein', val: '18.0g' },
+        { label: 'Carbohydrates', val: '52.0g' },
+        { label: 'Dietary Fiber', val: '10.0g' },
+        { label: 'Sodium', val: '780mg' }
+      ]
     }
   };
 
@@ -77,7 +93,7 @@ export default function ProductLabelGallery() {
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex justify-center gap-3 mb-10">
+        <div className="flex justify-center flex-wrap gap-3 mb-10">
           <button
             onClick={() => setActiveTab('abc')}
             className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all border ${
@@ -107,6 +123,16 @@ export default function ProductLabelGallery() {
             }`}
           >
             🍫 Choco Millet
+          </button>
+          <button
+            onClick={() => setActiveTab('mushroom')}
+            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all border ${
+              activeTab === 'mushroom' 
+                ? 'bg-[#0A192F] text-white border-[#0A192F] shadow-md' 
+                : 'bg-white text-slate-700 border-slate-200 hover:border-slate-400'
+            }`}
+          >
+            🍄 Mushroom Soup
           </button>
         </div>
 

@@ -60,6 +60,17 @@ const REVIEWS: Testimonial[] = [
     productUsed: "ABC Malt & Moringa Soup",
     avatar: "SH",
     promptCategory: "Packaging & Delivery"
+  },
+  {
+    id: 5,
+    quote: "The new Mushroom Premix Soup is delicious and so creamy! Just hot water, stir and you have a restaurant-quality mushroom soup with zero MSG. Perfect evening comfort!",
+    name: "Vikram Desai",
+    title: "Verified Buyer",
+    location: "Mumbai, Maharashtra",
+    rating: 5,
+    productUsed: "Mushroom Premix Soup",
+    avatar: "VD",
+    promptCategory: "Taste & Purity"
   }
 ];
 

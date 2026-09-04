@@ -34,6 +34,16 @@ const HERO_SLIDES = [
     badge: "Everyday Wellness",
     bgColor: "from-[#FDFBF7] via-[#EADBCE] to-[#AC8C7D]",
     image: "/hero_choco.png"
+  },
+  {
+    id: 4,
+    category: "Instant Gourmet Soup",
+    title: "Ayurmor Mushroom Premix Soup",
+    subtitle: "Cream of Mushroom Soup Powder",
+    tagline: "Rich, creamy, and wholesome oyster mushroom soup blended with garlic and aromatic herbs. Ready in 60 seconds with zero added MSG for comfort in every sip.",
+    badge: "New Launch",
+    bgColor: "from-[#FBF8F3] via-[#EFE6DB] to-[#D5C2AF]",
+    image: "/Mushroom3.jpeg"
   }
 ];
 
@@ -94,10 +104,16 @@ export default function HeroCarousel() {
               className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0A192F] leading-tight"
             >
               {activeSlide.title}
-              <span className="block text-2xl sm:text-3xl font-sans text-[#0A192F]/80 font-normal mt-2">
-                {activeSlide.subtitle}
-              </span>
             </motion.h1>
+            <motion.h2
+              key={`subtitle-${activeSlide.id}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="text-2xl sm:text-3xl font-sans text-[#0A192F]/80 font-normal mt-2"
+            >
+              {activeSlide.subtitle}
+            </motion.h2>
 
             <motion.p
               key={`tagline-${activeSlide.id}`}

@@ -68,9 +68,9 @@ export default function DisclaimerPage() {
             <div className="w-12 h-12 bg-sky-50 text-[#0080FF] rounded-2xl flex items-center justify-center font-bold">
               <Heart className="w-6 h-6" />
             </div>
-            <h3 className="font-serif text-xl font-bold text-[#0A192F]">Nutritional Food Supplements</h3>
+            <h3 className="font-serif text-xl font-bold text-[#0A192F]">Packaged Food Products</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light">
-              All ingredients in Moringa Premix Soup, ABC Malt, and Choco Millet Malt are natural grains, botanicals, and whole spices. They act as supportive food elements, not prescription therapies.
+              All ingredients in Moringa Premix Soup, Mushroom Premix Soup, ABC Malt, and Choco Millet Malt are natural grains, botanicals, and whole spices. They act as supportive food elements, not prescription therapies.
             </p>
           </div>
 
@@ -123,7 +123,7 @@ export default function DisclaimerPage() {
               <CheckCircle2 className="w-5 h-5 text-[#76BC21] shrink-0 mt-0.5" />
               <div>
                 <strong className="text-slate-800 text-xs block font-bold">Quality Standard</strong>
-                <span className="text-xs font-semibold text-slate-700 block">100% Botanical Natural</span>
+                <span className="text-xs font-semibold text-slate-700 block">Quality Checked Ingredients & Transparent Labels</span>
                 <span className="text-[10px] text-slate-500 block mt-1">ISO Certificate: QCCI/25Q/SES/5850</span>
               </div>
             </div>

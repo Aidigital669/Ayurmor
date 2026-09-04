@@ -25,12 +25,20 @@ const ROUTINES = [
     color: 'from-[#FFEBE5] to-[#FFD5C6]'
   },
   {
-    title: 'Evening Soup',
-    subtitle: 'Moringa Premix Soup',
+    title: 'Green Detox Soup',
+    subtitle: 'Moringa Premix',
     desc: 'Warm, savoury 60-second soup for post-work comfort',
     icon: Soup,
     badge: 'Light Snack',
     color: 'from-[#EEF5F1] to-[#D5E6DC]'
+  },
+  {
+    title: 'Creamy Gourmet',
+    subtitle: 'Mushroom Soup',
+    desc: 'Rich oyster mushroom with garlic & herbs',
+    icon: Soup,
+    badge: 'Evening Comfort',
+    color: 'from-[#FBF8F3] to-[#EADBCE]'
   },
   {
     title: 'Family Malt',
@@ -42,7 +50,7 @@ const ROUTINES = [
   },
   {
     title: 'Office Break',
-    subtitle: 'Moringa Premix',
+    subtitle: 'Instant Soups',
     desc: 'Quick 1-minute warm refreshment at your desk',
     icon: Briefcase,
     badge: 'Instant Convenience',
@@ -82,11 +90,11 @@ export default function ShopByNeed() {
               Shop by Everyday Need
             </h2>
             <p className="text-slate-600 text-sm mt-3 font-light">
-              Choose your Ayurmor routine: Morning Drink, Evening Soup, Family Malt, Office Break or Travel-Friendly Mix.
+              Choose your Ayurmor routine: Morning Drink, Green Detox Soup, Creamy Mushroom Soup, Family Malt, Office Break or Travel-Friendly Mix.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
             {ROUTINES.map((r, i) => {
               const IconComp = r.icon;
               return (

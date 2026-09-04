@@ -28,7 +28,7 @@ export default function HowItWorks() {
     {
       step: '04',
       title: 'Sip & Enjoy Everyday',
-      desc: 'Sip warm and nourishing goodness for breakfast, office breaks, or evening snacks.',
+      desc: 'Sip a warm, satisfying cup for breakfast, office breaks, or evening snacks.',
       icon: '✨',
       tag: 'Step 4'
     }
@@ -47,7 +47,7 @@ export default function HowItWorks() {
             How Ayurmor Works
           </h2>
           <p className="text-slate-600 text-sm leading-relaxed">
-            Crafted for busy daily routines. No boiling, no hassle — just pure, delicious nourishment ready in under a minute.
+            Crafted for busy daily routines. No boiling, no hassle - a smooth, satisfying cup ready in under a minute.
           </p>
         </div>
 

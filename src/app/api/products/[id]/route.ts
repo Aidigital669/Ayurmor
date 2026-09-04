@@ -66,6 +66,27 @@ const MOCK_PRODUCTS = [
     usage_instructions: 'Add 2-3 teaspoons (10g) to 150-200 ml hot milk. Stir until smooth. For a lighter drink, use warm water. Add sweetener only if desired.',
     nutrition: 'Energy: 360 kcal (per 100g) | 36 kcal (per serving)\nProtein: 14g (per 100g) | 1.4g (per serving)\nCarbohydrates: 65g (per 100g) | 6.5g (per serving)\nTotal Sugar: 20g (per 100g) | 2.0g (per serving)\nAdded Sugar: 10g (per 100g) | 1.0g (per serving)\nDietary Fibre: 9g (per 100g) | 0.9g (per serving)\nFat: 5.5g (per 100g) | 0.55g (per serving)\nSodium: 60mg (per 100g) | 6mg (per serving)\nCalcium: 410mg (per 100g) | 41mg (per serving)',
     benefits: 'Delicious chocolate flavour with rich cocoa strength\nMade with sprouted multigrain millet ingredients\nInstant preparation — no boiling required\nSmooth and creamy taste with comforting millet body\nSuitable for older children, students, working professionals & families'
+  },
+  {
+    id: 4,
+    title: 'Ayurmor Mushroom Premix Soup - Cream of Mushroom Soup Powder',
+    category: 'Premix Soups',
+    price: 299.00,
+    mrp: 349.00,
+    rating_count: 110,
+    tag: 'New Launch',
+    svg_type: 'mushroom',
+    image: '/Mushroom3.jpeg',
+    net_weight: '100g Pouch',
+    servings: 'Up to 20 Servings*',
+    one_liner: 'Rich and creamy oyster mushroom soup with garlic and herbs. Ready in 60 seconds with hot water.',
+    manufacturer: 'Saish Technofarms (FSSAI Reg No: 21224169000054)',
+    marketed_by: 'Zeyora Global Trading Co. (GSTIN: 33AEQPT6920G1Z6, FSSAI No: 124250140000673)',
+    description: 'Ayurmor Mushroom Premix Soup Powder is a rich, creamy, and nourishing instant soup blend crafted with real oyster mushrooms, onion, garlic, black pepper, and aromatic herbs. Designed for everyday wellness and busy lifestyles, it delivers authentic comfort and warmth in just minutes — simply add hot water, stir well, and enjoy a wholesome cup without any added MSG or artificial colors.',
+    ingredients: 'Oyster mushroom powder, Onion powder, Garlic powder, Black pepper powder, Natural herbs & spices, Roasted cumin, Rock salt, Corn starch base. Allergen advice: Processed in a hygiene-controlled facility handling milk solids, gluten & nuts.',
+    usage_instructions: 'Take 2 tbsp (20g) of soup powder in a cup or bowl. Add 150-180 ml hot water. Stir well & mix without lumps. Delicious hot soup is ready to enjoy! Garnish & relish.',
+    nutrition: 'Energy: 340 kcal (per 100g)\nProtein: 18g\nCarbohydrates: 52g\nDietary Fiber: 10g\nTotal Sugar: 3.0g\nAdded Sugar: 0g (Zero Added Sugar)\nTotal Fat: 3.2g\nSodium: 780mg\nIron: 14mg',
+    benefits: 'Rich in Protein & Dietary Fiber from real Oyster Mushrooms\n100% Natural with No Added MSG & No Preservatives\nInstant & Easy — ready in 60 seconds, just add hot water\nTraditional Indian flavor with garlic, onion & black pepper\nCreamy, wholesome & deeply satisfying for anytime hunger'
   }
 ];
 
@@ -92,12 +113,14 @@ export async function GET(
   );
 
   if (!product) {
-    if (pidLower === '1' || pidLower.includes('moringa') || pidLower.includes('moringa-soup')) {
+    if (pidLower === '1' || pidLower.includes('moringa')) {
       product = MOCK_PRODUCTS[1];
     } else if (pidLower === '2' || pidLower.includes('abc') || pidLower.includes('latte')) {
       product = MOCK_PRODUCTS[0];
     } else if (pidLower === '3' || pidLower.includes('choco') || pidLower.includes('millet')) {
       product = MOCK_PRODUCTS[2];
+    } else if (pidLower === '4' || pidLower.includes('mushroom') || pidLower.includes('cream-of-mushroom')) {
+      product = MOCK_PRODUCTS[3];
     } else {
       product = MOCK_PRODUCTS[0];
     }

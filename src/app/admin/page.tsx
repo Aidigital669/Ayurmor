@@ -714,7 +714,8 @@ export default function AdminDashboard() {
           <div className="bg-[#0F3D2E]/30 p-6 rounded-2xl border border-white/5 shadow-lg flex items-center justify-between">
             <div>
               <span className="text-xs text-[#5A8B73] font-bold uppercase tracking-wider">Active Products</span>
-              <h3 className="font-serif text-3xl font-bold mt-2 text-white">{products.length}</h3>
+              <h3 className="font-s
+              erif text-3xl font-bold mt-2 text-white">{products.length}</h3>
             </div>
             <div className="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-full flex items-center justify-center">
               <Layers className="w-6 h-6" />
@@ -1461,6 +1462,7 @@ export default function AdminDashboard() {
                     <option value="/hero_abc.png">/hero_abc.png (ABC Latte Mix)</option>
                     <option value="/hero_moringa.png">/hero_moringa.png (Moringa Premix Soup)</option>
                     <option value="/hero_choco.png">/hero_choco.png (Choco Multigrain Millet Malt)</option>
+                    <option value="/Mushroom3.jpeg">/Mushroom3.jpeg (Mushroom Premix Soup)</option>
                   </select>
                 </div>
               </div>
@@ -1577,6 +1579,7 @@ export default function AdminDashboard() {
                       <option value="/product1.png">product1.png (Moringa soup)</option>
                       <option value="/product2.png">product2.png (Choco Malt)</option>
                       <option value="/product3.png">product3.png (ABC Malt)</option>
+                      <option value="/Mushroom3.jpeg">Mushroom3.jpeg (Mushroom Soup)</option>
                     </select>
                   </div>
                   <div>
@@ -1589,6 +1592,7 @@ export default function AdminDashboard() {
                       <option value="moringa">moringa</option>
                       <option value="choco">choco</option>
                       <option value="abc">abc</option>
+                      <option value="mushroom">mushroom</option>
                     </select>
                   </div>
                 </div>

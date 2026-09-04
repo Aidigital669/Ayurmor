@@ -183,7 +183,7 @@ export default function ContactUsPage() {
                 <Sparkles className="w-4 h-4" />
                 <span>Call Center Routing</span>
               </div>
-              <h3 className="font-serif text-2xl font-bold text-[#0A192F]">Request For CallBack</h3>
+              <h3 className="font-serif text-2xl font-bold text-[#0A192F]">Request Callback</h3>
               <p className="text-xs text-slate-500 font-light leading-relaxed">
                 To know more about services offered by us kindly fill in the details below. You will get a call back soon.
               </p>
@@ -231,7 +231,7 @@ export default function ContactUsPage() {
 
                   {/* Email */}
                   <div className="space-y-1">
-                    <label className="text-slate-700 block font-bold">Email Id *</label>
+                    <label className="text-slate-700 block font-bold">Email ID *</label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-3 w-4 h-4 text-slate-400 pointer-events-none" />
                       <input 
@@ -247,7 +247,7 @@ export default function ContactUsPage() {
 
                   {/* Mobile */}
                   <div className="space-y-1 sm:col-span-2">
-                    <label className="text-slate-700 block font-bold">Mobile no. *</label>
+                    <label className="text-slate-700 block font-bold">Mobile Number *</label>
                     <div className="relative">
                       <PhoneCall className="absolute left-3 top-3 w-4 h-4 text-slate-400 pointer-events-none" />
                       <input 
@@ -288,7 +288,7 @@ export default function ContactUsPage() {
                   ) : (
                     <>
                       <Send className="w-4 h-4" />
-                      <span>Request Call Back</span>
+                      <span>Request Callback</span>
                     </>
                   )}
                 </button>

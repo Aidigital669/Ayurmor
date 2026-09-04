@@ -36,6 +36,17 @@ const MOCK_SLIDES = [
     bgColor: "from-[#FDFBF7] via-[#EADBCE] to-[#AC8C7D]",
     image: "/product2.png",
     elements: '["almond", "cocoa", "millet"]'
+  },
+  {
+    id: 4,
+    category: "Comforting Evening Nutrition",
+    title: "Creamy & Nourishing",
+    subtitle: "Mushroom Premix Soup",
+    tagline: "Rich gourmet oyster mushroom soup with garlic and aromatic herbs. Enjoy deep restaurant-quality comfort in 60 seconds with zero added MSG.",
+    badge: "New Launch",
+    bgColor: "from-[#FBF8F3] via-[#EFE6DB] to-[#D5C2AF]",
+    image: "/Mushroom3.jpeg",
+    elements: '["mushroom", "garlic", "herbs"]'
   }
 ];
 

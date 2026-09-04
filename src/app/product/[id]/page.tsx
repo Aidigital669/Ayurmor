@@ -193,6 +193,53 @@ const DEFAULT_PRODUCTS: Product[] = [
       { q: 'Is it only for children?', a: 'No. It can be enjoyed by students, working professionals, families and adults as a warm chocolate malt drink.' },
       { q: 'Can I drink it with water?', a: 'Yes, but hot milk gives a richer and creamier taste.' }
     ]
+  },
+  {
+    id: 'mushroom-premix-soup',
+    category: 'Premix Soups',
+    title: 'Ayurmor Mushroom Premix Soup - Cream of Mushroom Soup Powder',
+    price: 299,
+    mrp: 349,
+    image: '/Mushroom3.jpeg',
+    images: ['/Mushroom3.jpeg', '/Mushroom1.jpeg', '/Mushroom2.jpeg', '/Mushroom4.jpeg'],
+    svg_type: 'mushroom',
+    rating_count: 110,
+    tag: 'New Launch',
+    net_weight: '100g Pouch',
+    servings: 'Up to 20 Servings*',
+    tagline: 'Goodness in Every Sip! Creamy • Delicious • Nourishing.',
+    description: 'Ayurmor Mushroom Premix Soup Powder is a rich, creamy, and nourishing instant soup blend crafted with real oyster mushrooms, onion, garlic, black pepper, and aromatic herbs. Designed for everyday wellness and busy lifestyles, it delivers authentic comfort and warmth in just minutes — simply add hot water, stir well, and enjoy a wholesome cup without any added MSG or artificial colors.',
+    benefits: [
+      'Rich in Protein & Dietary Fiber from real Oyster Mushrooms',
+      '100% Natural with No Added MSG & No Preservatives',
+      'Instant & Easy — ready in 60 seconds, just add hot water',
+      'Traditional Indian flavor with garlic, onion & black pepper',
+      'Creamy, wholesome & deeply satisfying for anytime hunger'
+    ],
+    ingredients: 'Oyster mushroom powder, Onion powder, Garlic powder, Black pepper powder, Natural herbs & spices, Roasted cumin, Rock salt, Corn starch base.',
+    allergen: 'Processed in a hygiene-controlled facility handling milk solids, gluten & nuts.',
+    usage_instructions: 'Take 2 tbsp (20g) of soup powder in a cup or bowl. Add 150-180 ml hot water. Stir well & mix without lumps. Delicious hot soup is ready to enjoy! Garnish & relish.',
+    taste_profile: 'Creamy, earthy, mildly savoury with warm garlic, black pepper and aromatic herbal notes.',
+    perfect_for: 'Evening snack, office breaks, rainy day warmth, light dinner starter, healthy family refreshment.',
+    storage: 'Store in a cool, dry place. Use a dry spoon. Reseal tightly after opening. Avoid direct sunlight and moisture.',
+    nutritional_facts: [
+      'Energy: 340 kcal (per 100g)',
+      'Protein: 18g',
+      'Carbohydrates: 52g',
+      'Total Sugar: 3.0g',
+      'Added Sugar: 0g (Zero Added Sugar)',
+      'Total Fat: 3.2g',
+      'Dietary Fiber: 10g',
+      'Sodium: 780mg',
+      'Iron: 14mg'
+    ],
+    faqs: [
+      { q: 'What is Ayurmor Mushroom Premix Soup?', a: 'It is an instant, creamy gourmet soup mix made with real oyster mushrooms, garlic, onion, and herbs for quick preparation with hot water.' },
+      { q: 'Does it require cooking or boiling?', a: 'No boiling needed! Simply add hot water (150-180 ml) to 2 tablespoons (20g), stir well until smooth, and enjoy.' },
+      { q: 'Does it contain added MSG or artificial colors?', a: 'No, Ayurmor Mushroom Premix Soup has zero added MSG, zero preservatives, and no artificial colors.' },
+      { q: 'What are the benefits of Oyster Mushrooms?', a: 'Oyster mushrooms are a natural source of protein, dietary fiber, essential vitamins, and antioxidants that support daily vitality and immunity.' },
+      { q: 'When is the best time to consume it?', a: 'It is ideal as an office desk break, light evening refreshment, post-work comfort drink, or pre-dinner warm starter.' }
+    ]
   }
 ];
 
@@ -309,6 +356,8 @@ export default function ProductDetailPage() {
         found = DEFAULT_PRODUCTS.find(p => p.svg_type === 'abc');
       } else if (pidStr === '3' || pidStr.includes('choco') || pidStr.includes('millet')) {
         found = DEFAULT_PRODUCTS.find(p => p.svg_type === 'choco');
+      } else if (pidStr === '4' || pidStr.includes('mushroom') || pidStr.includes('cream-of-mushroom')) {
+        found = DEFAULT_PRODUCTS.find(p => p.svg_type === 'mushroom');
       }
     }
 
@@ -323,12 +372,19 @@ export default function ProductDetailPage() {
         .then(res => res.json())
         .then(data => {
           if (data && (data.id || data.title)) {
-            const fallbackImg = data.image || (data.svg_type === 'abc' ? '/hero_abc.png' : data.svg_type === 'choco' ? '/hero_choco.png' : '/Moringo1.jpeg');
+            const fallbackImg = data.image || (
+              data.svg_type === 'abc' ? '/hero_abc.png' :
+              data.svg_type === 'choco' ? '/hero_choco.png' :
+              data.svg_type === 'mushroom' ? '/Mushroom3.jpeg' :
+              '/Moringo1.jpeg'
+            );
             const fallbackImages = data.images || (
               data.svg_type === 'abc' 
                 ? ['/hero_abc.png', '/ABC1.jpeg', '/ABC2.jpeg', '/ABC3.jpeg', '/ABC4.jpeg']
                 : data.svg_type === 'choco'
                 ? ['/hero_choco.png', '/Choco1.jpeg', '/Choco2.jpeg']
+                : data.svg_type === 'mushroom'
+                ? ['/Mushroom3.jpeg', '/Mushroom1.jpeg', '/Mushroom2.jpeg', '/Mushroom4.jpeg']
                 : ['/Moringo1.jpeg', '/Moringo2.jpeg', '/Moringo3.jpeg', '/Moringo4.jpeg', '/hero_moringa.png']
             );
             setProduct({

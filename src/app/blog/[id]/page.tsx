@@ -215,9 +215,9 @@ export default function BlogDetailPage() {
               </h1>
               <div className="flex items-center gap-6 text-xs text-sky-200 font-light pt-2">
                 <span className="flex items-center gap-1.5"><User className="w-4 h-4 text-[#76BC21]" /> {blog.author}</span>
-                <span>•</span>
+                <span className="mx-1">•</span>
                 <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-[#0080FF]" /> {blog.readTime}</span>
-                <span>•</span>
+                <span className="mx-1">•</span>
                 <span>{blog.date}</span>
               </div>
             </div>

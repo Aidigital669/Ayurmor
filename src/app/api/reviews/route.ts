@@ -56,6 +56,30 @@ const DEFAULT_REVIEWS = [
     review: 'Rich chocolate flavour with sprouted millet body. Whole family enjoys it daily.',
     status: 'approved',
     created_at: '2026-07-24 07:10 PM'
+  },
+  {
+    id: 5,
+    product_id: 'mushroom-premix-soup',
+    name: 'Vikram Desai',
+    email: 'vikram.d@gmail.com',
+    location: 'Mumbai, MH',
+    rating: 5,
+    title: 'Incredible creamy mushroom flavour!',
+    review: 'The oyster mushroom soup is super creamy, comforting and ready in a minute. No MSG taste, just pure natural goodness!',
+    status: 'approved',
+    created_at: '2026-08-05 06:20 PM'
+  },
+  {
+    id: 6,
+    product_id: 'mushroom-soup-premix',
+    name: 'Ananya Roy',
+    email: 'ananya.r@gmail.com',
+    location: 'Kolkata, WB',
+    rating: 5,
+    title: 'Perfect warm evening soup',
+    review: 'Loved the subtle hint of garlic and black pepper. Easy to prepare with hot water, no lumps at all.',
+    status: 'approved',
+    created_at: '2026-08-10 07:45 PM'
   }
 ];
 

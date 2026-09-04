@@ -42,18 +42,28 @@ const PRODUCT_IMAGES: Record<string, string> = {
   moringa: '/Moringo1.jpeg',
   abc: '/hero_abc.png',
   choco: '/hero_choco.png',
+  mushroom: '/Mushroom3.jpeg',
 };
 
 const PRODUCT_SEQUENCE_IMAGES: Record<string, string[]> = {
   abc: ['/hero_abc.png', '/ABC1.jpeg', '/ABC2.jpeg', '/ABC3.jpeg', '/ABC4.jpeg'],
   moringa: ['/Moringo1.jpeg', '/Moringo2.jpeg', '/Moringo3.jpeg', '/Moringo4.jpeg', '/hero_moringa.png'],
-  choco: ['/hero_choco.png', '/Choco1.jpeg', '/Choco2.jpeg']
+  choco: ['/hero_choco.png', '/Choco1.jpeg', '/Choco2.jpeg'],
+  mushroom: ['/Mushroom3.jpeg', '/Mushroom1.jpeg', '/Mushroom2.jpeg', '/Mushroom4.jpeg']
 };
 
 const CARD_ONE_LINERS: Record<string, string> = {
   abc: "Apple, Beetroot & Carrot instant malt drink with almond and cashew. Ready with hot milk or water.",
   moringa: "Warm, savoury moringa soup ready in 60 seconds. Ideal for office breaks and evening snacks.",
   choco: "Chocolate-flavoured millet malt drink for the whole family. No boiling required.",
+  mushroom: "Rich and creamy oyster mushroom soup with garlic and herbs. Ready in 60 seconds with hot water.",
+};
+
+const getProductUrl = (svg_type: string) => {
+  if (svg_type === 'abc') return '/product/abc-latte-mix';
+  if (svg_type === 'choco') return '/product/choco-multigrain-millet-malt';
+  if (svg_type === 'mushroom') return '/product/mushroom-premix-soup';
+  return '/product/moringa-soup-premix';
 };
 
 const DEFAULT_DETAILS: Record<string, {
@@ -65,7 +75,7 @@ const DEFAULT_DETAILS: Record<string, {
 }> = {
   moringa: {
     description: "Enjoy the comforting taste of moringa in a warm, savoury soup that is ready in just one minute. Ayurmor Moringa Premix Soup is crafted for busy lifestyles - simply add hot water, stir well and enjoy a light, satisfying soup at home, work or while travelling.",
-    ingredients: "Pure Moringa Oleifera leaf powder, Roasted cumin powder, Black salt, Lemon peel powder, Ginger powder, Black pepper, Rock salt, Spices & Herbs. Allergen advice: Processed in a facility handling milk solids, gluten & nuts.",
+    ingredients: "Moringa Oleifera leaf powder, Roasted cumin powder, Black salt, Lemon peel powder, Ginger powder, Black pepper, Rock salt, Spices & Herbs. Allergen advice: Processed in a facility handling milk solids, gluten & nuts.",
     usage: "Empty one serving into a cup or bowl. Add 180-200 ml hot water. Stir well until completely dissolved. Let stand for 1 minute if needed. Serve hot.",
     nutrition: ["Energy: 320 kcal (per 100g)", "Protein: 22g", "Carbohydrates: 48g", "Dietary Fiber: 12g", "Sodium: 850mg", "Iron: 25mg"],
     benefits: ["Ready in 60 seconds (no cooking required)", "Warm, savoury and comforting herbal flavour", "Convenient light snack for home, office & travel", "Easy way to enjoy moringa in daily food routines"]
@@ -83,6 +93,13 @@ const DEFAULT_DETAILS: Record<string, {
     usage: "Add 2-3 teaspoons to 150-200 ml hot milk. Stir until smooth. For a lighter drink, use hot water. Add sweetener only if desired.",
     nutrition: ["Energy: 360 kcal (per 100g)", "Protein: 14g", "Carbohydrates: 65g", "Dietary Fiber: 9g", "Calcium: 410mg"],
     benefits: ["Delicious rich chocolate flavour", "Made with sprouted multigrain millets", "Instant preparation - no boiling required", "Suitable for older children, students & adults"]
+  },
+  mushroom: {
+    description: "Ayurmor Mushroom Premix Soup Powder is a rich, creamy, and nourishing instant soup blend crafted with real oyster mushrooms, onion, garlic, black pepper, and aromatic herbs. Designed for everyday wellness and busy lifestyles, it delivers authentic comfort and warmth in just minutes — simply add hot water, stir well, and enjoy a wholesome cup without any added MSG or artificial colors.",
+    ingredients: "Oyster mushroom powder, Onion powder, Garlic powder, Black pepper powder, Natural herbs & spices, Roasted cumin, Rock salt, Corn starch base. Allergen advice: Processed in a hygiene-controlled facility handling milk solids, gluten & nuts.",
+    usage: "Take 2 tbsp (20g) of soup powder in a cup or bowl. Add 150-180 ml hot water. Stir well & mix without lumps. Delicious hot soup is ready to enjoy! Garnish & relish.",
+    nutrition: ["Energy: 340 kcal (per 100g)", "Protein: 18g", "Carbohydrates: 52g", "Dietary Fiber: 10g", "Total Sugar: 3.0g", "Sodium: 780mg"],
+    benefits: ["Rich in Protein & Dietary Fiber from real Oyster Mushrooms", "100% Natural with No Added MSG & No Preservatives", "Instant & Easy — ready in 60 seconds, just add hot water", "Creamy, wholesome & deeply satisfying for anytime hunger"]
   }
 };
 
@@ -184,7 +201,7 @@ export default function ShopSection({
 
               {/* Product Packaging Container - 100% Full-Width Image Stage */}
               <Link 
-                href={`/product/${product.svg_type === 'abc' ? 'abc-latte-mix' : product.svg_type === 'choco' ? 'choco-multigrain-millet-malt' : 'moringa-soup-premix'}`}
+                href={getProductUrl(product.svg_type)}
                 className="bg-[#F4F8FC] border-b border-slate-100 relative overflow-hidden h-72 sm:h-80 cursor-pointer block"
               >
                 <img
@@ -204,7 +221,7 @@ export default function ShopSection({
                   </span>
                 </div>
 
-                <Link href={`/product/${product.svg_type === 'abc' ? 'abc-latte-mix' : product.svg_type === 'choco' ? 'choco-multigrain-millet-malt' : 'moringa-soup-premix'}`}>
+                <Link href={getProductUrl(product.svg_type)}>
                   <h3 className="font-serif text-lg font-bold text-[#0A192F] mb-2 cursor-pointer hover:text-[#0080FF] transition-colors leading-snug">
                     {product.title}
                   </h3>

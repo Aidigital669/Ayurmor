@@ -21,7 +21,7 @@ const PRODUCT_IMAGES: Record<string, string> = {
   moringa: '/hero_moringa.png',
   abc: '/hero_abc.png',
   choco: '/hero_choco.png',
-  mushroom: '/product1.png'
+  mushroom: '/Mushroom3.jpeg'
 };
 
 export default function CartDrawer() {

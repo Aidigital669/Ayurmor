@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
             </div>
             <h3 className="font-serif text-xl font-bold text-[#0A192F]">1. Information We Collect</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light">
-              We may collect personal details such as your name, email, phone number, and shipping address when you make a purchase or contact us. This is stored securely within our certified database.
+              We may collect personal details such as your name, email, phone number, and shipping address when you make a purchase or contact us. This is stored securely within our access-controlled systems.
             </p>
             <ul className="space-y-2 text-xs text-slate-500 pt-2 border-t border-slate-100">
               <li className="flex items-center gap-2">

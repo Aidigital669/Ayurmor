@@ -151,7 +151,8 @@ export async function GET() {
         ('abc-latte-mix', 'Priya Sharma', 'priya@gmail.com', 'Bengaluru, KA', 5, 'Smooth and delicious morning malt!', 'I have been drinking the ABC Latte Mix every morning with warm milk. It mixes easily without any lumps and tastes so comforting!', 'approved', '2026-07-20 10:30 AM'),
         ('abc-latte-mix', 'Aisha Mohammed', 'aisha@gmail.com', 'Hyderabad, TS', 5, 'Quick 1-minute breakfast booster', 'Takes less than a minute to make before leaving for work. Clear ingredient declaration and great quality packaging.', 'approved', '2026-07-22 08:15 AM'),
         ('moringa-premix-soup', 'Rahul Kulkarni', 'rahul@gmail.com', 'Pune, MH', 5, 'Very comforting office soup', 'The Moringa Premix Soup is warm, savoury and ready in just 60 seconds. Perfect for office breaks!', 'approved', '2026-07-21 04:45 PM'),
-        ('choco-multigrain-millet-malt', 'Suresh Hegde', 'suresh@gmail.com', 'Mangaluru, KA', 5, 'Kids love the chocolate taste!', 'Rich chocolate flavour with sprouted millet body. Whole family enjoys it daily.', 'approved', '2026-07-24 07:10 PM')
+        ('choco-multigrain-millet-malt', 'Suresh Hegde', 'suresh@gmail.com', 'Mangaluru, KA', 5, 'Kids love the chocolate taste!', 'Rich chocolate flavour with sprouted millet body. Whole family enjoys it daily.', 'approved', '2026-07-24 07:10 PM'),
+        ('mushroom-premix-soup', 'Vikram Desai', 'vikram.d@gmail.com', 'Mumbai, MH', 5, 'Incredible creamy mushroom flavour!', 'The oyster mushroom soup is super creamy, comforting and ready in a minute. No MSG taste, just pure natural goodness!', 'approved', '2026-08-05 06:20 PM')
       `;
       await connection.query(insertReviewsQuery);
     }
@@ -179,7 +180,8 @@ export async function GET() {
         INSERT INTO hero_slides (category, title, subtitle, tagline, badge, bg_color, image, elements) VALUES
         ('Daily Cellular Energy', 'Nourish from Within', 'ABC Malt Powder', 'Our signature ABC Malt Powder merges the biological goodness of fresh apples, pure beetroots, and crisp carrots. Fortified with premium almonds and raw cashews for sustained vigor.', 'Rich in Iron', 'from-[#FFEBE5] via-[#FFCFC0] to-[#E7977D]', '/product3.png', '["apple", "beetroot", "carrot"]'),
         ('Detoxification & Immunity', 'Pure Green Vitality', 'Moringa Premix Soup', 'Cold-process milled moringa leaves blended into an instant herbal soup. Restore metabolic equilibrium, flush out toxins, and activate clean cellular energy in 10 seconds.', '100% Wild-Crafted', 'from-[#EEF5F1] via-[#D0E2D7] to-[#88B29C]', '/product1.png', '["leaf1", "leaf2", "steam"]'),
-        ('Family Active Nutrition', 'Rich Cocoa Strength', 'Choco Multigrain Millet Malt', 'A luxurious blend of premium dark cocoa and sprouted ancient grains. Sweetened naturally, packed with essential minerals, and designed for active minds of all ages.', 'Zero Refined Sugar', 'from-[#FDFBF7] via-[#EADBCE] to-[#AC8C7D]', '/product2.png', '["almond", "cocoa", "millet"]')
+        ('Family Active Nutrition', 'Rich Cocoa Strength', 'Choco Multigrain Millet Malt', 'A luxurious blend of premium dark cocoa and sprouted ancient grains. Sweetened naturally, packed with essential minerals, and designed for active minds of all ages.', 'Zero Refined Sugar', 'from-[#FDFBF7] via-[#EADBCE] to-[#AC8C7D]', '/product2.png', '["almond", "cocoa", "millet"]'),
+        ('Comforting Evening Nutrition', 'Creamy & Nourishing', 'Mushroom Premix Soup', 'Rich gourmet oyster mushroom soup with garlic and aromatic herbs. Enjoy deep restaurant-quality comfort in 60 seconds with zero added MSG.', 'New Launch', 'from-[#FBF8F3] via-[#EFE6DB] to-[#D5C2AF]', '/Mushroom3.jpeg', '["mushroom", "garlic", "herbs"]')
       `;
       await connection.query(insertSlidesQuery);
     } else {
@@ -196,7 +198,8 @@ export async function GET() {
         INSERT INTO products (title, category, price, rating_count, tag, svg_type, image) VALUES
         ('Moringa Premix Soup Powder', 'Premix Soups', 299.00, 124, 'Best Seller', 'moringa', '/product1.png'),
         ('ABC Latte Mix (Malt) Powder', 'Superfood Malts', 299.00, 98, NULL, 'abc', '/product3.png'),
-        ('Choco Multigrain Millet Malt Mix', 'Superfood Malts', 299.00, 182, NULL, 'choco', '/product2.png')
+        ('Choco Multigrain Millet Malt Mix', 'Superfood Malts', 299.00, 182, NULL, 'choco', '/product2.png'),
+        ('Mushroom Premix Soup Powder', 'Premix Soups', 299.00, 110, 'New Launch', 'mushroom', '/Mushroom3.jpeg')
       `;
       await connection.query(insertQuery);
     }

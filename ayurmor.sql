@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS `products` (
 INSERT INTO `products` (`id`, `title`, `category`, `price`, `rating_count`, `tag`, `svg_type`, `image`) VALUES
 (1, 'Moringa Premix Soup Powder', 'Premix Soups', 299.00, 124, 'Best Seller', 'moringa', '/product1.png'),
 (2, 'ABC Latte Mix (Malt) Powder', 'Superfood Malts', 299.00, 98, NULL, 'abc', '/product3.png'),
-(3, 'Choco Multigrain Millet Malt Mix', 'Superfood Malts', 299.00, 182, NULL, 'choco', '/product2.png')
+(3, 'Choco Multigrain Millet Malt Mix', 'Superfood Malts', 299.00, 182, NULL, 'choco', '/product2.png'),
+(4, 'Mushroom Premix Soup Powder', 'Premix Soups', 299.00, 110, 'New Launch', 'mushroom', '/Mushroom3.jpeg')
 ON DUPLICATE KEY UPDATE 
 `title`=VALUES(`title`), `category`=VALUES(`category`), `price`=VALUES(`price`), `rating_count`=VALUES(`rating_count`), `tag`=VALUES(`tag`), `svg_type`=VALUES(`svg_type`), `image`=VALUES(`image`);
 
@@ -52,7 +53,8 @@ CREATE TABLE IF NOT EXISTS `hero_slides` (
 INSERT INTO `hero_slides` (`id`, `category`, `title`, `subtitle`, `tagline`, `badge`, `bg_color`, `image`, `elements`) VALUES
 (1, 'Daily Cellular Energy', 'Nourish from Within', 'ABC Malt Powder', 'Our signature ABC Malt Powder merges the biological goodness of fresh apples, organic beetroots, and crisp carrots. Fortified with premium almonds and raw cashews for sustained vigor.', 'Rich in Iron', 'from-[#FFEBE5] via-[#FFCFC0] to-[#E7977D]', '/product3.png', '["apple", "beetroot", "carrot"]'),
 (2, 'Detoxification & Immunity', 'Pure Green Vitality', 'Moringa Premix Soup', 'Cold-process milled moringa leaves blended into an instant herbal soup. Restore metabolic equilibrium, flush out toxins, and activate clean cellular energy in 10 seconds.', '100% Wild-Crafted', 'from-[#EEF5F1] via-[#D0E2D7] to-[#88B29C]', '/product1.png', '["leaf1", "leaf2", "steam"]'),
-(3, 'Family Active Nutrition', 'Rich Cocoa Strength', 'Choco Multigrain Millet Malt', 'A luxurious blend of premium dark cocoa and sprouted ancient grains. Sweetened naturally, packed with essential minerals, and designed for active minds of all ages.', 'Zero Refined Sugar', 'from-[#FDFBF7] via-[#EADBCE] to-[#AC8C7D]', '/product2.png', '["almond", "cocoa", "millet"]')
+(3, 'Family Active Nutrition', 'Rich Cocoa Strength', 'Choco Multigrain Millet Malt', 'A luxurious blend of premium dark cocoa and sprouted ancient grains. Sweetened naturally, packed with essential minerals, and designed for active minds of all ages.', 'Zero Refined Sugar', 'from-[#FDFBF7] via-[#EADBCE] to-[#AC8C7D]', '/product2.png', '["almond", "cocoa", "millet"]'),
+(4, 'Comforting Evening Nutrition', 'Creamy & Nourishing', 'Mushroom Premix Soup', 'Rich gourmet oyster mushroom soup with garlic and aromatic herbs. Enjoy deep restaurant-quality comfort in 60 seconds with zero added MSG.', 'New Launch', 'from-[#FBF8F3] via-[#EFE6DB] to-[#D5C2AF]', '/Mushroom3.jpeg', '["mushroom", "garlic", "herbs"]')
 ON DUPLICATE KEY UPDATE 
 `category`=VALUES(`category`), `title`=VALUES(`title`), `subtitle`=VALUES(`subtitle`), `tagline`=VALUES(`tagline`), `badge`=VALUES(`badge`), `bg_color`=VALUES(`bg_color`), `image`=VALUES(`image`), `elements`=VALUES(`elements`);
 

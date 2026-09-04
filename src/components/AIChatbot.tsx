@@ -23,6 +23,7 @@ interface Message {
 }
 
 const SUGGESTIONS = [
+  "🍄 Tell me about Mushroom Soup?",
   "🌿 Benefits of Moringa Soup?",
   "🥤 How to prepare ABC Malt?",
   "🍫 Is Choco Malt sugar-free?",

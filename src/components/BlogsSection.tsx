@@ -40,7 +40,7 @@ const BLOGS: BlogPost[] = [
         },
         {
           title: 'Moringa Leaf Goodness',
-          text: 'Pure Moringa Oleifera leaf powder combined with gentle herbs provides a warm, satisfying soup experience without lengthy cooking.'
+          text: 'Moringa Oleifera leaf powder combined with gentle herbs provides a warm, satisfying soup experience without lengthy cooking.'
         },
         {
           title: 'Modern Convenience for Busy Routines',
@@ -236,7 +236,7 @@ export default function BlogsSection() {
                   <div className="flex items-center gap-2 text-[11px] text-slate-500 mb-2 font-medium">
                     <Clock className="w-3.5 h-3.5 text-[#0080FF]" />
                     <span>{blog.readTime}</span>
-                    <span>•</span>
+                    <span className="mx-1">•</span>
                     <span>{blog.date}</span>
                   </div>
 
